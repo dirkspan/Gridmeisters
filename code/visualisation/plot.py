@@ -18,5 +18,5 @@ ax1.legend([houses, batteries], ['Houses','Batteries'], loc=3)
 fig.savefig("District3.pdf")
 
 
-a = batteries.pop('capaciteit')
-b = houses.pop('maxoutput')
+# a = batteries.pop('capaciteit')
+# b = houses.pop('maxoutput')
