@@ -1,9 +1,13 @@
-from code.classes import load_data
+from . import load_data
+
 
 import matplotlib
 matplotlib.use('pdf')
 import matplotlib.pyplot as plt
 from matplotlib import style
+
+def plot(self):
+    print(self.houses)
 
 # import numpy as np
 # import pandas as pd

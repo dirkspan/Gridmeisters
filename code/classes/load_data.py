@@ -1,6 +1,6 @@
 import csv
-from battery import Battery
-from house import House
+from .battery import Battery
+from .house import House
 
 def load_batteries(self):
 
