@@ -6,5 +6,8 @@ class House:
         self.y = y
         self.maxoutput = maxoutput
 
+    def __str__(self):
+        return f"House:{self.id}\nx: {self.x}\ny: {self.y}\nmaxoutput: {self.maxoutput}\n"   
+
 
     

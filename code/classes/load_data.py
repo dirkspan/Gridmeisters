@@ -1,31 +1,31 @@
 import csv
-import battery
-import house
+from battery import Battery
+from house import House
 
 class Load_data:
 
     def load_batteries(self):
 
-        self.batteries = []
-
-        with open('data/district_1/district-1_batteries.csv', 'r') as battery_data:
+        batteries = []
+        
+        with open('district-1_batteries.csv', 'r') as battery_data:
             battery_reader = csv.DictReader(battery_data)
         
             for row in battery_reader:
                 battery = Battery(int(row['id']), row['x'], row['y'], row['capaciteit'])
-                self.batteries.append(battery)
+                batteries.append(battery)
 
-        return self.batteries
+        return batteries
                 
     def load_houses(self):
 
-        self.houses = []
+        houses = []
 
-        with open('data/district_1/district-1_batteries.csv', 'r') as house_data:
+        with open('district-1_houses.csv', 'r') as house_data:
             house_reader = csv.DictReader(house_data)
 
             for row in house_reader:
                 house = House(int(row['id']), row['x'], row['y'], row['maxoutput'])
-                self.houses.append(house)
+                houses.append(house)
 
-        return self.houses
+        return houses

@@ -8,7 +8,7 @@ id = int
 --
 p1 = x
 p2 = y
-maxoutput = int
+ = int
 id = int
 </panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>180</x><y>60</y><w>180</w><h>130</h></coordinates><panel_attributes>Grid
 --
