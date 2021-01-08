@@ -7,7 +7,7 @@ class Battery:
         self.capaciteit = capaciteit
 
     def __str__(self):
-        return f"House:{self.id}\nx: {self.x},y: {self.y},capaciteit: {self.capaciteit}"       
+        return f"House:{self.id}\nx: {self.x}\ny: {self.y}\ncapaciteit: {self.capaciteit}\n"       
 
         
     

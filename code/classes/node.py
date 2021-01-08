@@ -1,9 +1,9 @@
 # class Node():
-#     def __init__(self, p1, p2, maxoutput, uid)
+#     def __init__(self, p1, p2, , uid)
 
 #         self.p1 = x
 #         self.p2 = y
-#         self.maxoutput = maxoutput
+#         self. = 
 #         self.id = uid
 #         self.value = None
     

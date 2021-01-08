@@ -1,16 +1,24 @@
 import load_data
-
+import battery 
+import house
 
 import matplotlib
 matplotlib.use('pdf')
 import matplotlib.pyplot as plt
 from matplotlib import style
 
+reader = load_data.Load_data()
 
-batteries = load_data.Load_data.load_batteries
-houses = load_data.Load_data.load_houses
+batteries = reader.load_batteries()
 
-print(houses)
+houses = reader.load_houses()
+
+
+for battery in batteries:
+    print(battery)
+
+# for house in houses:
+#     print(house)
 
 
 
