@@ -12,7 +12,6 @@ class Load_data:
             battery_reader = csv.DictReader(battery_data)
         
             for row in battery_reader:
-                id = int(row['id'])
                 battery = Battery(int(row['id']), row['x'], row['y'], row['capaciteit'])
                 self.batteries.append(battery)
 

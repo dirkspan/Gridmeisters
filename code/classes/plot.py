@@ -1,5 +1,7 @@
 import load_data
-
+import house
+import battery
+from pprint import pprint
 
 import matplotlib
 matplotlib.use('pdf')
@@ -10,8 +12,16 @@ from matplotlib import style
 batteries = load_data.Load_data.load_batteries
 houses = load_data.Load_data.load_houses
 
-print(houses)
+h = battery.Battery
 
+print(h)
+
+hasattr(houses, 'id')
+
+# house1 = house.House
+# print(house1)
+
+# pprint(vars(batteries))
 
 
 # import numpy as np
