@@ -28,12 +28,10 @@ with open('data/district_1/district-1_houses.csv', 'r') as houses_data:
     for row in houses_reader:
         house_list.append(row)
 
-<<<<<<< HEAD
-minlen = {}
-=======
+
 total_distance = []
 dict = {}
->>>>>>> 3424b77befd8578210cba8f453af8e89758ec6cd
+
 
 for i in house_list:
     xh = int(i['x'])
@@ -42,44 +40,30 @@ for i in house_list:
     # print(id)
 
     total_distance = []
-    dict = {}
-
+    unieke_id = []
+    minimaallist = []
     for i in battery_list:
         id = i['id']
-<<<<<<< HEAD
-      
-=======
-        # print(id)
->>>>>>> 3424b77befd8578210cba8f453af8e89758ec6cd
         xb = int(i['x'])
         yb = int(i['y'])
+        unieke_id.append(id)
 
         xt = abs(xh - xb)
         yt = abs(yh - yb)
         dis = xt + yt
-
-        dict[id] = dis
-<<<<<<< HEAD
-=======
-        # print(dis)
->>>>>>> 3424b77befd8578210cba8f453af8e89758ec6cd
-    
+       
         total_distance.append(dis)
 
 
     minimaal = min(total_distance)
-    minlen[id] = minimaal
-    minlen.append(minimaal)
-    print (minlen)
-  
+    minimaallist.append(minimaal)
 
-    print(minimaal)
-    # print(dict)
-
-
+print(minimaallist)    
     
-   
 
+
+
+   
 
 
 
