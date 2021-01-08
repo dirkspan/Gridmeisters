@@ -1,6 +1,7 @@
 import load_data
-import battery 
 import house
+import battery
+from pprint import pprint
 
 import matplotlib
 matplotlib.use('pdf')
@@ -20,6 +21,7 @@ for battery in batteries:
 # for house in houses:
 #     print(house)
 
+# pprint(vars(batteries))
 
 
 # import numpy as np
