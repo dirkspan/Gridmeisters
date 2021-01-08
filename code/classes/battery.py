@@ -1,4 +1,4 @@
-class Battery():
+class Battery:
 
     def __init__(self, id, x, y, capaciteit):
         self.id = id

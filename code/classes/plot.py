@@ -1,4 +1,4 @@
-from . import load_data
+import load_data
 
 
 import matplotlib
@@ -6,8 +6,13 @@ matplotlib.use('pdf')
 import matplotlib.pyplot as plt
 from matplotlib import style
 
-def plot(self):
-    print(self.houses)
+
+batteries = load_data.Load_data.load_batteries
+houses = load_data.Load_data.load_houses
+
+print(houses)
+
+
 
 # import numpy as np
 # import pandas as pd

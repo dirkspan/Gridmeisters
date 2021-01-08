@@ -1,4 +1,4 @@
-class House():
+class House:
 
     def __init__(self,id, x, y, maxoutput):
         self.id = id
@@ -8,5 +8,6 @@ class House():
 
     def __str__(self):
         return f"Battery:{self.id}\nx: {self.x},y: {self.y},maxoutput: {self.maxoutput}"    
+
 
     
