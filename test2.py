@@ -28,43 +28,53 @@ with open('data/district_1/district-1_houses.csv', 'r') as houses_data:
     for row in houses_reader:
         house_list.append(row)
 
-for i in house_list:
-    xh = int(i['x'])
-    yh = int(i['y'])
-    id = int(i['id'])
-    print(id)
+# minlen = {}
 
-    dict = {}
 
-    for i in battery_list:
-        id = i['id']
-
-        xb = int(i['x'])
-        yb = int(i['y'])
-
-        xt = abs(xh - xb)
-        yt = abs(yh - yb)
-        dis = xt + yt
-
-        dict[id] = dis
-
-    nearest_bat = min(dict.items(), key=lambda x:x[1])
-   
-    print (nearest_bat)
 
 
 # for i in house_list:
-#     nearest_bat() 
+i = house_list[0]
+
+xh = int(i['x'])
+yh = int(i['y'])
+
+id = int(i['id'])
+# print(id)
+
+dict = {}
+
+i = battery_list[1]
+# for i in battery_list:
+# id = i['id']
+
+xb = int(i['x'])
+yb = int(i['y'])
+
+xt = xh - xb
+print('x coordinaten: h,b,t')
+print(xh)
+print(xb)
+print(xt)
+
+verschil = int(xt)
+print(verschil)
+
+xhuidig = xh
+
+for i in verschil:
+    xhuidig = xhuidig - 1
+    print (xhuidig)
+
+yt = abs(yh - yb)
+dis = xt + yt
+# print(dis)
+
+dict[id] = dis
+
+# nearest_bat = min(dict.items(), key=lambda x:x[1])  
    
-
-
-
-
-
-
-
-
-
+# print (nearest_bat)
 
 
 
