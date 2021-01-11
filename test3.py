@@ -1,12 +1,14 @@
 "test file visualisation!!"
 
+import matplotlib
+matplotlib.use('pdf')
 import matplotlib.pyplot as plt
 import csv
 
 
 def plot(path):
    
-    with open(path, 'r') as csvfile:
+    with open('district-1_houses.csv', 'r') as csvfile:
         # Read file
         result = csv.reader(csvfile)
 
@@ -50,4 +52,4 @@ def plot(path):
         plt.title(f"Wijk {district} met algoritme {algorithm} with total length {total_len}")
 
     csvfile.close()
-    plt.show()
+    plt.savefig('test3.pdf')
