@@ -11,21 +11,14 @@ class House:
     def __str__(self):
         return f"House:{self.id}\nx: {self.x}\ny: {self.y}\nmaxoutput: {self.maxoutput}\n"   
 
-    # def cables(self):
-    #     house_x_dist = []
-
-    #     for house in houses:
-    #         for battery in batteries:
-    #             if house.x < battery.x:
-    #                 house.x += 1
-    #                 house_x_dist.append(house.x)
-    #             if house.x > battery.x:
-    #                 house.x -= 1
-    #                 house_x_dist.append(house.x)
-    #             if house.x == battery.x:
-    #                 break
-
-
+    def get_id(self):
+        return self.id
+    
+    def get_coord(self):
+        return self.x, self.y
+    
+    def get_max(self):
+        return self.maxoutput
 
 
 
