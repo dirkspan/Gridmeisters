@@ -6,15 +6,6 @@ import numpy as np
 import pandas as pd
 import csv
 
-# houses = pd.DataFrame(columns=['id','x','y','capaciteit'])
-
-# data = pd.read_csv('district-1_batteries.csv')
-
-# # print(data)
-
-# new_data = houses.append(data)
-# print(new_data)
-
 battery_list = []
 house_list = []
 
@@ -32,6 +23,8 @@ for i in house_list:
     xh = int(i['x'])
     yh = int(i['y'])
     id = int(i['id'])
+
+    #prints the id of the current house
     print(id)
 
     dict = {}
@@ -50,11 +43,8 @@ for i in house_list:
 
     nearest_bat = min(dict.items(), key=lambda x:x[1])
    
-    print (nearest_bat)
-
-
-# for i in house_list:
-#     nearest_bat() 
+    # prints the id of the nearest battery
+    print (nearest_bat[0])
    
 
 
