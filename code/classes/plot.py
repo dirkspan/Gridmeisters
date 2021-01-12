@@ -21,16 +21,12 @@ houses = reader.load_houses()
 
 
 reader1 = cables.Grid()
+reader2 = cables.Grid()
 house_x_dist = reader1.cables(houses, batteries)
+house_y_dist = reader2.cables(houses, batteries)
 
-
-for i in house_x_dist:
-    print(i)
-    print("===")
-
-    
-# for j in house_y_dist:
-#     print(j)
+# print(house_x_dist)
+print(house_y_dist)
 
 # df = pd.DataFrame(columns=list('xy'))
 
@@ -43,7 +39,6 @@ for i in house_x_dist:
 
 # house_locs_x = []
 # house_locs_y = []
-
 
 # for battery in batteries:
 #     battery_locs_x.append(int(battery.x))
