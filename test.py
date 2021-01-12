@@ -8,6 +8,7 @@ import csv
 
 battery_list = []
 house_list = []
+lijst_bat1 = []
 
 with open('data/district_1/district-1_batteries.csv', 'r') as battery_data:
     battery_reader = csv.DictReader(battery_data)
@@ -45,10 +46,8 @@ for i in house_list:
    
     # prints the id of the nearest battery
     print (nearest_bat[0])
-   
 
-
-
+    
 
 
 

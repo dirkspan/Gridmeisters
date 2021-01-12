@@ -52,25 +52,33 @@ xb = int(i['x'])
 yb = int(i['y'])
 
 xt = xh - xb
-print('x coordinaten: h,b,t')
+print('start coordinaat')
 print(xh)
+print(yh)
+
+print('hoek coordinaat')
+print(xh)
+print(yb)
+
+print('eind coordinaat')
 print(xb)
-print(xt)
+print(yb)
 
-verschil = int(xt)
-print(verschil)
+# print('afstand')
+# verschil = int(xt)
+# print(verschil)
 
-xhuidig = xh
+# xhuidig = xh
 
-for i in verschil:
-    xhuidig = xhuidig - 1
-    print (xhuidig)
+# for i in verschil:
+#     xhuidig = xhuidig - 1
+#     print (xhuidig)
 
-yt = abs(yh - yb)
-dis = xt + yt
-# print(dis)
+# yt = abs(yh - yb)
+# dis = xt + yt
+# # print(dis)
 
-dict[id] = dis
+# dict[id] = dis
 
 # nearest_bat = min(dict.items(), key=lambda x:x[1])  
    
