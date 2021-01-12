@@ -19,8 +19,17 @@ reader = load_data.Load_data()
 batteries = 30 * reader.load_batteries()
 houses = reader.load_houses()
 
+
+reader1 = cables.Grid()
+house_x_dist = reader1.cables(houses, batteries)
+house_y_dist = reader1.cables(houses, batteries)
+
 for i in house_x_dist:
     print(i)
+print('hey')
+    
+for j in house_y_dist:
+    print(j)
 
 # df = pd.DataFrame(columns=list('xy'))
 
