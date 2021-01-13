@@ -1,7 +1,8 @@
 import load_data
 import house
 import battery
-import cables
+# import cables
+import random
 
 from pprint import pprint
 import matplotlib
@@ -16,17 +17,67 @@ import array
 
 
 reader = load_data.Load_data()
-batteries = 30 * reader.load_batteries()
+batteries = reader.load_batteries()
 houses = reader.load_houses()
 
 
-reader1 = cables.Grid()
-reader2 = cables.Grid()
-house_x_dist = reader1.cables(houses, batteries)
-house_y_dist = reader2.cables(houses, batteries)
+# reader1 = cables.Grid()
+# reader2 = cables.Grid()
+# house_x_dist = reader1.cables(houses, batteries)
+# house_y_dist = reader2.cables(houses, batteries)
 
 # print(house_x_dist)
-print(house_y_dist)
+# print(house_y_dist)
+
+
+
+import random
+
+house_locs_x = []
+house_locs_y = []
+
+battery_locs_x = []
+battery_locs_y = []
+
+for battery in batteries:
+
+    battery_locs_x.append(int(battery.x))
+    battery_locs_y.append(int(battery.y))
+
+for house in houses:
+
+    house_locs_x.append(int(house.x))
+    house_locs_y.append(int(house.y))
+
+    rand_battery = random.choice(batteries)
+
+    house_x = house.x 
+    house_y = house.y
+
+    battery_x = rand_battery.x 
+    battery_y = rand_battery.y
+
+    cutting_point_x = house.x 
+    cutting_point_y = rand_battery.y
+
+
+    #plot line between house and cutting point 
+    x = [house_x, cutting_point_x, battery_x]
+    y = [house_y, cutting_point_y, battery_y]
+
+    ax = plt.subplot(111)
+
+    houses_plt = ax.scatter(house_locs_x, house_locs_y, color='k', marker='*')
+    batteries_plt = ax.scatter(battery_locs_x, battery_locs_y, color='r', marker='^')
+
+    plt.plot(x,y)
+    plt.savefig("doehetnou.png")
+
+
+
+
+
+
 
 # df = pd.DataFrame(columns=list('xy'))
 
