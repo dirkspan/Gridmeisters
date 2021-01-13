@@ -16,6 +16,8 @@ houses = reader.load_houses()
 costs_shared = 0
 dict= {}
 
+battery.capacity = 1507.00
+
 # print houses and batteries
 house_locs_x = []
 house_locs_y = []
@@ -36,6 +38,14 @@ for house in houses:
 
     rand_battery = random.choice(batteries)
 
+    if battery.capacity <= house.maxoutput:
+        while battery.capacity <= house.maxoutput:
+            rand_battery = random.choice(batteries)
+
+    else:
+        battery.capacity = battery.capacity - house.maxoutput
+        print(battery.capacity)
+    
     house_x = int(house.x) 
     house_y = int(house.y)
 
@@ -64,7 +74,8 @@ for house in houses:
 
     plt.plot(x,y)
 
+    
 plt.savefig("randomplot.png")
 
-print(dict)
+# print(dict)
 print(costs_shared)
