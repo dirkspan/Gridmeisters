@@ -1,6 +1,7 @@
 from code.classes.cable import Cable
 from random import shuffle
 
+
 def random(grid):
     max_iterations = 1000
     for i in rand(max_iterations):
@@ -27,7 +28,6 @@ def random_grid(grid):
         cable.add_batt(batteries[bkey[j]].get_id())
         cable.add_route(houses[hkeys[i]].get_coord(), batteries[bkey[j]].get_coord())
         grid.add_cable(cable)
-        print(cable)
         i += 1
     
     return grid

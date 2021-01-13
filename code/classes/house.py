@@ -1,6 +1,6 @@
 import battery
 
-class House:
+class House(object):
 
     def __init__(self,id, x, y, maxoutput):
         self.id = int(id)
