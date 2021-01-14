@@ -35,7 +35,7 @@ class Battery:
 
         if self.connect == True:
 
-            self.houses_to_battery.append(house.id)
+            self.houses_to_battery.append(house)
             self.capaciteit -= house.maxoutput
 
     def status(self, house, battery):
@@ -46,7 +46,7 @@ class Battery:
         batterij dan status = True, batterij is vol
         """
 
-        if house.maxoutput < self.capaciteit:
+        if house.maxoutput > self.capaciteit:
             self.battery_full = True
 
     def get_most_costs(self, battery):
@@ -61,7 +61,7 @@ class Battery:
         """
         Removes house from the connection to battery and adds output back to capacity
         """
-        
+
         self.houses_to_battery.pop(house)
         self.capaciteit += house.maxoutput
 

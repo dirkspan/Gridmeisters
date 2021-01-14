@@ -176,28 +176,29 @@ for battery in batteries:
     all_batteries.append(battery)
 
 # keep running
-while len(batteries):
-
+# while len(all_batteries):
+    i = 0
     # loop through houses
-    for house in houses:
+for house in houses:
 
-        # start at first battery
-        i = 0
-        battery = all_batteries[i]
-    
+    # start at first battery
+    battery = all_batteries[i]
+
         # check if connection can be made
-        battery.is_possible(house)
+    battery.is_possible(house)
 
-        # check if battery is full
-        battery.status(house, battery)
+        # checks to see if battery is full
+    battery.status(house, battery)
+
+        # move to next battery
+    if battery.battery_full == False: 
 
         # connect house to battery
         if battery.connect == True:
             battery.connect_house(house, battery)
-            print(f"this is: {battery} with {battery.houses_to_battery} and {house.maxoutput}") 
-        
-        # move to next battery
-        if battery.battery_full == True:
-            i += 1 
+            print(f"this is: {battery} with {battery.houses_to_battery.calc_costs}, output: {house.maxoutput} with costs: {house.calc_costs(house, battery)}") 
 
+
+    else:
+        i += 1
 
