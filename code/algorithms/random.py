@@ -12,7 +12,6 @@ reader = load_data.Load_data()
 batteries = reader.load_batteries()
 houses = reader.load_houses()
 
-
 # variable for calculation and creating dictionary
 costs_shared = 0
 dict= {}
