@@ -178,19 +178,20 @@ for battery in batteries:
 # keep running
 # while len(all_batteries):
     i = 0
-    # loop through houses
+
+# loop through houses
 for house in houses:
 
     # start at first battery
     battery = all_batteries[i]
 
-        # check if connection can be made
+    # check if connection can be made
     battery.is_possible(house)
 
-        # checks to see if battery is full
+    # checks to see if battery is full
     battery.status(house, battery)
 
-        # move to next battery
+    # move to next battery
     if battery.battery_full == False: 
 
         # connect house to battery
