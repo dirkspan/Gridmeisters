@@ -12,7 +12,7 @@ class Load_data:
             battery_reader = csv.DictReader(battery_data)
         
             for row in battery_reader:
-                battery = Battery(int(row['id']), row['x'], row['y'], row['capaciteit'])
+                battery = Battery(int(row['id']), int(row['x']), int(row['y']), float(row['capaciteit']))
                 batteries.append(battery)
 
         return batteries
@@ -25,7 +25,10 @@ class Load_data:
             house_reader = csv.DictReader(house_data)
 
             for row in house_reader:
-                house = House(int(row['id']), row['x'], row['y'], row['maxoutput'])
+                house = House(int(row['id']), int(row['x']), int(row['y']), float(row['maxoutput']))
                 houses.append(house)
 
         return houses
+
+
+    

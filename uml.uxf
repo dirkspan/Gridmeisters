@@ -1,19 +1,42 @@
-<diagram program="umletino" version="14.4.0-SNAPSHOT"><zoom_level>10</zoom_level><element><id>UMLClass</id><coordinates><x>350</x><y>250</y><w>120</w><h>120</h></coordinates><panel_attributes>Battery
+<diagram program="umletino" version="14.4.0-SNAPSHOT"><zoom_level>10</zoom_level><element><id>UMLClass</id><coordinates><x>320</x><y>360</y><w>210</w><h>230</h></coordinates><panel_attributes>Battery
 --
-p1 = x
-p2 = y
-capacity = int
-id = int
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>40</x><y>250</y><w>120</w><h>120</h></coordinates><panel_attributes>House
+self.x = x
+self.y = y
+self.capacity = int
+self.id = int
+houses = []
 --
-p1 = x
-p2 = y
- = int
+def add_houses()
+adds houses to battery
+distracts output from capacity
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>20</x><y>360</y><w>220</w><h>240</h></coordinates><panel_attributes>House
+--
+self.x = x
+self.y = y
+self.maxouput = int
 id = int
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>180</x><y>60</y><w>180</w><h>130</h></coordinates><panel_attributes>Grid
+cutting_coordinates = coordinates
+--
+/def costs():
+
+/def add_cutting_point():
+/coordinates = (self.house.x, battery.y)
+
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>10</x><y>20</y><w>220</w><h>210</h></coordinates><panel_attributes>Grid
 --
 House = House.id
 Battery = Battery.id
+self.costs_shared = costs_shared
 --
-Grid lijnen met waarden
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>170</x><y>310</y><w>170</w><h>30</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>150;10;10;10</additional_attributes></element></diagram>
+def add_total_costs(house, battery)
+costs_shared = 0
+xt = abs(house.x - battery.x)
+yt = abs(house.y - battery.y)
+dis = xt + yt
+price = dis * 9
+costs_shared = costs_shared + price
+
+
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>280</x><y>20</y><w>170</w><h>170</h></coordinates><panel_attributes>Cable
+--
+self.route = []</panel_attributes><additional_attributes></additional_attributes></element></diagram>
