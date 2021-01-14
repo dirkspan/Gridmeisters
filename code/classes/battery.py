@@ -1,48 +1,83 @@
 class Battery:
 
-<<<<<<< HEAD
     def __init__(self, id, x, y, capaciteit):
+        """
+        Initialize attributes of battery
+        """
+
         self.id = id
         self.x = x
         self.y = y
         self.capaciteit = capaciteit
+
+        # deze lijst gaat descending gesorteerd worden
         self.houses_to_battery = []
-        # self.dis_x_to_house = dis_x_to_house
-        # self.dis_y_to_house = dis_y_to_house
         self.connect = False
-=======
-    def __init__(self, id, x, y, capacity):
-        self.id = int(id)
-        self.x = int(x)
-        self.y = int(y)
-        self.capacity = capacity
->>>>>>> 925fcfb5b2132a4c7995450522b42cf271a91ab1
+        self.battery_full = False
 
     def __str__(self):
-        return f"Battery:{self.id}\nx: {self.x}\ny: {self.y}\ncapaciteit: {self.capacity}\n"       
+        return f"Battery:{self.id}\nx: {self.x}\ny: {self.y}\ncapaciteit: {self.capaciteit}\n"       
 
     def is_possible(self, house):
+        """
+        Checks if house can be connected to the battery
+        """
+
         if self.capaciteit > house.maxoutput:
             self.connect = True
         else:
             self.connect = False
 
     def connect_house(self, house, battery):
+        """
+        Connects house to battery and substracts output from the capacity
+        """
+
         if self.connect == True:
 
-<<<<<<< HEAD
-            # self.houses_to_battery.append((house.x, house.y))
-            # self.houses_to_battery.append((house.x, battery.y))
-            # self.houses_to_battery.append((battery.x, battery.y))
             self.houses_to_battery.append(house.id)
             self.capaciteit -= house.maxoutput
-        # else:
-        #     print(f"This is not possible with {house}")
-        #     return 0
-=======
-    def get_cap(self):
-        return self.capacity
->>>>>>> 925fcfb5b2132a4c7995450522b42cf271a91ab1
+
+    def status(self, house, battery):
+        """
+        Hier moeten we gaan kijken of het huis dat we aan de batterij willen koppelen mogelijk is
+        
+        Als het potentiele huis dat toegevoegd moet worden te groot is voor de overige ruimte in de
+        batterij dan status = True, batterij is vol
+        """
+
+        if house.maxoutput < self.capaciteit:
+            self.battery_full = True
+
+    def get_most_costs(self, battery):
+        """
+        Returns highest costs of house grid to battery
+        """
+
+        return max(self.houses_to_battery)
+
+
+    def remove_house(self, house, battery):
+        """
+        Removes house from the connection to battery and adds output back to capacity
+        """
+        
+        self.houses_to_battery.pop(house)
+        self.capaciteit += house.maxoutput
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     # def distance_x(self, house):

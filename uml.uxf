@@ -2,13 +2,13 @@
 --
 self.x = x
 self.y = y
-self.capacity = int
+self.capaciteit = int
 self.id = int
 houses = []
 --
 def add_houses()
 adds houses to battery
-distracts output from capacity
+distracts output from capaciteit
 </panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>20</x><y>360</y><w>220</w><h>240</h></coordinates><panel_attributes>House
 --
 self.x = x

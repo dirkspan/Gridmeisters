@@ -71,7 +71,7 @@ class Grid(object):
         del self.cables[key]
 
     def clear_cables(self):
-        # clear cables dictionary, for all batteries reset capacity
+        # clear cables dictionary, for all batteries reset capaciteit
         self.cables = {}
         for key in self.batteries:
             self.batteries[key].reset_cap()

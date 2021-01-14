@@ -5,6 +5,9 @@ from house import House
 class Load_data:
 
     def load_batteries(self):
+        """
+        Loads battery data
+        """
 
         batteries = []
         
@@ -18,6 +21,9 @@ class Load_data:
         return batteries
                 
     def load_houses(self):
+        """
+        Loads house data
+        """
 
         houses = []
 
@@ -29,6 +35,3 @@ class Load_data:
                 houses.append(house)
 
         return houses
-
-
-    

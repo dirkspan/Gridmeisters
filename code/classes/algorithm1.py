@@ -13,6 +13,8 @@ Breadth first (queue)
     
     Totdat het niet meer kan:
         Door naar volgende -> vanuit lijst of nodes? maakt dit uit?
+
+                    
 """
 
 """
@@ -38,13 +40,37 @@ Dijkstra (weet niet of deze handig is)
     Repeat:
     Queue huizen met kortste afstanden tot aan batterijen(voor 150*5, manhat. dist)
         Koppel fifo aan batterijen
+
+        for battery in batteries:
+            battery = battery[0]
+
+            for house in houses:
+                house_costs = ((house.x + house.y) - (battery1.x + battery1.y)) * 9
+
+            repeat
+
+       150 huizen tot aan batterij i[20, tot aan 200]
+
+       150 huizen tot aan batterij i+1[30, tot aan 300]  
+
+       batterij -> dichtsbijzijnde huis 
+
+       batterij 1 naar 3 
+
+
+
+
+
     If output > capaciteit:
-        door naar volgende
+        door naar volgende batterij    
 """
 
 """
 Hillclimber
-- Vanuit wat? Perspectief
+
+- Vanuit wat? Perspectief -> batterij
+
+
     Kies random huis
         Verbind aan een batterij
     Als er een huis is dat beter verbonden kon worden aan deze batterij
@@ -76,7 +102,7 @@ Hillclimber
   },
   {
     "location": "38,12",
-    "capacity": 1507.0,
+    "capaciteit": 1507.0,
     "houses": [
       {
         "location": "33,7",
@@ -110,7 +136,7 @@ Hillclimber
   },
   {
     "location": "42,3",
-    "capacity": 1507.0,
+    "capaciteit": 1507.0,
     "houses": [
       {
         "location": "48,4",
@@ -142,24 +168,36 @@ reader = load_data.Load_data()
 batteries = reader.load_batteries()
 houses = reader.load_houses()
 
+# list with all batteries
 all_batteries = []
 
+# apppend batteries to list
 for battery in batteries:
     all_batteries.append(battery)
-print(all_batteries)
-# for house in houses:
-#     for i in all_batteries:
-#         battery = all_batteries[i]
-#         battery.is_possible(house)
-#         if battery.connect == True:
-#             battery.connect_house(house, battery)
-#             print(f"this is: {battery} with {battery.houses_to_battery}") 
-#         else:
-#             battery = all_batteries[i+1]
 
-# a = all_batteries[0]
-# b = all_batteries[1]
+# keep running
+while len(batteries):
 
-# print(a)
-# print(b)
+    # loop through houses
+    for house in houses:
+
+        # start at first battery
+        i = 0
+        battery = all_batteries[i]
+    
+        # check if connection can be made
+        battery.is_possible(house)
+
+        # check if battery is full
+        battery.status(house, battery)
+
+        # connect house to battery
+        if battery.connect == True:
+            battery.connect_house(house, battery)
+            print(f"this is: {battery} with {battery.houses_to_battery} and {house.maxoutput}") 
+        
+        # move to next battery
+        if battery.battery_full == True:
+            i += 1 
+
 

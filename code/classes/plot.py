@@ -17,7 +17,7 @@ houses = reader.load_houses()
 costs_shared = 0
 dict= {}
 
-battery.capacity = 1507.00
+battery.capaciteit = 1507.00
 
 # print houses and batteries
 house_locs_x = []
@@ -39,13 +39,13 @@ for house in houses:
 
     rand_battery = random.choice(batteries)
 
-    if battery.capacity <= house.maxoutput:
-        while battery.capacity <= house.maxoutput:
+    if battery.capaciteit <= house.maxoutput:
+        while battery.capaciteit <= house.maxoutput:
             rand_battery = random.choice(batteries)
 
     else:
-        battery.capacity = battery.capacity - house.maxoutput
-        print(battery.capacity)
+        battery.capaciteit = battery.capaciteit - house.maxoutput
+        print(battery.capaciteit)
     
     house_x = int(house.x) 
     house_y = int(house.y)
