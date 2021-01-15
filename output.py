@@ -1,4 +1,5 @@
 import json
+
 x = [{
         "district": 1,
         "own-costs": 10198},
@@ -58,11 +59,7 @@ x = [{
     }
 ]
 
-with open('output.json') as f:
-    data = json.load(f)
-
-data = json.dumps(x)
-print(data)
+print(x)
 
 
 # a_file = open("output.json", "r")

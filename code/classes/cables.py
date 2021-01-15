@@ -15,18 +15,28 @@ class Cable:
         route = []
 
         # start is house, end is battery
-        current_x_cor = house.x
+        current_x = house.x
         end_x = battery.x
-        current_y_cor = house.y
+        current_y = house.y
         end_y = battery.y
 
-        while current_y_cor < end_y:
-            route.append((current_x_cor, current_y_cor))
-            current_y_cor += 1
+        if current_y < end_y:
+            while current_y < end_y:
+                route.append((current_x, current_y))
+                current_y += 1
+        elif current_y > end_y:
+            while current_y > end_y:
+                route.append((current_x, current_y))
+                current_y -= 1
 
-        while current_x_cor <= end_x:
-            route.append((current_x_cor, current_y_cor))
-            current_x_cor += 1
+        if current_x < end_x:
+            while current_x <= end_x:
+                route.append((current_x, current_y))
+                current_x += 1
+        elif current_x > end_x:
+            while current_x >= end_x:
+                route.append((current_x, current_y))
+                current_x -= 1
 
         return route
 

@@ -1,5 +1,5 @@
 import json
-from code.classes import grid
+# from code.classes import grid
 
 x = [{
         "district": district,
