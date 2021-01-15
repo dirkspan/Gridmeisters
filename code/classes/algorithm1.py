@@ -175,30 +175,88 @@ all_batteries = []
 for battery in batteries:
     all_batteries.append(battery)
 
-# keep running
-# while len(all_batteries):
-    i = 0
-    # loop through houses
+
+i = 0
+temp = 0
+a = 0
+# loop through houses
 for house in houses:
 
     # start at first battery
     battery = all_batteries[i]
 
-        # check if connection can be made
-    battery.is_possible(house)
-
-        # checks to see if battery is full
+    # checks to see if battery is full
     battery.status(house, battery)
 
-        # move to next battery
+    # move to next battery
     if battery.battery_full == False: 
 
-        # connect house to battery
-        if battery.connect == True:
-            battery.connect_house(house, battery)
-            print(f"this is: {battery} with {battery.houses_to_battery.calc_costs}, output: {house.maxoutput} with costs: {house.calc_costs(house, battery)}") 
+        battery.connect_house(house)
+        house.connect_to_battery(house, battery)
+        house.calc_costs(battery, house)
+        # print(f"this is: {battery} with {battery.houses_to_checked_battery_costs}, output: {house.maxoutput} with costs: {house.calc_costs(house, battery)}") 
+
+final = battery.houses_to_battery
+# for j in final:
+#   a = j.connected_to
+#   b = a.capaciteit
+#   print(b)
+
+for house in houses:
+  next_costs = house.calc_costs(house, battery)
+  house.connect_to_battery(battery, house)
+  battery1 = house.connected_to
+  print(battery1)
+
+  # for j in final:
+  #   battery = j.connected_to
+  #   print(battery)
+
+  # print(j)
+  
+    # current_costs = j.calc_costs(house, battery)
 
 
-    else:
-        i += 1
 
+
+
+  # for house in houses:
+  #   next_costs = house.calc_costs(house, battery)
+    
+    # if current_costs > next_costs:
+
+      # battery.remove_house(j)
+      # print(final)
+
+
+  #   # print(f'nu: {current_costs}')
+  #   # print(f'later: {next_costs}')
+  #   house.check(house, battery)
+  #   if current_costs > next_costs:
+  #     battery.remove_house(j)
+  #     battery.connect_house(house)
+
+# print(final)
+  
+      
+
+
+
+    # else:
+
+    #     final_result = battery.houses_to_battery
+    #     a += 1
+    #     print(final_result)
+    #     print(a)
+
+    #     for j in final_result:
+
+    #         current_costs = j.calc_costs(house, battery)
+    #         next_costs = house.calc_costs(house, battery)
+  
+    #         if next_costs < current_costs:
+
+    #             battery.remove_house(j)
+    #             battery.connect_house(house)
+    # # else:
+    # #     i += 1

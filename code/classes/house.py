@@ -11,9 +11,13 @@ class House(object):
         self.x = x
         self.y = y
         self.maxoutput = maxoutput
-        self.manhattan_distance = []
+        # self.possible = False
         self.connected_to = None
-       
+    
+    # def check(self, battery:
+    #     if self.maxoutput < battery.capaciteit:
+    #         self.possible = True
+
     def connect_to_battery(self, house ,battery):
         """
         Connects battery to a house
@@ -32,7 +36,7 @@ class House(object):
 
 
     def __str__(self):
-        return f"House:{self.id}\nx: {self.x}\ny: {self.y}\nmaxoutput: {self.maxoutput}\nbattery:{self.connected_to}\n"   
+        return f"House:{self.id}\nx: {self.x}\ny: {self.y}\nmaxoutput: {self.maxoutput}\n\nbattery:{self.connected_to}\n"   
 
 
 
