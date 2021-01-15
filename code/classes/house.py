@@ -2,14 +2,15 @@ import battery
 
 class House(object):
 
-    def __init__(self,id, x, y, maxoutput):
+    def __init__(self,id, coordinates, maxoutput):
         """
         Initializes attributes of house
         """
 
         self.id = id
-        self.x = x
-        self.y = y
+        self.coordinate = (x, y)
+        # self.x = x
+        # self.y = y
         self.maxoutput = maxoutput
         self.manhattan_distance = []
         self.connected_to = None

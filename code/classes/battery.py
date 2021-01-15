@@ -1,13 +1,14 @@
 class Battery:
 
-    def __init__(self, id, x, y, capaciteit):
+    def __init__(self, id, coordinate, capaciteit):
         """
         Initialize attributes of battery
         """
 
         self.id = id
-        self.x = x
-        self.y = y
+        self.coordinate = (x,y)
+        # self.x = x
+        # self.y = y
         self.capaciteit = capaciteit
 
         # deze lijst gaat descending gesorteerd worden
