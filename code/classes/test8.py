@@ -13,8 +13,11 @@ reader = load_data.Load_data()
 batteries = reader.load_batteries()
 houses = reader.load_houses()
 
+house = houses[1]
+battery = batteries[1]
+
 reader1= cables.Cable()
-cables= reader1.coordinates_cables(house,battery)
+cables= reader1.coordinates_cables(house, battery)
 
 for cable in cables:
     print(cable)
