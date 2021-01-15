@@ -16,7 +16,7 @@ class Cable:
 
         # start is house, end is battery
         current_x_cor = house.x
-        end_x= battery.x
+        end_x = battery.x
         current_y_cor = house.y
         end_y = battery.y
 

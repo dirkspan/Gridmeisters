@@ -14,7 +14,7 @@ class House(object):
         self.manhattan_distance = []
         self.connected_to = None
        
-    def connect_to_battery(self, house ,battery):
+    def connect_to_battery(self, house, battery):
         """
         Connects battery to a house
         """
