@@ -13,12 +13,17 @@ class House(object):
         self.maxoutput = maxoutput
         # self.possible = False
         self.connected_to = None
+<<<<<<< HEAD
     
     # def check(self, battery:
     #     if self.maxoutput < battery.capaciteit:
     #         self.possible = True
 
     def connect_to_battery(self, house ,battery):
+=======
+       
+    def connect_to_battery(self, house, battery):
+>>>>>>> 7a8bf59927d25e4cb763521d5bef377ea7475e43
         """
         Connects battery to a house
         """

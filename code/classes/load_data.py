@@ -31,7 +31,7 @@ class Load_data:
             house_reader = csv.DictReader(house_data)
 
             for row in house_reader:
-                house = House(int(row['id']), int(row['x']), int(row['y']), float(row['maxoutput']))
+                house = House(int(row['id']), int(row['x']),int(row['y']), float(row['maxoutput']))
                 houses.append(house)
 
         return houses

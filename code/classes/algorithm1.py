@@ -94,6 +94,44 @@ Hillclimber
                 next_random_house.addconnection
 """
 
+
+"""
+Constraints relaxation
+
+- Vanuit wat? Perspectief -> batterij
+
+  loop door alle huizen
+    verbind met dichtsbijzijnde batterij
+  
+  While output van alle huizen > max_output
+    try house bij op 1 na dichtsbijzijnde batterij. nieuwe staat opslaan
+
+
+  Verbind alle huizen met de dichtsbijzijnde batterij
+
+    Kies random huis
+        Verbind aan een batterij
+    Als er een huis is dat beter verbonden kon worden aan deze batterij
+        Vervang dit huis voor voorgaand huis (aanpassing ongedaan maken)
+
+    Dus:
+        random_houses = []
+
+        for house in houses:
+            Random_Houses.append(house)
+
+        While len(houses)
+
+            random_house = random.choice(random_houses)
+            next_random_house = random.choice(random_houses)
+
+            if random_house.costs < next_random_house:
+                random_house.addconnection
+
+            else:
+                next_random_house.addconnection
+"""
+
 """
 [
   {
@@ -175,16 +213,29 @@ all_batteries = []
 for battery in batteries:
     all_batteries.append(battery)
 
+<<<<<<< HEAD
 
 i = 0
 temp = 0
 a = 0
+=======
+# keep running
+# while len(all_batteries):
+    i = 0
+
+>>>>>>> 7a8bf59927d25e4cb763521d5bef377ea7475e43
 # loop through houses
 for house in houses:
 
     # start at first battery
     battery = all_batteries[i]
 
+<<<<<<< HEAD
+=======
+    # check if connection can be made
+    battery.is_possible(house)
+
+>>>>>>> 7a8bf59927d25e4cb763521d5bef377ea7475e43
     # checks to see if battery is full
     battery.status(house, battery)
 
