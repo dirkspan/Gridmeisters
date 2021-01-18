@@ -11,12 +11,13 @@ class House(object):
         self.x = x
         self.y = y
         self.maxoutput = maxoutput
-        # self.possible = False
         self.connected_to = None
+
+        # bas had toch gelijk dit is beter
+        self.coordinates = (x, y)
+        self.route = (None, None)
+
     
-    # def check(self, battery:
-    #     if self.maxoutput < battery.capaciteit:
-    #         self.possible = True
 
     def connect_to_battery(self, battery):
         """

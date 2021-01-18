@@ -36,8 +36,4 @@ class Load_data:
 
         return houses
 
-    # def calc_distances(self, houses, batteries):
-
-    #     house_dist = []
-    #     i = 0
 

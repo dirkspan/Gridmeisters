@@ -13,6 +13,10 @@ class Battery:
         self.temp_houses_to_battery = []
         self.battery_full = False
 
+        # bas had toch gelijk dit is beter
+        self.coordinates= (x, y)
+
+
     def __str__(self):
         return f"Battery:{self.id}\nx: {self.x}\ny: {self.y}\ncapaciteit: {self.capaciteit}\n"       
 
