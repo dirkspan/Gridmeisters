@@ -249,7 +249,7 @@ for i in range(100):
         if house.connected_to == None:
           battery.connect_house(house)
           house.connect_to_battery(battery)
-         # print(f"this is: {battery}: Houses: {battery.temp_houses_to_battery} output: {house.maxoutput} with costs: {house.calc_costs(house, battery)}") 
+          # print(f"this is: {battery}: Houses: {battery.temp_houses_to_battery} output: {house.maxoutput} with costs: {house.calc_costs(house, battery)}") 
 
 for battery in batteries:
   final = battery.temp_houses_to_battery
