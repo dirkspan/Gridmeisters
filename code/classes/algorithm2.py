@@ -20,13 +20,13 @@ for battery in batteries:
 
 i = 0
 
-for j in range(200000):
+for j in range(100):
 
     for house in houses:
         
         battery = all_batteries[i]
 
-        battery.status(house, battery)
+        battery.status(house)
         
         if house.connected_to == None and battery.battery_full == False:
 
@@ -35,7 +35,7 @@ for j in range(200000):
 
                 if house not in curr:
                     battery.connect_house(house)
-                    house.connect_to_battery(house, battery)
+                    house.connect_to_battery(battery)
 
             elif house.x < battery.x and house.y == battery.y:
                 house.x += 1
@@ -67,19 +67,19 @@ for j in range(200000):
 
         if battery.battery_full == True:
             break
-           
 
+
+           
+for battery in batteries:
+  final = battery.temp_houses_to_battery
+  print(final)
 
  
-
-
-
 # a = battery.houses_to_battery
 # print(a)
 
 # for j in a:
-#     b =
-#     print(b)
+#     print(j)
     
 
 

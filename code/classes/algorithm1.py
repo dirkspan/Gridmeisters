@@ -212,7 +212,7 @@ reader = load_data.Load_data()
 batteries = reader.load_batteries()
 houses = reader.load_houses()
 
-for i in range(1000000):
+for i in range(100):
 
   for house in houses:
 
