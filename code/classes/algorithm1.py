@@ -195,6 +195,12 @@ Constraints relaxation
 ]
 """
 
+
+"""
+Verbindt huizen aan batterijen en gaat dan kijken of er een
+betere optie is
+"""
+
 import load_data
 import house
 import battery
@@ -206,108 +212,117 @@ reader = load_data.Load_data()
 batteries = reader.load_batteries()
 houses = reader.load_houses()
 
-# list with all batteries
-all_batteries = []
+for i in range(1000000):
 
-# apppend batteries to list
-for battery in batteries:
-    all_batteries.append(battery)
+  for house in houses:
 
-<<<<<<< HEAD
+    for battery in batteries:
 
-i = 0
-temp = 0
-a = 0
-=======
-# keep running
-# while len(all_batteries):
-    i = 0
+      # checks to see if battery is full
 
->>>>>>> 7a8bf59927d25e4cb763521d5bef377ea7475e43
-# loop through houses
-for house in houses:
+      battery.status(house)
+      # battery.status(old_house)
 
-    # start at first battery
-    battery = all_batteries[i]
-
-<<<<<<< HEAD
-=======
-    # check if connection can be made
-    battery.is_possible(house)
-
->>>>>>> 7a8bf59927d25e4cb763521d5bef377ea7475e43
-    # checks to see if battery is full
-    battery.status(house, battery)
-
-    # move to next battery
-    if battery.battery_full == False: 
-
-        battery.connect_house(house)
-        house.connect_to_battery(house, battery)
-        house.calc_costs(battery, house)
-        # print(f"this is: {battery} with {battery.houses_to_checked_battery_costs}, output: {house.maxoutput} with costs: {house.calc_costs(house, battery)}") 
-
-final = battery.houses_to_battery
-# for j in final:
-#   a = j.connected_to
-#   b = a.capaciteit
-#   print(b)
-
-for house in houses:
-  next_costs = house.calc_costs(house, battery)
-  house.connect_to_battery(battery, house)
-  battery1 = house.connected_to
-  print(battery1)
-
-  # for j in final:
-  #   battery = j.connected_to
-  #   print(battery)
-
-  # print(j)
-  
-    # current_costs = j.calc_costs(house, battery)
-
-
-
-
-
-  # for house in houses:
-  #   next_costs = house.calc_costs(house, battery)
+      if battery.battery_full == True:
     
-    # if current_costs > next_costs:
+        new_costs = house.calc_costs(battery)
+        old_houses = battery.houses_to_battery
 
-      # battery.remove_house(j)
-      # print(final)
+        for old_house in old_houses:
+
+          old_costs = old_house.calc_costs(battery)
+
+          # if old_house.connected_to != battery:
+
+          if new_costs < old_costs:
+
+            old_house.deconnect_to_battery(battery)
+            battery.remove_house(old_house)
+
+            if house.connected_to == None:
+
+              battery.connect_house(house)
+              house.connect_to_battery(battery)
+
+      else:
+
+        if house.connected_to == None:
+          battery.connect_house(house)
+          house.connect_to_battery(battery)
+         # print(f"this is: {battery}: Houses: {battery.temp_houses_to_battery} output: {house.maxoutput} with costs: {house.calc_costs(house, battery)}") 
+
+for battery in batteries:
+  final = battery.temp_houses_to_battery
+  print(final)
 
 
-  #   # print(f'nu: {current_costs}')
-  #   # print(f'later: {next_costs}')
-  #   house.check(house, battery)
-  #   if current_costs > next_costs:
-  #     battery.remove_house(j)
-  #     battery.connect_house(house)
 
-# print(final)
-  
+
+
+
+
+
+
+
+
+
+
+
+
+# # list with all batteries
+# all_batteries = []
+
+# # apppend batteries to list
+# for battery in batteries:
+#     all_batteries.append(battery)
+
+
+# i = 0
+# a = 0
+# temp = []
+
+# # loop through houses
+# for house in houses:
+
+#     # start at first battery
+#     battery = all_batteries[i]
+
+#     # checks to see if battery is full
+#     battery.status(house, battery)
+
+#     if battery.battery_full == True:
+    
+#       new_costs = house.calc_costs(house, battery)
+#       old_houses = battery.houses_to_battery
+
       
+#       for old_house in old_houses:
 
+#         old_costs = old_house.calc_costs(house, battery)
 
+#         if house != old_house and new_costs != old_costs:
 
-    # else:
+#           if house.connected_to == None:
 
-    #     final_result = battery.houses_to_battery
-    #     a += 1
-    #     print(final_result)
-    #     print(a)
+#             if new_costs <= old_costs:
 
-    #     for j in final_result:
+#               battery.remove_house(old_house)
+#               # print(f'house {old_house} removed')
 
-    #         current_costs = j.calc_costs(house, battery)
-    #         next_costs = house.calc_costs(house, battery)
-  
-    #         if next_costs < current_costs:
+#               battery.connect_house(house)
+#               house.connect_to_battery(house, battery)
+#               # print(f'connected {house} to {battery}')
+          
+            
+#               temp.append(old_house)
+#               # print(f"this is: {battery}: Houses: {battery.temp_houses_to_battery} output: {house.maxoutput} with costs: {house.calc_costs(house, battery)}") 
+        
+#     else:
 
-    #             battery.remove_house(j)
-    #             battery.connect_house(house)
-    # # else:
-    # #     i += 1
+#         battery.connect_house(house)
+#         house.connect_to_battery(house, battery)
+#         house.calc_costs(battery, house)
+#         # print(f"this is: {battery}: Houses: {battery.temp_houses_to_battery} output: {house.maxoutput} with costs: {house.calc_costs(house, battery)}") 
+
+# a = battery.temp_houses_to_battery
+# print(a)

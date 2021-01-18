@@ -13,29 +13,30 @@ class House(object):
         self.maxoutput = maxoutput
         # self.possible = False
         self.connected_to = None
-<<<<<<< HEAD
     
     # def check(self, battery:
     #     if self.maxoutput < battery.capaciteit:
     #         self.possible = True
 
-    def connect_to_battery(self, house ,battery):
-=======
-       
-    def connect_to_battery(self, house, battery):
->>>>>>> 7a8bf59927d25e4cb763521d5bef377ea7475e43
+    def connect_to_battery(self, battery):
         """
         Connects battery to a house
         """
 
         self.connected_to = battery
+
+    def deconnect_to_battery(self, battery):
+        """
+        Deconnects battery
+        """
+
+        self.connected_to = None    
         
-    def calc_costs(self, house, battery):
+    def calc_costs(self, battery):
         """
         Calculates costs of house to battery
         """
 
-        self.connected_to = battery
         costs = abs((self.x+self.y) - (battery.x+battery.y))*9
         return costs
 

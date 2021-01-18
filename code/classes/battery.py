@@ -9,11 +9,8 @@ class Battery:
         self.x = x
         self.y = y
         self.capaciteit = capaciteit
-
-        # deze lijst gaat descending gesorteerd worden
         self.houses_to_battery = []
-        self.houses_to_checked_battery_costs = []
-        self.connect = False
+        self.temp_houses_to_battery = []
         self.battery_full = False
 
     def __str__(self):
@@ -25,36 +22,25 @@ class Battery:
         Connects house to battery and substracts output from the capacity
         """
 
-        self.connect = True
         self.houses_to_battery.append(house)
-        self.houses_to_checked_battery_costs.append(house.id)
+        self.temp_houses_to_battery.append(house.id)
         self.capaciteit -= house.maxoutput
 
 
     def remove_house(self, house):
 
-        self.connect = False
         self.houses_to_battery.remove(house)
+        self.temp_houses_to_battery.remove(house.id)
         self.capaciteit += house.maxoutput
              
 
-    def status(self, house, battery):
+    def status(self, house):
         """
-        Hier moeten we gaan kijken of het huis dat we aan de batterij willen koppelen mogelijk is
-        
-        Als het potentiele huis dat toegevoegd moet worden te groot is voor de overige ruimte in de
-        batterij dan status = True, batterij is vol
+        Checks battery status
         """
 
         if house.maxoutput > self.capaciteit:
             self.battery_full = True
 
-    def houses_to_checked_battery_costs(self, house, battery):
-        """
-        Adds the costs of the grid to the battery to a list
-        """
-
-        costs = abs((self.x+self.y) - (house.x+house.y))*9
-        return costs
 
 
