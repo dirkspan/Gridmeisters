@@ -17,69 +17,65 @@ all_batteries = []
 for battery in batteries:
     all_batteries.append(battery)
 
+    i = 0
+    for j in range(100):
 
-i = 0
+        for house in houses:
+            
+            battery = all_batteries[i]
 
-for j in range(200000):
+            battery.status(house)
+            
+            if house.connected_to == None and battery.battery_full == False:
 
-    for house in houses:
-        
-        battery = all_batteries[i]
+                if house.x == battery.x and house.y == battery.y:
+                    curr = battery.houses_to_battery
 
-        battery.status(house, battery)
-        
-        if house.connected_to == None and battery.battery_full == False:
+                    if house not in curr:
+                        battery.connect_house(house)
+                        house.connect_to_battery(battery)
 
-            if house.x == battery.x and house.y == battery.y:
-                curr = battery.houses_to_battery
+                elif house.x < battery.x and house.y == battery.y:
+                    house.x += 1
 
-                if house not in curr:
-                    battery.connect_house(house)
-                    house.connect_to_battery(house, battery)
+                elif house.x > battery.x and house.y == battery.y:
+                    house.x -= 1            
 
-            elif house.x < battery.x and house.y == battery.y:
-                house.x += 1
+                elif house.x < battery.x and house.y < battery.y:
+                    house.x += 1
+                    house.y += 1
+            
+                elif house.x > battery.x and house.y < battery.y:
+                    house.x -= 1
+                    house.y += 1
 
-            elif house.x > battery.x and house.y == battery.y:
-                house.x -= 1            
+                elif house.x == battery.x and house.y < battery.y:
+                    house.y += 1
 
-            elif house.x < battery.x and house.y < battery.y:
-                house.x += 1
-                house.y += 1
-        
-            elif house.x > battery.x and house.y < battery.y:
-                house.x -= 1
-                house.y += 1
+                elif house.x == battery.x and house.y > battery.y:
+                    house.y -= 1
 
-            elif house.x == battery.x and house.y < battery.y:
-                house.y += 1
+                elif house.x < battery.x and house.y > battery.y:
+                    house.x += 1
+                    house.y -= 1
+            
+                elif house.x > battery.x and house.y > battery.y:
+                    house.x -= 1
+                    house.y -= 1
 
-            elif house.x == battery.x and house.y > battery.y:
-                house.y -= 1
+            if battery.battery_full == True:
+                break
 
-            elif house.x < battery.x and house.y > battery.y:
-                house.x += 1
-                house.y -= 1
-        
-            elif house.x > battery.x and house.y > battery.y:
-                house.x -= 1
-                house.y -= 1
-
-        if battery.battery_full == True:
-            break
-           
-
+for battery in batteries:
+  final = battery.temp_houses_to_battery
+  print(final)
 
  
-
-
-
 # a = battery.houses_to_battery
 # print(a)
 
 # for j in a:
-#     b =
-#     print(b)
+#     print(j)
     
 
 

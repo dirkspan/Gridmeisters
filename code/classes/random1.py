@@ -13,10 +13,10 @@ batteries = reader.load_batteries()
 houses = reader.load_houses()
 
 # variable for calculation and creating dictionary
-costs_shared = 0
+own_costs = 0
 dict= {}
 
-battery.capaciteit = 1507.00
+capaciteit = 1507.00
 
 # print houses and batteries
 house_locs_x = []
@@ -38,13 +38,12 @@ for house in houses:
 
     rand_battery = random.choice(batteries)
 
-    if battery.capaciteit <= house.maxoutput:
+    if rand_battery.capaciteit < house.maxoutput:
         while battery.capaciteit <= house.maxoutput:
             rand_battery = random.choice(batteries)
 
     else:
-        battery.capaciteit = battery.capaciteit - house.maxoutput
-        print(battery.capaciteit)
+        rand_battery.capaciteit = rand_battery.capaciteit - house.maxoutput
     
     house_x = int(house.x) 
     house_y = int(house.y)
@@ -64,7 +63,7 @@ for house in houses:
     yt = abs(house_y - battery_y)
     dis = xt + yt
     price = dis * 9 
-    costs_shared = costs_shared + price
+    own_costs = own_costs + price
     dict[house.id] = price
 
     ax = plt.subplot(111)
@@ -73,9 +72,15 @@ for house in houses:
     batteries_plt = ax.scatter(battery_locs_x, battery_locs_y, color='r', marker='^')
 
     plt.plot(x,y)
-
     
+    if 
+
+    # print(own_costs)
+for battery in batteries:
+    print(battery.id)
+    print(battery.capaciteit)
+
 plt.savefig("randomplot.png")
 
 # print(dict)
-print(costs_shared)
+# print(own_costs)

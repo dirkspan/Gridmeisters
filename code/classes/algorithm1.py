@@ -212,6 +212,10 @@ reader = load_data.Load_data()
 batteries = reader.load_batteries()
 houses = reader.load_houses()
 
+<<<<<<< HEAD
+=======
+for i in range(100):
+>>>>>>> 114b86d48fc11538026e00bd3fbaa4ad94a19b00
 
 for house in houses:
 
@@ -245,10 +249,17 @@ for house in houses:
 
     else:
 
+<<<<<<< HEAD
       if house.connected_to == None:
         battery.connect_house(house)
         house.connect_to_battery(battery)
         # print(f"this is: {battery}: Houses: {battery.temp_houses_to_battery} output: {house.maxoutput} with costs: {house.calc_costs(house, battery)}") 
+=======
+        if house.connected_to == None:
+          battery.connect_house(house)
+          house.connect_to_battery(battery)
+          # print(f"this is: {battery}: Houses: {battery.temp_houses_to_battery} output: {house.maxoutput} with costs: {house.calc_costs(house, battery)}") 
+>>>>>>> 114b86d48fc11538026e00bd3fbaa4ad94a19b00
 
 for battery in batteries:
   final = battery.temp_houses_to_battery

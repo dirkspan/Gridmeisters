@@ -37,7 +37,6 @@ class House(object):
         """
         Calculates costs of house to battery
         """
-
         costs = abs((self.x+self.y) - (battery.x+battery.y))*9
         return costs
 
