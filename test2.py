@@ -31,52 +31,59 @@ with open('data/district_1/district-1_houses.csv', 'r') as houses_data:
 # minlen = {}
 
 
+total_costs = 0
+for i in house_list:
+    # i = house_list[0]
+    print (id)
+    xh = int(i['x'])
+    yh = int(i['y'])
 
+    id = int(i['id'])
+    # print(id)
 
-# for i in house_list:
-i = house_list[0]
+    dict = {}
 
-xh = int(i['x'])
-yh = int(i['y'])
+    i = battery_list[1]
+    # for i in battery_list:
+    # id = i['id']
 
-id = int(i['id'])
-# print(id)
+    xb = int(i['x'])
+    yb = int(i['y'])
 
-dict = {}
+    xt = xh - xb
+    # print('start coordinaat')
+    # print(xh)
+    # print(yh)
 
-i = battery_list[1]
-# for i in battery_list:
-# id = i['id']
+    # print('hoek coordinaat')
+    # print(xh)
+    # print(yb)
 
-xb = int(i['x'])
-yb = int(i['y'])
+    # print('eind coordinaat')
+    # print(xb)
+    # print(yb)
 
-xt = xh - xb
-print('start coordinaat')
-print(xh)
-print(yh)
+    # print('afstand')
+    # verschil = int(xt)
+    # print(verschil)
 
-print('hoek coordinaat')
-print(xh)
-print(yb)
+    xhuidig = xh
 
-print('eind coordinaat')
-print(xb)
-print(yb)
+    # for i in verschil:
+    #     xhuidig = xhuidig - 1
+    #     print (xhuidig)
 
-# print('afstand')
-# verschil = int(xt)
-# print(verschil)
+    yt = abs(yh - yb)
 
-# xhuidig = xh
+    dis = abs(xt + yt)
 
-# for i in verschil:
-#     xhuidig = xhuidig - 1
-#     print (xhuidig)
+    cost = dis * 9
 
-# yt = abs(yh - yb)
-# dis = xt + yt
-# # print(dis)
+    total_costs = total_costs + cost
+
+    print(dis)
+    print(total_costs)
+# print(dis)
 
 # dict[id] = dis
 
