@@ -5,6 +5,7 @@ Loopt over huizen en zoekt dichtsbijzijnde afstand tot aan batterij
 import load_data
 import house
 import battery
+import cables 
 import random as r
 
 
@@ -14,6 +15,10 @@ houses = reader.load_houses()
 
 # huizen die niet gebruikt worden
 unused_houses = []
+
+#set costs and route to 0
+# house.routetest = []
+costs = 0
 
 # shuffle huizen
 r.shuffle(houses)
@@ -29,7 +34,7 @@ for house in houses:
     for battery in batteries:
         
         # kan geconnect worden
-        if battery.capaciteit > house.maxoutput:
+        if battery.capacity > house.maxoutput:
 
             # reken distance uit tussen batt en huis    
             distance = abs(house.coordinates[0] - battery.coordinates[0]) +\
@@ -58,20 +63,66 @@ for house in houses:
         battery = closest_battery
 
         # rekent route uit
-        house.route = (house.x, battery.y)
+        route = (house.x, battery.y)
 
         # connect huis aan batterij en vice versa
         house.connect_to_battery = battery
         battery.connect_house(house)
 
-        # we hebben alle matches gevonden
-        if len(unused_houses) == 0:
+        costs_house = house.calc_costs(battery)
+        costs = costs + costs_house
 
-            # print uitkomst voor alle 5 batterijen, let alleen op de laatste 5 uitkomsten
-            # omdat hij dit blijft loopen
+# we hebben alle matches gevonden
+if len(unused_houses) == 0:
 
-            for battery in batteries:
+    # print uitkomst voor alle 5 batterijen
+    for battery in batteries:
 
-                print(f"this is: {battery}: Houses: {battery.temp_houses_to_battery} output: {house.maxoutput} with costs: {house.calc_costs(battery)}") 
+        # print(f"This is battery {battery.id} Houses: {battery.temp_houses_to_battery}")
+        print(f"NEW BATTERY")
+        print(f"location: {battery.x,battery.y}")
+        print(f"capacity: 1507.0")
+        print(f"houses:")
+
+        for house in battery.houses_to_battery:
+
+            # cable.coordinates_cables(house, battery)
+
+            # start is house, end is battery
+            current_x = house.x
+            end_x= battery.x
+            current_y = house.y
+            end_y = battery.y
+
+            # make the route, while the coordinates of the route aren't the coordinates of the right battery: move
+                while current_y < end_y:
+                    house.cables.append((current_x, current_y))
+                    current_y += 1
+
+            elif current_y > end_y:
+                while current_y > end_y:
+                    house.cables.append((current_x, current_y))
+                    current_y -= 1
+
+            if current_x < end_x:
+                while current_x <= end_x:
+                    house.cables.append((current_x, current_y))
+                    current_x += 1
+
+            elif current_x > end_x:
+                while current_x >= end_x:
+                    house.cables.append((current_x, current_y))
+                    current_x -= 1
+           
+            # prints output for each house, each coordinate of the cable
+            print(f"house ID: {house.id}")
+            print(f"location: {house.x,house.y},")
+            print(f"output: {house.maxoutput},")
+            print(f"cables:{house.cables}")
+
+# prints total costs, last status. 
+print('Total costs in the end:')
+print(costs) 
+
 
         
