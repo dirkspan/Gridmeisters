@@ -25,6 +25,8 @@ house_locs_y = []
 battery_locs_x = []
 battery_locs_y = []
 
+max_iterations = 10
+
 # loop to link all batteries
 for battery in batteries:
 
@@ -39,8 +41,11 @@ for house in houses:
     rand_battery = random.choice(batteries)
 
     if rand_battery.capaciteit < house.maxoutput:
-        while battery.capaciteit <= house.maxoutput:
-            rand_battery = random.choice(batteries)
+        for i in range(max_iterations):
+            while battery.capaciteit <= house.maxoutput:
+                rand_battery = random.choice(batteries)
+                if i == max_iterations:
+                    print("no solution found")
 
     else:
         rand_battery.capaciteit = rand_battery.capaciteit - house.maxoutput
@@ -72,13 +77,14 @@ for house in houses:
     batteries_plt = ax.scatter(battery_locs_x, battery_locs_y, color='r', marker='^')
 
     plt.plot(x,y)
-    
-    if 
 
-    # print(own_costs)
+print('own_costs')
+print(own_costs)
+
+# print(own_costs)
 for battery in batteries:
     print(battery.id)
-    print(battery.capaciteit)
+    print(battery.capacity)
 
 plt.savefig("randomplot.png")
 

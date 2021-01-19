@@ -12,33 +12,60 @@ class Cable:
 
     def coordinates_cables(self, house, battery):
 
-        route = []
-
-        # start is house, end is battery
         current_x = house.x
-        end_x = battery.x
+        end_x= battery.x
         current_y = house.y
         end_y = battery.y
-
+            
         if current_y < end_y:
             while current_y < end_y:
-                route.append((current_x, current_y))
+                house.cables.append((current_x, current_y))
                 current_y += 1
+
         elif current_y > end_y:
             while current_y > end_y:
-                route.append((current_x, current_y))
+                house.cables.append((current_x, current_y))
                 current_y -= 1
 
         if current_x < end_x:
             while current_x <= end_x:
-                route.append((current_x, current_y))
+                house.cables.append((current_x, current_y))
                 current_x += 1
+
         elif current_x > end_x:
             while current_x >= end_x:
-                route.append((current_x, current_y))
+                house.cables.append((current_x, current_y))
                 current_x -= 1
+    
+        return house.cables
 
-        return route
+        # route = []
+
+        # # start is house, end is battery
+        # current_x = house.x
+        # end_x = battery.x
+        # current_y = house.y
+        # end_y = battery.y
+
+        # if current_y < end_y:
+        #     while current_y < end_y:
+        #         route.append((current_x, current_y))
+        #         current_y += 1
+        # elif current_y > end_y:
+        #     while current_y > end_y:
+        #         route.append((current_x, current_y))
+        #         current_y -= 1
+
+        # if current_x < end_x:
+        #     while current_x <= end_x:
+        #         route.append((current_x, current_y))
+        #         current_x += 1
+        # elif current_x > end_x:
+        #     while current_x >= end_x:
+        #         route.append((current_x, current_y))
+        #         current_x -= 1
+
+        # return route
 
     def return_cables(self):
         return coordinate_cables ()

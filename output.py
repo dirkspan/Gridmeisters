@@ -68,4 +68,4 @@ print(x)
 # a_file. close()
 # print(pretty_json)
 
-# print(json.dumps(x))
+print(json.dumps(x))

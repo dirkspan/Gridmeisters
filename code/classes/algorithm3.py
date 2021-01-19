@@ -5,9 +5,13 @@ Loopt over huizen en zoekt dichtsbijzijnde afstand tot aan batterij
 import load_data
 import house
 import battery
+import cables 
 import random as r
 import matplotlib.pyplot as plt
 
+import matplotlib
+import matplotlib.pyplot as plt
+from matplotlib import style
 
 reader = load_data.Load_data()
 batteries = reader.load_batteries()
@@ -16,6 +20,16 @@ houses = reader.load_houses()
 # huizen die niet gebruikt worden
 unused_houses = []
 
+<<<<<<< HEAD
+=======
+#set costs and route to 0
+# house.routetest = []
+costs = 0
+
+# shuffle huizen
+r.shuffle(houses)
+
+>>>>>>> 37ec13e2e347264dd10d6d78ec363240ebe736fe
 for house in houses:
 
     # dictionary voor distances
@@ -27,7 +41,7 @@ for house in houses:
     for battery in batteries:
         
         # kan geconnect worden
-        if battery.capaciteit > house.maxoutput:
+        if battery.capacity > house.maxoutput:
 
             # reken distance uit tussen batt en huis    
             distance = abs(house.coordinates[0] - battery.coordinates[0]) + abs(house.coordinates[1] - battery.coordinates[1])
@@ -54,13 +68,14 @@ for house in houses:
         battery = closest_battery
 
         # rekent route uit
-        house.route = (house.x, battery.y)
+        route = (house.x, battery.y)
 
         # connect huis aan batterij en vice versa
         house.connect_to_battery = battery
         battery.connect_house(house)
         house.calc_costs(battery)
 
+<<<<<<< HEAD
         # alle matches gevonden
         if len(unused_houses) == 0:
 
@@ -72,3 +87,95 @@ for house in houses:
 
 
                 
+=======
+        costs_house = house.calc_costs(battery)
+        costs = costs + costs_house
+
+# we hebben alle matches gevonden
+if len(unused_houses) == 0:
+
+    # print uitkomst voor alle 5 batterijen
+    for battery in batteries:
+
+        # print(f"This is battery {battery.id} Houses: {battery.temp_houses_to_battery}")
+        print(f"NEW BATTERY!!")
+        print(f"location: {battery.x,battery.y}")
+        print(f"capacity: 1507.0")
+        print(f"houses:")
+
+        for house in battery.houses_to_battery:
+
+            # cable.coordinates_cables(house, battery)
+
+            # start is house, end is battery
+            current_x = house.x
+            end_x= battery.x
+            current_y = house.y
+            end_y = battery.y
+
+            # make the route, while the coordinates of the route aren't the coordinates of the right battery: move
+            if current_y < end_y:
+                while current_y < end_y:
+                        house.cables.append((current_x, current_y))
+                        current_y += 1
+
+            elif current_y > end_y:
+                while current_y > end_y:
+                    house.cables.append((current_x, current_y))
+                    current_y -= 1
+
+            if current_x < end_x:
+                while current_x <= end_x:
+                    house.cables.append((current_x, current_y))
+                    current_x += 1
+
+            elif current_x > end_x:
+                while current_x >= end_x:
+                    house.cables.append((current_x, current_y))
+                    current_x -= 1
+           
+            # prints output for each house, each coordinate of the cable
+            print(f"house ID: {house.id}")
+            print(f"location: {house.x,house.y},")
+            print(f"output: {house.maxoutput},")
+            print(f"cables:{house.cables}")
+
+# prints total costs, last status. 
+print('Total costs in the end:')
+print(costs) 
+
+
+
+
+# # Loop to plot coordinates batteries
+# i = -1
+# for battery in batteries:
+#     i += 1
+#     for house in battery.houses_to_battery:
+
+#         # print(battery.houses_to_battery)
+#         # for battery in batteries:
+#         colors = ['r', 'k', 'b', 'g', 'c']
+
+#         house_x = house.x
+#         house_y = house.y
+
+#         battery_x = battery.x
+#         battery_y = battery.y
+
+#         cutting_point_x = house.x
+#         cutting_point_y = battery.y
+
+#         #plot line between house and cutting point 
+#         x = [house_x, cutting_point_x, battery_x]
+#         y = [house_y, cutting_point_y, battery_y]
+
+#         ax = plt.subplot(111)
+
+#         houses_plt = ax.scatter(house.x, house.y, color='k', marker='*')
+#         batteries_plt = ax.scatter(battery.x, battery.y, color='r', marker='^')
+
+#         plt.plot(x,y, color= colors[i])
+
+# plt.savefig("4plot.png")
+>>>>>>> 37ec13e2e347264dd10d6d78ec363240ebe736fe
