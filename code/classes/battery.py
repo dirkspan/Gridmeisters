@@ -46,6 +46,7 @@ class Battery:
         if house.maxoutput > self.capacity:
             self.battery_full = True
 
+    
 
 
 

@@ -35,6 +35,35 @@ class House(object):
 
         self.connected_to = None    
 
+    def coordinates_cables(self, battery):
+
+        current_x = self.x
+        end_x= battery.x
+        current_y = self.y
+        end_y = battery.y
+            
+        if current_y < end_y:
+            while current_y < end_y:
+                self.cables.append((current_x, current_y))
+                current_y += 1
+
+        elif current_y > end_y:
+            while current_y > end_y:
+                self.cables.append((current_x, current_y))
+                current_y -= 1
+
+        if current_x < end_x:
+            while current_x <= end_x:
+                self.cables.append((current_x, current_y))
+                current_x += 1
+
+        elif current_x > end_x:
+            while current_x >= end_x:
+                self.cables.append((current_x, current_y))
+                current_x -= 1
+    
+        return self.cables
+
     # def route(self, house, battery)
 
     #     route = []

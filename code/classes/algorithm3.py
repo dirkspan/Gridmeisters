@@ -75,7 +75,7 @@ for house in houses:
         costs_house = house.calc_costs(battery)
         costs = costs + costs_house
 
-# we hebben alle matches gevonden
+        # we hebben alle matches gevonden
 if len(unused_houses) == 0:
 
     # print uitkomst voor alle 5 batterijen
@@ -88,36 +88,9 @@ if len(unused_houses) == 0:
         print(f"houses:")
 
         for house in battery.houses_to_battery:
-
-            # cable.coordinates_cables(house, battery)
-
-            # start is house, end is battery
-            current_x = house.x
-            end_x= battery.x
-            current_y = house.y
-            end_y = battery.y
-
-            # make the route, while the coordinates of the route aren't the coordinates of the right battery: move
-            if current_y < end_y:
-                while current_y < end_y:
-                        house.cables.append((current_x, current_y))
-                        current_y += 1
-
-            elif current_y > end_y:
-                while current_y > end_y:
-                    house.cables.append((current_x, current_y))
-                    current_y -= 1
-
-            if current_x < end_x:
-                while current_x <= end_x:
-                    house.cables.append((current_x, current_y))
-                    current_x += 1
-
-            elif current_x > end_x:
-                while current_x >= end_x:
-                    house.cables.append((current_x, current_y))
-                    current_x -= 1
-           
+            house.coordinates_cables(battery)
+            print(house.cables)
+                   
             # prints output for each house, each coordinate of the cable
             print(f"house ID: {house.id}")
             print(f"location: {house.x,house.y},")
