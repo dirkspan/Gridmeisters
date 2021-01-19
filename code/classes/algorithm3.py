@@ -82,7 +82,7 @@ if len(unused_houses) == 0:
     for battery in batteries:
 
         # print(f"This is battery {battery.id} Houses: {battery.temp_houses_to_battery}")
-        print(f"NEW BATTERY")
+        print(f"NEW BATTERY!!")
         print(f"location: {battery.x,battery.y}")
         print(f"capacity: 1507.0")
         print(f"houses:")
@@ -98,9 +98,10 @@ if len(unused_houses) == 0:
             end_y = battery.y
 
             # make the route, while the coordinates of the route aren't the coordinates of the right battery: move
+            if current_y < end_y:
                 while current_y < end_y:
-                    house.cables.append((current_x, current_y))
-                    current_y += 1
+                        house.cables.append((current_x, current_y))
+                        current_y += 1
 
             elif current_y > end_y:
                 while current_y > end_y:
@@ -130,34 +131,34 @@ print(costs)
 
 
 
-# Loop to plot coordinates batteries
-i = -1
-for battery in batteries:
-    i += 1
-    for house in battery.houses_to_battery:
+# # Loop to plot coordinates batteries
+# i = -1
+# for battery in batteries:
+#     i += 1
+#     for house in battery.houses_to_battery:
 
-        # print(battery.houses_to_battery)
-        # for battery in batteries:
-        colors = ['r', 'k', 'b', 'g', 'c']
+#         # print(battery.houses_to_battery)
+#         # for battery in batteries:
+#         colors = ['r', 'k', 'b', 'g', 'c']
 
-        house_x = house.x
-        house_y = house.y
+#         house_x = house.x
+#         house_y = house.y
 
-        battery_x = battery.x
-        battery_y = battery.y
+#         battery_x = battery.x
+#         battery_y = battery.y
 
-        cutting_point_x = house.x
-        cutting_point_y = battery.y
+#         cutting_point_x = house.x
+#         cutting_point_y = battery.y
 
-        #plot line between house and cutting point 
-        x = [house_x, cutting_point_x, battery_x]
-        y = [house_y, cutting_point_y, battery_y]
+#         #plot line between house and cutting point 
+#         x = [house_x, cutting_point_x, battery_x]
+#         y = [house_y, cutting_point_y, battery_y]
 
-        ax = plt.subplot(111)
+#         ax = plt.subplot(111)
 
-        houses_plt = ax.scatter(house.x, house.y, color='k', marker='*')
-        batteries_plt = ax.scatter(battery.x, battery.y, color='r', marker='^')
+#         houses_plt = ax.scatter(house.x, house.y, color='k', marker='*')
+#         batteries_plt = ax.scatter(battery.x, battery.y, color='r', marker='^')
 
-        plt.plot(x,y, color= colors[i])
+#         plt.plot(x,y, color= colors[i])
 
-plt.savefig("4plot.png")
+# plt.savefig("4plot.png")

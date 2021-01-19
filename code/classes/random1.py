@@ -81,7 +81,7 @@ for house in houses:
 print('own_costs')
 print(own_costs)
 
-    # print(own_costs)
+# print(own_costs)
 for battery in batteries:
     print(battery.id)
     print(battery.capacity)
