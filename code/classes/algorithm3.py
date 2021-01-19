@@ -12,85 +12,112 @@ import matplotlib
 import matplotlib.pyplot as plt
 from matplotlib import style
 
+# read in all data
 reader = load_data.Load_data()
 batteries = reader.load_batteries()
 houses = reader.load_houses()
 
-# huizen die niet gebruikt worden
+# list for all unused houses
 unused_houses = []
 
-#set costs and route to 0
-# house.routetest = []
-costs = 0
+#set costs to 0
+total_costs = 0
 
-# shuffle huizen
-r.shuffle(houses)
+# shuffle houses
+# r.shuffle(houses)
 
 for house in houses:
 
     # dictionary voor distances
     dist_dict = {}
 
-    # lijst om waarde bij te houden, weet niet zo goed hoe dit met dict werkt, vandaar lijst erbij gedaaan
+    # list to save distance value
     distance_list = []
 
     for battery in batteries:
         
-        # kan geconnect worden
+        # if it fits, add house
         if battery.capacity > house.maxoutput:
 
-            # reken distance uit tussen batt en huis    
+            # calculate distance between house and battery
             distance = abs(house.coordinates[0] - battery.coordinates[0]) +\
                         abs(house.coordinates[1] - battery.coordinates[1])
 
-            # voeg distance tot aan batterij toe met batterij            
+            # add distancec to a dictionary together with the battery           
             dist_dict[battery] = distance
 
-            # hou lijst bij
+            # save list
             distance_list.append(distance)
 
         else:
-            # append niks zodat we deze conditie later kunnen checken
+            # append nothing to check it later
             distance_list.append(None)
 
-    # als alles None is betekent dat het huis niet gebruikt wordt (voor nu)
+    # if anything is none, this means that the house isn't connected yet
     if all(i is None for i in distance_list):
         unused_houses.append(house)
 
     else:
-        # dichtsbijzijnde afstand is minimale value
+
+        # closest battery is the minimum value
         closest_distance = min(dist_dict.items(), key=lambda x: x[1])
 
-        # is key van minimale value, dus de batterij
+        # the id of the minimum value, closest battery
         closest_battery= closest_distance[0]
         battery = closest_battery
 
-        # rekent route uit
+        # calculates route
         route = (house.x, battery.y)
 
-        # connect huis aan batterij en vice versa
+        # connect the house the battery and connect the battery to the house 
         house.connect_to_battery = battery
         battery.connect_house(house)
 
+        # calculates all costs
         # costs_house = house.calc_costs(battery)
-        # costs = costs + costs_house
+        # total_costs = total_costs + costs_house
 
-        # we hebben alle matches gevonden
+        # if all matches found
         if len(unused_houses) == 0:
-            break
+            print("all houses connected")
 
-# print uitkomst voor alle 5 batterijen
+# prints output for all 5 batteries
 for battery in batteries:
 
-    # print(f"This is battery {battery.id} Houses: {battery.temp_houses_to_battery}")
-    print(f"NEW BATTERY!!")
+    # prints right output
+    print(f"Battery {battery.id}")
     print(f"location: {battery.x,battery.y}")
     print(f"capacity: 1507.0")
     print(f"houses:")
 
+    # find all coordinates for the route
     for house in battery.houses_to_battery:
-        house.coordinates_cables(battery)
-        print(house.cables)
+
+        current_x = house.x
+        end_x= battery.x
+        current_y = house.y
+        end_y = battery.y
+            
+        if current_y < end_y:
+            while current_y < end_y:
+                house.cables.append((current_x, current_y))
+                current_y += 1
+
+        elif current_y > end_y:
+            while current_y > end_y:
+                house.cables.append((current_x, current_y))
+                current_y -= 1
+
+        if current_x < end_x:
+            while current_x <= end_x:
+                house.cables.append((current_x, current_y))
+                current_x += 1
+
+        elif current_x > end_x:
+            while current_x >= end_x:
+                house.cables.append((current_x, current_y))
+                current_x -= 1
+        # house.coordinates_cables(battery)
             
         # prints output for each house, each coordinate of the cable
         print(f"house ID: {house.id}")
@@ -100,7 +127,7 @@ for battery in batteries:
 
 # prints total costs, last status. 
 # print('Total costs in the end:')
-# print(costs) 
+# print(total_costs) 
 
 
 

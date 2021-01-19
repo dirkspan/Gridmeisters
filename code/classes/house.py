@@ -36,34 +36,33 @@ class House(object):
 
         self.connected_to = None    
 
-    def coordinates_cables(self, battery):
+    # def coordinates_cables(self, battery):
 
-        current_x = self.x
-        end_x= battery.x
-        current_y = self.y
-        end_y = battery.y
+        # current_x = self.x
+        # end_x= battery.x
+        # current_y = self.y
+        # end_y = battery.y
             
-        if current_y < end_y:
-            while current_y < end_y:
-                self.cables.append((current_x, current_y))
-                current_y += 1
+        # if current_y < end_y:
+        #     while current_y < end_y:
+        #         self.cables.append((current_x, current_y))
+        #         current_y += 1
 
-        elif current_y > end_y:
-            while current_y > end_y:
-                self.cables.append((current_x, current_y))
-                current_y -= 1
+        # elif current_y > end_y:
+        #     while current_y > end_y:
+        #         self.cables.append((current_x, current_y))
+        #         current_y -= 1
 
-        if current_x < end_x:
-            while current_x <= end_x:
-                self.cables.append((current_x, current_y))
-                current_x += 1
+        # if current_x < end_x:
+        #     while current_x <= end_x:
+        #         self.cables.append((current_x, current_y))
+        #         current_x += 1
 
-        elif current_x > end_x:
-            while current_x >= end_x:
-                self.cables.append((current_x, current_y))
-                current_x -= 1
+        # elif current_x > end_x:
+        #     while current_x >= end_x:
+        #         self.cables.append((current_x, current_y))
+        #         current_x -= 1
     
-        return self.cables
 
     # def route(self, house, battery)
 
@@ -89,7 +88,7 @@ class House(object):
         """
         Calculates costs of house to battery
         """
-        costs = abs((self.x+self.y) - (battery.x+battery.y))*9
+        costs = abs((self.x+self.y) - abs(battery.x+battery.y))*9
         self.costs = costs
 
 
