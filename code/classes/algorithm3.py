@@ -7,7 +7,6 @@ import house
 import battery
 import cables 
 import random as r
-import matplotlib.pyplot as plt
 
 import matplotlib
 import matplotlib.pyplot as plt
@@ -20,8 +19,6 @@ houses = reader.load_houses()
 # huizen die niet gebruikt worden
 unused_houses = []
 
-<<<<<<< HEAD
-=======
 #set costs and route to 0
 # house.routetest = []
 costs = 0
@@ -29,14 +26,13 @@ costs = 0
 # shuffle huizen
 r.shuffle(houses)
 
->>>>>>> 37ec13e2e347264dd10d6d78ec363240ebe736fe
 for house in houses:
 
     # dictionary voor distances
     dist_dict = {}
 
-    # lijst om waarde bij te houden
-    keep_track = []
+    # lijst om waarde bij te houden, weet niet zo goed hoe dit met dict werkt, vandaar lijst erbij gedaaan
+    distance_list = []
 
     for battery in batteries:
         
@@ -44,19 +40,21 @@ for house in houses:
         if battery.capacity > house.maxoutput:
 
             # reken distance uit tussen batt en huis    
-            distance = abs(house.coordinates[0] - battery.coordinates[0]) + abs(house.coordinates[1] - battery.coordinates[1])
+            distance = abs(house.coordinates[0] - battery.coordinates[0]) +\
+                        abs(house.coordinates[1] - battery.coordinates[1])
 
             # voeg distance tot aan batterij toe met batterij            
             dist_dict[battery] = distance
 
             # hou lijst bij
-            keep_track.append(1)
+            distance_list.append(distance)
 
         else:
-            #  deze conditie wordt later gecheckt
-            keep_track.append(0)
+            # append niks zodat we deze conditie later kunnen checken
+            distance_list.append(None)
 
-    if all(i == 0 for i in keep_track):
+    # als alles None is betekent dat het huis niet gebruikt wordt (voor nu)
+    if all(i is None for i in distance_list):
         unused_houses.append(house)
 
     else:
@@ -73,49 +71,36 @@ for house in houses:
         # connect huis aan batterij en vice versa
         house.connect_to_battery = battery
         battery.connect_house(house)
-        house.calc_costs(battery)
 
-<<<<<<< HEAD
-        # alle matches gevonden
-        if len(unused_houses) == 0:
-
-            # print uitkomst voor alle 5 batterijen, let alleen op de laatste 5 uitkomsten
-            # omdat hij hier blijft loopen
-            for battery in batteries:
-                print(len(battery.temp_houses_to_battery))
-                # print(f"this is: {battery}: Houses: {battery.temp_houses_to_battery}") 
-
-
-                
-=======
-        costs_house = house.calc_costs(battery)
-        costs = costs + costs_house
+        # costs_house = house.calc_costs(battery)
+        # costs = costs + costs_house
 
         # we hebben alle matches gevonden
-if len(unused_houses) == 0:
+        if len(unused_houses) == 0:
+            break
 
-    # print uitkomst voor alle 5 batterijen
-    for battery in batteries:
+# print uitkomst voor alle 5 batterijen
+for battery in batteries:
 
-        # print(f"This is battery {battery.id} Houses: {battery.temp_houses_to_battery}")
-        print(f"NEW BATTERY!!")
-        print(f"location: {battery.x,battery.y}")
-        print(f"capacity: 1507.0")
-        print(f"houses:")
+    # print(f"This is battery {battery.id} Houses: {battery.temp_houses_to_battery}")
+    print(f"NEW BATTERY!!")
+    print(f"location: {battery.x,battery.y}")
+    print(f"capacity: 1507.0")
+    print(f"houses:")
 
-        for house in battery.houses_to_battery:
-            house.coordinates_cables(battery)
-            print(house.cables)
-                   
-            # prints output for each house, each coordinate of the cable
-            print(f"house ID: {house.id}")
-            print(f"location: {house.x,house.y},")
-            print(f"output: {house.maxoutput},")
-            print(f"cables:{house.cables}")
+    for house in battery.houses_to_battery:
+        house.coordinates_cables(battery)
+        print(house.cables)
+            
+        # prints output for each house, each coordinate of the cable
+        print(f"house ID: {house.id}")
+        print(f"location: {house.x,house.y},")
+        print(f"output: {house.maxoutput},")
+        print(f"cables:{house.cables}")
 
 # prints total costs, last status. 
-print('Total costs in the end:')
-print(costs) 
+# print('Total costs in the end:')
+# print(costs) 
 
 
 
@@ -151,4 +136,3 @@ print(costs)
 #         plt.plot(x,y, color= colors[i])
 
 # plt.savefig("4plot.png")
->>>>>>> 37ec13e2e347264dd10d6d78ec363240ebe736fe
