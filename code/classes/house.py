@@ -16,6 +16,7 @@ class House(object):
         # bas had toch gelijk dit is beter
         self.coordinates = (x, y)
         self.route = (None, None)
+        self.costs = 0
 
         self.cables = []
 
@@ -89,11 +90,11 @@ class House(object):
         Calculates costs of house to battery
         """
         costs = abs((self.x+self.y) - (battery.x+battery.y))*9
-        return costs
+        self.costs = costs
 
 
     def __str__(self):
-        return f"House:{self.id}\nx: {self.x}\ny: {self.y}\nmaxoutput: {self.maxoutput}\n\nbattery:{self.connected_to}\n"   
+        return f"House:{self.id}\ncoordinates: {self.y}\nmaxoutput: {self.maxoutput}\n\nbattery:{self.connected_to}\n"   
 
 
 
