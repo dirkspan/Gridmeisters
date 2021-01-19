@@ -12,13 +12,12 @@ class Battery:
         self.houses_to_battery = []
         self.temp_houses_to_battery = []
         self.battery_full = False
-
-        # bas had toch gelijk dit is beter
         self.coordinates= (x, y)
+        self.shared_costs = 0
 
 
     def __str__(self):
-        return f"Battery:{self.id}\nx: {self.x}\ny: {self.y}\ncapaciteit: {self.capaciteit}\n"       
+        return f"Battery:{self.id}\ncoordinates: {self.coordinates}\ncapaciteit: {self.capaciteit}\n"       
 
 
     def connect_house(self, house):
@@ -45,6 +44,10 @@ class Battery:
 
         if house.maxoutput > self.capaciteit:
             self.battery_full = True
-    
 
 
+    def calc_shared_costs(self, house):
+        for k in self.houses_to_battery:
+            house_costs = k.costs
+            house_costs += house_costs
+            self.shared_costs = house_costs

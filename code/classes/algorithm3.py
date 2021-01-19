@@ -6,6 +6,7 @@ import load_data
 import house
 import battery
 import random as r
+import matplotlib.pyplot as plt
 
 
 reader = load_data.Load_data()
@@ -15,16 +16,13 @@ houses = reader.load_houses()
 # huizen die niet gebruikt worden
 unused_houses = []
 
-# shuffle huizen
-r.shuffle(houses)
-
 for house in houses:
 
     # dictionary voor distances
     dist_dict = {}
 
-    # lijst om waarde bij te houden, weet niet zo goed hoe dit met dict werkt, vandaar lijst erbij gedaaan
-    distance_list = []
+    # lijst om waarde bij te houden
+    keep_track = []
 
     for battery in batteries:
         
@@ -32,21 +30,19 @@ for house in houses:
         if battery.capaciteit > house.maxoutput:
 
             # reken distance uit tussen batt en huis    
-            distance = abs(house.coordinates[0] - battery.coordinates[0]) +\
-                        abs(house.coordinates[1] - battery.coordinates[1])
+            distance = abs(house.coordinates[0] - battery.coordinates[0]) + abs(house.coordinates[1] - battery.coordinates[1])
 
             # voeg distance tot aan batterij toe met batterij            
             dist_dict[battery] = distance
 
             # hou lijst bij
-            distance_list.append(distance)
+            keep_track.append(1)
 
         else:
-            # append niks zodat we deze conditie later kunnen checken
-            distance_list.append(None)
+            #  deze conditie wordt later gecheckt
+            keep_track.append(0)
 
-    # als alles None is betekent dat het huis niet gebruikt wordt (voor nu)
-    if all(i is None for i in distance_list):
+    if all(i == 0 for i in keep_track):
         unused_houses.append(house)
 
     else:
@@ -63,15 +59,16 @@ for house in houses:
         # connect huis aan batterij en vice versa
         house.connect_to_battery = battery
         battery.connect_house(house)
+        house.calc_costs(battery)
 
-        # we hebben alle matches gevonden
+        # alle matches gevonden
         if len(unused_houses) == 0:
 
             # print uitkomst voor alle 5 batterijen, let alleen op de laatste 5 uitkomsten
-            # omdat hij dit blijft loopen
-
+            # omdat hij hier blijft loopen
             for battery in batteries:
+                print(len(battery.temp_houses_to_battery))
+                # print(f"this is: {battery}: Houses: {battery.temp_houses_to_battery}") 
 
-                print(f"this is: {battery}: Houses: {battery.temp_houses_to_battery} output: {house.maxoutput} with costs: {house.calc_costs(battery)}") 
 
-        
+                

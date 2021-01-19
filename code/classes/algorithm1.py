@@ -212,19 +212,14 @@ reader = load_data.Load_data()
 batteries = reader.load_batteries()
 houses = reader.load_houses()
 
-<<<<<<< HEAD
-=======
-for i in range(100):
->>>>>>> 114b86d48fc11538026e00bd3fbaa4ad94a19b00
+
+unused = []
 
 for house in houses:
 
   for battery in batteries:
 
-      # checks to see if battery is full
-
     battery.status(house)
-      # battery.status(old_house)
 
     if battery.battery_full == True:
     
@@ -235,12 +230,11 @@ for house in houses:
 
         old_costs = old_house.calc_costs(battery)
 
-          # if old_house.connected_to != battery:
-
         if new_costs < old_costs:
 
           old_house.deconnect_to_battery(battery)
           battery.remove_house(old_house)
+          unused.append(old_house)
 
           if house.connected_to == None:
 
@@ -249,21 +243,14 @@ for house in houses:
 
     else:
 
-<<<<<<< HEAD
       if house.connected_to == None:
         battery.connect_house(house)
         house.connect_to_battery(battery)
         # print(f"this is: {battery}: Houses: {battery.temp_houses_to_battery} output: {house.maxoutput} with costs: {house.calc_costs(house, battery)}") 
-=======
-        if house.connected_to == None:
-          battery.connect_house(house)
-          house.connect_to_battery(battery)
-          # print(f"this is: {battery}: Houses: {battery.temp_houses_to_battery} output: {house.maxoutput} with costs: {house.calc_costs(house, battery)}") 
->>>>>>> 114b86d48fc11538026e00bd3fbaa4ad94a19b00
-
-for battery in batteries:
-  final = battery.temp_houses_to_battery
-  print(final)
+    
+# for battery in batteries:
+#   final = battery.temp_houses_to_battery
+#   print(final)
 
 
 
