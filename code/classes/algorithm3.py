@@ -7,6 +7,9 @@ import house
 import battery
 import random as r
 
+import matplotlib
+import matplotlib.pyplot as plt
+from matplotlib import style
 
 reader = load_data.Load_data()
 batteries = reader.load_batteries()
@@ -74,4 +77,36 @@ for house in houses:
 
                 print(f"this is: {battery}: Houses: {battery.temp_houses_to_battery} output: {house.maxoutput} with costs: {house.calc_costs(battery)}") 
 
-        
+
+
+# Loop to plot coordinates batteries
+i = -1
+for battery in batteries:
+    i += 1
+    for house in battery.houses_to_battery:
+
+        # print(battery.houses_to_battery)
+        # for battery in batteries:
+        colors = ['r', 'k', 'b', 'g', 'c']
+
+        house_x = house.x
+        house_y = house.y
+
+        battery_x = battery.x
+        battery_y = battery.y
+
+        cutting_point_x = house.x
+        cutting_point_y = battery.y
+
+        #plot line between house and cutting point 
+        x = [house_x, cutting_point_x, battery_x]
+        y = [house_y, cutting_point_y, battery_y]
+
+        ax = plt.subplot(111)
+
+        houses_plt = ax.scatter(house.x, house.y, color='k', marker='*')
+        batteries_plt = ax.scatter(battery.x, battery.y, color='r', marker='^')
+
+        plt.plot(x,y, color= colors[i])
+
+plt.savefig("4plot.png")

@@ -73,7 +73,7 @@ for house in houses:
 
     plt.plot(x,y)
     
-    if 
+    # if 
 
     # print(own_costs)
 for battery in batteries:
