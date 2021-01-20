@@ -65,7 +65,7 @@ for house in houses:
         battery.coordinates_cables(battery)
 
         # all matches found, not a single house unused
-        if len(unused_houses) == 0:
+        if unused_houses == []:
 
             for battery in batteries:
 
