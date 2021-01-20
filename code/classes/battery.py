@@ -15,6 +15,8 @@ class Battery:
         self.coordinates= (x, y)
         self.cables = {}
 
+        # self.costs_all_cables_to_battery = costs_all_cables_to_battery
+
     def __str__(self):
         return f"Battery:{self.id}\nwith coordinates: {self.coordinates} and capacity: {self.capacity}\n"       
 

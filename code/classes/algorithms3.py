@@ -7,9 +7,10 @@ import load_data
 import house
 import battery
 import cables 
-import random
-import matplotlib.pyplot as plt
+import random as r
 
+import matplotlib
+import matplotlib.pyplot as plt
 from matplotlib import style
 
 # read in all data
@@ -24,47 +25,52 @@ unused_houses = []
 costs = 0
 
 # shuffle houses
-random.shuffle(houses)
+r.shuffle(houses)
 
 for house in houses:
 
-    # keep track of distances between each house and battery
+    # dictionary voor distances
     dist_dict = {}
 
-    # keeps track on wether battery is useable
-    keep_track = []
+    # list to save distance value
+    distance_list = []
 
     for battery in batteries:
         
-        # battery is not full
-        if battery.status(house) == True:
+        # if it fits, add house
+        if battery.capacity > house.maxoutput:
 
-            distance = abs((house.coordinates[0] - battery.coordinates[0]) + abs(house.coordinates[1] - battery.coordinates[1]))
+            # calculate distance between house and battery
+            distance = abs(house.coordinates[0] - battery.coordinates[0]) +\
+                        abs(house.coordinates[1] - battery.coordinates[1])
 
+            # add distancec to a dictionary together with the battery           
             dist_dict[battery] = distance
 
             # save list
-            keep_track.append(1)
+            distance_list.append(distance)
 
         else:
-            keep_track.append(0)
+            # append nothing to check it later
+            distance_list.append(None)
 
-    if keep_track.count(1) == 0:
-        
-        # battery is full, append house to list of unused houses    
+    # if anything is none, this means that the house isn't connected yet
+    if all(i is None for i in distance_list):
         unused_houses.append(house)
 
     else:
 
-        # return closest distance of a house to the battery
+        # closest battery is the minimum value
         closest_distance = min(dist_dict.items(), key=lambda x: x[1])
 
+        # the id of the minimum value, closest battery
         closest_battery= closest_distance[0]
         battery = closest_battery
 
+        # calculates route
         route = (house.x, battery.y)
 
-        # connects house to battery and vice versa
+        # connect the house the battery and connect the battery to the house 
         house.connect_to_battery = battery
         battery.connect_house(house)
 
@@ -72,9 +78,6 @@ for house in houses:
         costs_house = house.calc_costs(battery)
         costs = costs + costs_house
         
-        # if not unused_houses:
-        #     for battery in batteries:
-        #         print(f"{battery} with houses: {battery.temp_houses_to_battery}")
 
 # we hebben alle matches gevonden
 if len(unused_houses) == 0:
@@ -134,14 +137,6 @@ if len(unused_houses) == 0:
 
 else: 
     print("No solution")
-
-
-
-
-
-
-
-
 
 
 # for battery in batteries:
@@ -230,11 +225,7 @@ else:
 
 #         houses_plt = ax.scatter(house.x, house.y, color='k', marker='*')
 #         batteries_plt = ax.scatter(battery.x, battery.y, color='r', marker='^')
-        # all matches found, not a single house unused
-    # if unused_houses == []:
-    #     print(f"{battery}: Houses: {len(battery.temp_houses_to_battery)}")
 
 #         plt.plot(x,y, color= colors[i])
 
 # plt.savefig("4plot.png")
-                # print(len(battery.houses_to_battery))
