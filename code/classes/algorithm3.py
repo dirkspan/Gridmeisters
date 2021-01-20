@@ -18,59 +18,56 @@ houses = reader.load_houses()
 # list for all unused houses
 unused_houses = []
 
-#set costs to 0
-total_costs = 0
+# shuffle houses
+r.shuffle(houses)
 
 for house in houses:
 
-    # dictionary voor distances
+    # keep track of distances between each house and battery
     dist_dict = {}
 
-    # lijst om waarde bij te houden
+    # keeps track on wether battery is useable
     keep_track = []
 
     for battery in batteries:
         
+        # battery is not full
+        if battery.status(house) == True:
 
-        if battery.capacity > house.maxoutput:
-
-            # reken distance uit tussen batt en huis    
             distance = abs((house.coordinates[0] - battery.coordinates[0]) + (house.coordinates[1] - battery.coordinates[1]))
 
-            # add distance to a dictionary together with the battery           
             dist_dict[battery] = distance
 
             keep_track.append(1)
 
         else:
-            #  deze conditie wordt later gecheckt
             keep_track.append(0)
 
     if keep_track.count(1) == 0:
+        
+        # battery is full, append house to list of unused houses    
         unused_houses.append(house)
 
     else:
 
-        # closest battery is the minimum value
+        # return closest distance of a house to the battery
         closest_distance = min(dist_dict.items(), key=lambda x: x[1])
 
-        # the id of the minimum value, closest battery
         closest_battery= closest_distance[0]
         battery = closest_battery
 
-        # calculates route
         route = (house.x, battery.y)
 
-        # connect the house the battery and connect the battery to the house 
+        # connects house to battery and vice versa
         house.connect_to_battery = battery
         battery.connect_house(house)
         house.calc_costs(battery)
         battery.coordinates_cables(battery)
 
-        # alle matches gevonden
-        if not unused_houses:
+        # all matches found, not a single house unused
+        if len(unused_houses) == 0:
 
             for battery in batteries:
 
-                print(len(battery.houses_to_battery))
-                # print(f"this is: {battery}: Houses: {battery.temp_houses_to_battery}") 
+                # print(len(battery.houses_to_battery))
+                print(f"{battery}: Houses: {len(battery.temp_houses_to_battery)}")
