@@ -1,5 +1,5 @@
 """
-Gaat op zoek naar de dichtsbijzijnde x en y coordinaat
+Gaat op zoek naar de dichtsbijzijnde x en y coordinaat, werkt nog niet goed
 """
 
 
