@@ -15,11 +15,8 @@ class Battery:
         self.coordinates= (x, y)
         self.cables = {}
 
-
-
-
     def __str__(self):
-        return f"Battery:{self.id}\nx: {self.x}\ny: {self.y}\ncapacity: {self.capacity}\n"       
+        return f"Battery:{self.id}\nwith coordinates: {self.coordinates} and capacity: {self.capacity}\n"       
 
 
     def coordinates_cables(self, house):
@@ -73,5 +70,6 @@ class Battery:
         Checks battery status
         """
 
-        if house.maxoutput > self.capacity:
-            self.battery_full = True
+        if house.maxoutput < self.capacity:
+            # self.battery_full = True
+            return True

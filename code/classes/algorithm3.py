@@ -29,48 +29,43 @@ r.shuffle(houses)
 
 for house in houses:
 
-    # dictionary voor distances
+    # keep track of distances between each house and battery
     dist_dict = {}
 
-    # list to save distance value
-    distance_list = []
+    # keeps track on wether battery is useable
+    keep_track = []
 
     for battery in batteries:
         
-        # if it fits, add house
-        if battery.capacity > house.maxoutput:
+        # battery is not full
+        if battery.status(house) == True:
 
-            # calculate distance between house and battery
-            distance = abs(house.coordinates[0] - battery.coordinates[0]) +\
-                        abs(house.coordinates[1] - battery.coordinates[1])
+            distance = abs((house.coordinates[0] - battery.coordinates[0]) + (house.coordinates[1] - battery.coordinates[1]))
 
-            # add distancec to a dictionary together with the battery           
             dist_dict[battery] = distance
 
             # save list
             distance_list.append(distance)
 
         else:
-            # append nothing to check it later
-            distance_list.append(None)
+            keep_track.append(0)
 
-    # if anything is none, this means that the house isn't connected yet
-    if all(i is None for i in distance_list):
+    if keep_track.count(1) == 0:
+        
+        # battery is full, append house to list of unused houses    
         unused_houses.append(house)
 
     else:
 
-        # closest battery is the minimum value
+        # return closest distance of a house to the battery
         closest_distance = min(dist_dict.items(), key=lambda x: x[1])
 
-        # the id of the minimum value, closest battery
         closest_battery= closest_distance[0]
         battery = closest_battery
 
-        # calculates route
         route = (house.x, battery.y)
 
-        # connect the house the battery and connect the battery to the house 
+        # connects house to battery and vice versa
         house.connect_to_battery = battery
         battery.connect_house(house)
 
@@ -233,7 +228,11 @@ else:
 
 #         houses_plt = ax.scatter(house.x, house.y, color='k', marker='*')
 #         batteries_plt = ax.scatter(battery.x, battery.y, color='r', marker='^')
+        # all matches found, not a single house unused
+    if unused_houses == []:
+        print(f"{battery}: Houses: {len(battery.temp_houses_to_battery)}")
 
 #         plt.plot(x,y, color= colors[i])
 
 # plt.savefig("4plot.png")
+                # print(len(battery.houses_to_battery))
