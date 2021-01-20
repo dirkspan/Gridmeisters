@@ -212,78 +212,45 @@ reader = load_data.Load_data()
 batteries = reader.load_batteries()
 houses = reader.load_houses()
 
-<<<<<<< HEAD
 
 unused = []
-=======
-for i in range(100):
->>>>>>> 37ec13e2e347264dd10d6d78ec363240ebe736fe
 
-  for house in houses:
+for house in houses:
 
-    for battery in batteries:
+  for battery in batteries:
 
-<<<<<<< HEAD
     battery.status(house)
-=======
-        # checks to see if battery is full
 
-      battery.status(house)
-        # battery.status(old_house)
->>>>>>> 37ec13e2e347264dd10d6d78ec363240ebe736fe
+    if battery.battery_full == True:
+    
+      new_costs = house.calc_costs(battery)
+      old_houses = battery.houses_to_battery
 
-      if battery.battery_full == True:
-      
-        new_costs = house.calc_costs(battery)
-        old_houses = battery.houses_to_battery
+      for old_house in old_houses:
 
-        for old_house in old_houses:
+        old_costs = old_house.calc_costs(battery)
 
-          old_costs = old_house.calc_costs(battery)
-
-<<<<<<< HEAD
         if new_costs < old_costs:
 
           old_house.deconnect_to_battery(battery)
           battery.remove_house(old_house)
           unused.append(old_house)
-=======
-            # if old_house.connected_to != battery:
-
-          if new_costs < old_costs:
-
-            old_house.deconnect_to_battery(battery)
-            battery.remove_house(old_house)
->>>>>>> 37ec13e2e347264dd10d6d78ec363240ebe736fe
-
-            if house.connected_to == None:
-
-              battery.connect_house(house)
-              house.connect_to_battery(battery)
-
-      else:
 
           if house.connected_to == None:
+
             battery.connect_house(house)
             house.connect_to_battery(battery)
-            # print(f"this is: {battery}: Houses: {battery.temp_houses_to_battery} output: {house.maxoutput} with costs: {house.calc_costs(house, battery)}") 
 
-<<<<<<< HEAD
     else:
 
       if house.connected_to == None:
         battery.connect_house(house)
         house.connect_to_battery(battery)
         # print(f"this is: {battery}: Houses: {battery.temp_houses_to_battery} output: {house.maxoutput} with costs: {house.calc_costs(house, battery)}") 
-    
+      
 # for battery in batteries:
 #   final = battery.temp_houses_to_battery
 #   print(final)
-=======
-  for battery in batteries:
-    final = battery.temp_houses_to_battery
-    print(final)
->>>>>>> 37ec13e2e347264dd10d6d78ec363240ebe736fe
 
 
 
