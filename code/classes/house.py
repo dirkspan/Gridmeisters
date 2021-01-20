@@ -31,12 +31,63 @@ class House(object):
         """
 
         self.connected_to = None    
+<<<<<<< HEAD
+=======
+
+    # def coordinates_cables(self, battery):
+
+        # current_x = self.x
+        # end_x= battery.x
+        # current_y = self.y
+        # end_y = battery.y
+            
+        # if current_y < end_y:
+        #     while current_y < end_y:
+        #         self.cables.append((current_x, current_y))
+        #         current_y += 1
+
+        # elif current_y > end_y:
+        #     while current_y > end_y:
+        #         self.cables.append((current_x, current_y))
+        #         current_y -= 1
+
+        # if current_x < end_x:
+        #     while current_x <= end_x:
+        #         self.cables.append((current_x, current_y))
+        #         current_x += 1
+
+        # elif current_x > end_x:
+        #     while current_x >= end_x:
+        #         self.cables.append((current_x, current_y))
+        #         current_x -= 1
+    
+
+    # def route(self, house, battery)
+
+    #     route = []
+
+    #     # start is house, end is battery
+    #     current_x_cor = coordinate_house[0]
+    #     end_x= coordinate_battery[0]
+    #     current_y_cor = coordinate_house[1]
+    #     end_y = coordinate_battery[1]
+
+    #     while current_y_cor < end_y:
+    #         route.append((current_x_cor, current_y_cor))
+    #         current_y_cor += 1
+
+    #     while current_x_cor <= end_x:
+    #         route.append((current_x_cor, current_y_cor))
+    #         current_x_cor += 1
+
+    #     return route
+>>>>>>> 6e25b86569433d06ca940d24b748d617a50c6559
         
     def calc_costs(self, battery):
         """
         Calculates costs of house to battery
         """
-        costs = abs((self.x+self.y) - (battery.x+battery.y))*9
+        costs = abs((self.x+self.y) - abs(battery.x+battery.y))*9
         self.costs = costs
 
 
