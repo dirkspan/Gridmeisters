@@ -7,15 +7,9 @@ import load_data
 import house
 import battery
 import cables 
-<<<<<<< HEAD
 import random
 import matplotlib.pyplot as plt
-=======
-import random as r
->>>>>>> e0b33fa6b72cbea9ade4f3790e8523f2d82e77d6
 
-import matplotlib
-import matplotlib.pyplot as plt
 from matplotlib import style
 
 # read in all data
@@ -50,7 +44,7 @@ for house in houses:
             dist_dict[battery] = distance
 
             # save list
-            distance_list.append(distance)
+            keep_track.append(1)
 
         else:
             keep_track.append(0)
@@ -78,6 +72,9 @@ for house in houses:
         costs_house = house.calc_costs(battery)
         costs = costs + costs_house
         
+        # if not unused_houses:
+        #     for battery in batteries:
+        #         print(f"{battery} with houses: {battery.temp_houses_to_battery}")
 
 # we hebben alle matches gevonden
 if len(unused_houses) == 0:
@@ -234,8 +231,8 @@ else:
 #         houses_plt = ax.scatter(house.x, house.y, color='k', marker='*')
 #         batteries_plt = ax.scatter(battery.x, battery.y, color='r', marker='^')
         # all matches found, not a single house unused
-    if unused_houses == []:
-        print(f"{battery}: Houses: {len(battery.temp_houses_to_battery)}")
+    # if unused_houses == []:
+    #     print(f"{battery}: Houses: {len(battery.temp_houses_to_battery)}")
 
 #         plt.plot(x,y, color= colors[i])
 
