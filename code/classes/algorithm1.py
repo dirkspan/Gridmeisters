@@ -198,7 +198,7 @@ Constraints relaxation
 
 """
 Verbindt huizen aan batterijen en gaat dan kijken of er een
-betere optie is
+betere optie is, werkt nog niet goed
 """
 
 import load_data
@@ -212,19 +212,19 @@ reader = load_data.Load_data()
 batteries = reader.load_batteries()
 houses = reader.load_houses()
 
-
 unused = []
+
+random.shuffle(houses)
 
 for house in houses:
 
   for battery in batteries:
 
-    battery.status(house)
+    if battery.capacity < house.maxoutput:
 
-    if battery.battery_full == True:
-    
       new_costs = house.calc_costs(battery)
       old_houses = battery.houses_to_battery
+      print(old_houses)
 
       for old_house in old_houses:
 
@@ -246,7 +246,10 @@ for house in houses:
       if house.connected_to == None:
         battery.connect_house(house)
         house.connect_to_battery(battery)
-        # print(f"this is: {battery}: Houses: {battery.temp_houses_to_battery} output: {house.maxoutput} with costs: {house.calc_costs(house, battery)}") 
+
+        # if unused == []:
+         
+          # print(f"this is: {battery}: Houses: {battery.temp_houses_to_battery}")
       
 # for battery in batteries:
 #   final = battery.temp_houses_to_battery

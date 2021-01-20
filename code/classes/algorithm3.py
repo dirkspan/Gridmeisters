@@ -6,7 +6,7 @@ import load_data
 import house
 import battery
 import cables 
-import random as r
+import random
 import matplotlib.pyplot as plt
 
 
@@ -19,7 +19,7 @@ houses = reader.load_houses()
 unused_houses = []
 
 # shuffle houses
-r.shuffle(houses)
+random.shuffle(houses)
 
 for house in houses:
 
