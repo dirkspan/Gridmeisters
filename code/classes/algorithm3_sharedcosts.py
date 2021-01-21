@@ -1,7 +1,7 @@
 """
 Loopt over huizen en zoekt dichtsbijzijnde afstand tot aan batterij
 """
-import load_data
+from code.classes import load_data
 import house
 import battery
 import cables 
@@ -151,13 +151,13 @@ for battery in batteries:
     i += 1
     for house in battery.houses_to_battery:
 
-        colors = ['c', 'k', 'b', 'g', 'r']
+        # colors = ['c', 'k', 'b', 'g', 'r']
 
-        house_x = house.x
-        house_y = house.y
+        # house_x = house.x
+        # house_y = house.y
 
-        battery_x = battery.x
-        battery_y = battery.y
+        # battery_x = battery.x
+        # battery_y = battery.y
 
         # line_house
 
@@ -169,10 +169,26 @@ for battery in batteries:
 
         houses_plt = ax.scatter(house.x, house.y, color='k', marker='*')
         batteries_plt = ax.scatter(battery.x, battery.y, color='r', marker='^')
+
+
+        # plot tuples as cables
+
     # all matches found, not a single house unused
-    if unused_houses == []:
+    # if unused_houses == []:
         # print(f"{battery}: Houses: {len(battery.temp_houses_to_battery)}")
 
-        plt.plot(line_house, color= colors[i])
+        # plt.plot(line_house, color= colors[i])
+
+
+
+
+lijn = []
+
+lijn = zip(*house.cables)
+# for house in houses:
+plt.plot(*zip(*house.cables))
+# print(house.cables)
+
+
 
 plt.savefig("test3share.png")
