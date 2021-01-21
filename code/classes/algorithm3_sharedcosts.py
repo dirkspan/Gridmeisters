@@ -1,7 +1,7 @@
 """
 Loopt over huizen en zoekt dichtsbijzijnde afstand tot aan batterij
 """
-from code.classes import load_data
+import load_data
 import house
 import battery
 import cables 
@@ -182,13 +182,7 @@ for battery in batteries:
 
 
 
-lijn = []
+for house in houses:
+    plt.plot(*zip(*house.cables))
 
-lijn = zip(*house.cables)
-# for house in houses:
-plt.plot(*zip(*house.cables))
-# print(house.cables)
-
-
-
-plt.savefig("test3share.png")
+    plt.savefig("test3share.png")

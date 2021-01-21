@@ -18,52 +18,42 @@ houses = reader.load_houses()
 # # list for all unused houses
 # unused_houses = []
 
-# #set costs to 0
-# costs = 0
-
 # shuffle houses
 random.shuffle(houses)
 
- # empty list of coordinates
+# empty list of coordinates
 cables_coordinates = []
 
+# first add the batties as connect option
 for battery in batteries:
     cables_coordinates.append(battery.coordinates)
 
-
-print(cables_coordinates)
-
+# loop for house in houses
 for house in houses:
 
-    print(house.x)
-    print(house.y)
+    # empty list for connect options 
     connect_options = []
 
     # keep track of distances between each house and battery
     dist_dict = {}
 
-    # keeps track on wether battery is useable
-    keep_track = []
-
+    # for all connect options calculate distance to house and save in list
     for tuple in cables_coordinates:
         distance = int(abs(house.coordinates[0] - tuple[0]) + abs(house.coordinates[1] - tuple[1]))
         connect_options.append(distance)
 
+        # add all connect options to distance dictionary
         dist_dict[tuple] = distance
 
-    # return closest distance of a house to the battery
+    # return closest distance of a house to all connect optionss
     closest_distance = min(dist_dict.items(), key=lambda x: x[1])
-
     closest_connection = closest_distance[0]
-
-    print(f"id: {house.id}")
-    print(f"closest_connection {closest_connection}")
-
     connection = closest_connection
-
+    
+    # define route
     route = (house.x, connection[1])
 
-    # start is house, end is battery
+    # start is house, end is connection coordinates
     current_x = house.x
     end_x= connection[0]
     current_y = house.y
@@ -90,16 +80,25 @@ for house in houses:
             house.cables.append((current_x, current_y))
             current_x -= 1
 
+    # print whole route from house to connection point
+    # print(house.cables)
+
+    # for all coordinates in the route check if there is a cable already other wise append route
     for tuple in house.cables:
         if tuple not in cables_coordinates:
             cables_coordinates.append(tuple)
-            print(tuple)
 
-# costs calculation
+    # print output, house id, coordinates and coordinates of closest item
+    print(f"id: {house.id}")
+    print(f"house: ({house.x}, {house.y})")
+    print(f"closest_connection: {closest_connection}")
+
+# cable costs calculation, calculate costs for all grid segments, so its min start point battery
 number_of_cables = number_of_cables = int(len(cables_coordinates))
-
-costs_all_cables = number_of_cables * 9
+costs_all_cables = (number_of_cables * 9) - len(batteries)*9
 print(f"costs all cables: {costs_all_cables}")
+
+# add the costs for the battaries
 costs = costs_all_cables + (5000 * len(batteries))
 print(f"all costs for complete district: {costs} ")
 
