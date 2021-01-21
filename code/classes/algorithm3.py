@@ -206,35 +206,35 @@ else:
 
 
 # Loop to plot coordinates batteries
-# i = -1
-# for battery in batteries:
-#     i += 1
-#     for house in battery.houses_to_battery:
+i = -1
+for battery in batteries:
+    i += 1
+    for house in battery.houses_to_battery:
 
-#         colors = ['c', 'k', 'b', 'g', 'r']
+        colors = ['c', 'k', 'b', 'g', 'r']
 
-#         house_x = house.x
-#         house_y = house.y
+        house_x = house.x
+        house_y = house.y
 
-#         battery_x = battery.x
-#         battery_y = battery.y
+        battery_x = battery.x
+        battery_y = battery.y
 
-#         cutting_point_x = house.x
-#         cutting_point_y = battery.y
+        cutting_point_x = house.x
+        cutting_point_y = battery.y
 
-#         #plot line between house and cutting point 
-#         x = [house_x, cutting_point_x, battery_x]
-#         y = [house_y, cutting_point_y, battery_y]
+        #plot line between house and cutting point 
+        x = [house_x, cutting_point_x, battery_x]
+        y = [house_y, cutting_point_y, battery_y]
 
-#         ax = plt.subplot(111)
+        ax = plt.subplot(111)
 
-#         houses_plt = ax.scatter(house.x, house.y, color='k', marker='*')
-#         batteries_plt = ax.scatter(battery.x, battery.y, color='r', marker='^')
+        houses_plt = ax.scatter(house.x, house.y, color='k', marker='*')
+        batteries_plt = ax.scatter(battery.x, battery.y, color='r', marker='^')
         # all matches found, not a single house unused
-    # if unused_houses == []:
-    #     print(f"{battery}: Houses: {len(battery.temp_houses_to_battery)}")
+    if unused_houses == []:
+        print(f"{battery}: Houses: {len(battery.temp_houses_to_battery)}")
 
-#         plt.plot(x,y, color= colors[i])
+        plt.plot(x,y, color= colors[i])
 
-# plt.savefig("4plot.png")
-                # print(len(battery.houses_to_battery))
+plt.savefig("4plot.png")
+print(len(battery.houses_to_battery))

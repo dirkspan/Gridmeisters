@@ -117,12 +117,13 @@ for battery in batteries:
                 current_x -= 1
 
         for tuple in house.cables:
+            # line_house = house.cables
             if tuple not in cables_coordinates:
                 cables_coordinates.append(tuple)
 
         number_of_cables = int(len(cables_coordinates))
         costs_all_cables_to_battery = number_of_cables * 9 
-        
+  
 
         # prints output for each house, each coordinate of the cable
         print(f"house ID: {house.id}")
@@ -132,8 +133,46 @@ for battery in batteries:
 
     print("cable costs, cables shared:")
     print(costs_all_cables_to_battery)
+
+    # costs for all batteries
+    costs = costs_all_cables_to_battery + (5000 * len(batteries))
+    print(f"all costs for complete district: {costs} ")
+    
         
         
 
     # print("all used coordinates")
     # print(cables_coordinates)
+
+    
+# Loop to plot coordinates batteries
+i = -1
+for battery in batteries:
+    i += 1
+    for house in battery.houses_to_battery:
+
+        colors = ['c', 'k', 'b', 'g', 'r']
+
+        house_x = house.x
+        house_y = house.y
+
+        battery_x = battery.x
+        battery_y = battery.y
+
+        # line_house
+
+        #plot line between house and cutting point 
+        # x = [house_x, cutting_point_x, battery_x]
+        # y = [house_y, cutting_point_y, battery_y]
+
+        ax = plt.subplot(111)
+
+        houses_plt = ax.scatter(house.x, house.y, color='k', marker='*')
+        batteries_plt = ax.scatter(battery.x, battery.y, color='r', marker='^')
+    # all matches found, not a single house unused
+    if unused_houses == []:
+        # print(f"{battery}: Houses: {len(battery.temp_houses_to_battery)}")
+
+        plt.plot(line_house, color= colors[i])
+
+plt.savefig("test3share.png")
