@@ -175,4 +175,7 @@ for battery in batteries:
 
         plt.plot(line_house, color= colors[i])
 
+# plt.savefig("test3share.png")
+for house in houses:
+    plt.plot(*zip(*house.cables))
 plt.savefig("test3share.png")

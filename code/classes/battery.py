@@ -14,6 +14,7 @@ class Battery:
         self.battery_full = False
         self.coordinates= (x, y)
         self.cables = {}
+        self.route = []
 
     def __str__(self):
         return f"Battery:{self.id}\nwith coordinates: {self.coordinates} and capacity: {self.capacity}\n"       
