@@ -14,9 +14,23 @@ class Battery:
         self.battery_full = False
         self.coordinates= (x, y)
         self.cables = {}
+        self.new_list = []
+        self.costs = 0
 
     def __str__(self):
         return f"Battery:{self.id}\nwith coordinates: {self.coordinates} and capacity: {self.capacity}\n"       
+
+
+    def add_costs(self, house):
+
+        distance = abs(house.coordinates[0] - self.coordinates[0]) + abs(house.coordinates[1] - self.coordinates[1])
+        distance *= 9
+        self.costs = distance
+        self.costs += self.costs
+
+    def add_new(self, house):
+
+        self.new_list.append(house.id)  
 
 
     def coordinates_cables(self, house):
@@ -71,5 +85,4 @@ class Battery:
         """
 
         if house.maxoutput < self.capacity:
-            # self.battery_full = True
             return True

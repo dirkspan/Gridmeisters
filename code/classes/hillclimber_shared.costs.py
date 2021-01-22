@@ -7,9 +7,10 @@ import load_data
 import house
 import battery
 import cables 
-import random
-import matplotlib.pyplot as plt
+import random as r
 
+import matplotlib
+import matplotlib.pyplot as plt
 from matplotlib import style
 
 # read in all data
@@ -24,51 +25,51 @@ unused_houses = []
 costs = 0
 
 # shuffle houses
-random.shuffle(houses)
+r.shuffle(houses)
 
 for house in houses:
 
-    # keep track of distances between each house and battery
+    # dictionary voor distances
     dist_dict = {}
 
-    # keeps track on wether battery is useable
-    keep_track = []
+    # list to save distance value
+    distance_list = []
 
     for battery in batteries:
         
-        # battery is not full
-        if battery.status(house) == True:
+        # if it fits, add house
+        if battery.capacity > house.maxoutput:
 
-<<<<<<< HEAD
+            # calculate distance between house and battery
             distance = abs(house.coordinates[0] - battery.coordinates[0]) + abs(house.coordinates[1] - battery.coordinates[1])
-=======
-            distance = abs((house.coordinates[0] - battery.coordinates[0]) + abs(house.coordinates[1] - battery.coordinates[1]))
->>>>>>> 7fbd364f9fcd5a641c7a1fd79698730ea71c2c75
 
+            # add distancec to a dictionary together with the battery           
             dist_dict[battery] = distance
 
             # save list
-            keep_track.append(1)
+            distance_list.append(distance)
 
         else:
-            keep_track.append(0)
+            # append nothing to check it later
+            distance_list.append(None)
 
-    if keep_track.count(1) == 0:
-        
-        # battery is full, append house to list of unused houses    
+    # if all is none, this means that the house isn't connected yet
+    if all(i is None for i in distance_list):
         unused_houses.append(house)
 
     else:
 
-        # return closest distance of a house to the battery
+        # closest battery is the minimum value
         closest_distance = min(dist_dict.items(), key=lambda x: x[1])
 
+        # the id of the minimum value, closest battery
         closest_battery= closest_distance[0]
         battery = closest_battery
 
+        # calculates route
         route = (house.x, battery.y)
 
-        # connects house to battery and vice versa
+        # connect the house the battery and connect the battery to the house 
         house.connect_to_battery = battery
         battery.connect_house(house)
 
@@ -76,9 +77,6 @@ for house in houses:
         costs_house = house.calc_costs(battery)
         costs = costs + costs_house
         
-        # if not unused_houses:
-        #     for battery in batteries:
-        #         print(f"{battery} with houses: {battery.temp_houses_to_battery}")
 
 # we hebben alle matches gevonden
 if len(unused_houses) == 0:
@@ -148,28 +146,30 @@ for battery in batteries:
         max_x = max(list_x_values)
         min_x = min(list_x_values) 
         # costs horizontaal
-        cable_costs= (max_x - min_x) * 9
-
+        cable_costs_horizontally= (max_x - min_x) * 9
+        
+    print("cable costs horizontally")
+    print(cable_costs_horizontally)
         # costs verticaal 
-        cable_costs_vertically = []
+        # cable_costs_vertically = []
 
-    for battery in batteries:
-        for house in battery.houses_to_battery:
-            list_horizontal_values = []
-            if house.x == battery.houses_to_battery[i].x:
-            try:
-                cable_costs += abs(house.y - battery.y) * 9
-            except house.x == otherhouse.x
+#     for battery in batteries:
+#         for house in battery.houses_to_battery:
+#             list_horizontal_values = []
+#             if house.x == battery.houses_to_battery[i].x:
+#             try:
+#                 cable_costs += abs(house.y - battery.y) * 9
+#             except house.x == otherhouse.x
 
-                cable_costs += abs(house.y that has biggest difference - battery.y) * 9
+#                 cable_costs += abs(house.y that has biggest difference - battery.y) * 9
 
 
-    print(list_x_values)
-    print("battery:", battery.id)
-    print("max:", max_x)
-    print("min:", min_x)
-    print("cable_costs when shared:", cable_costs)
-    print("\n")
+#     print(list_x_values)
+#     print("battery:", battery.id)
+#     print("max:", max_x)
+#     print("min:", min_x)
+#     print("cable_costs when shared:", cable_costs)
+#     print("\n")
     # ========================================================================================================
 
 # for battery in batteries:
@@ -202,41 +202,31 @@ for battery in batteries:
 
 
 # Loop to plot coordinates batteries
-i = -1
-for battery in batteries:
-    i += 1
-    for house in battery.houses_to_battery:
+# i = -1
+# for battery in batteries:
+#     i += 1
+#     for house in battery.houses_to_battery:
 
-        colors = ['c', 'k', 'b', 'g', 'r']
+#         colors = ['c', 'k', 'b', 'g', 'r']
 
-        house_x = house.x
-        house_y = house.y
+#         house_x = house.x
+#         house_y = house.y
 
-        battery_x = battery.x
-        battery_y = battery.y
+#         battery_x = battery.x
+#         battery_y = battery.y
 
-        cutting_point_x = house.x
-        cutting_point_y = battery.y
+#         cutting_point_x = house.x
+#         cutting_point_y = battery.y
 
-        #plot line between house and cutting point 
-        x = [house_x, cutting_point_x, battery_x]
-        y = [house_y, cutting_point_y, battery_y]
+#         #plot line between house and cutting point 
+#         x = [house_x, cutting_point_x, battery_x]
+#         y = [house_y, cutting_point_y, battery_y]
 
-        ax = plt.subplot(111)
+#         ax = plt.subplot(111)
 
-        houses_plt = ax.scatter(house.x, house.y, color='k', marker='*')
-        batteries_plt = ax.scatter(battery.x, battery.y, color='r', marker='^')
-        # all matches found, not a single house unused
-    if unused_houses == []:
-        print(f"{battery}: Houses: {len(battery.temp_houses_to_battery)}")
+#         houses_plt = ax.scatter(house.x, house.y, color='k', marker='*')
+#         batteries_plt = ax.scatter(battery.x, battery.y, color='r', marker='^')
 
-        plt.plot(x,y, color= colors[i])
+#         plt.plot(x,y, color= colors[i])
 
-<<<<<<< HEAD
 # plt.savefig("4plot.png")
-                # print(len(battery.houses_to_battery))
-
-=======
-plt.savefig("4plot.png")
-print(len(battery.houses_to_battery))
->>>>>>> 7fbd364f9fcd5a641c7a1fd79698730ea71c2c75

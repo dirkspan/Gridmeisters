@@ -41,7 +41,7 @@ class House(object):
         return house_costs
 
     def __str__(self):
-        return f"House:{self.id}\ncoordinates: {self.y}\nmaxoutput: {self.maxoutput}\n\nbattery:{self.connected_to}\n"   
+        return f"House:{self.id}\ncoordinates: {self.y}\nmaxoutput: {self.maxoutput}\n\nbattery:{self.connected_to}\nconnected to:{self.connected_to}"   
 
 
 
