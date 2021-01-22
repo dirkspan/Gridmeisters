@@ -1,8 +1,16 @@
 class Cable:
 
-    def __init__(self):
-        cable_route = []
-        
+    def __init__(self, startx, starty, endx, endy, connectedbat):
+        self.startx = startx
+        self.starty = starty
+        self.endx = endx
+        self.endy = endy
+        self.connectedbat = none
+
+        # cable_route = []
+    # def battery_marker(self):
+
+    #     battery = 
 
     def add_route(self, house, battery):
         self.cable_route.append((house.x, house.y))

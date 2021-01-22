@@ -49,9 +49,3 @@ class Coordinates:
         route = []
         # startpunt is huis
         coordinate_house = str(coordinate_house[1], coordinate_house[2])
-       
-
-        #
-
-        #
-    

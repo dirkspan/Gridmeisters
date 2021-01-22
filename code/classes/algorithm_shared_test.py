@@ -109,11 +109,7 @@ for house in houses:
                     if battery.id == batitem:
                         battery.houses_to_battery.append(house)
                         print(f"number of houses connected to battery {battery.id}: {len(battery.houses_to_battery)}")
-
-                        # capacity of battery
-                        print(battery.capacity)
-                        battery.capacity = battery.capacity - house.maxoutput  
-                        print(battery.capacity)
+                print(f"battery connected to: {house.connected_to}")
 
                 # if it is a new coordinate add to dictionary with right connected battery and add to cables_Coordinates
                 for tuple in house.cables:
