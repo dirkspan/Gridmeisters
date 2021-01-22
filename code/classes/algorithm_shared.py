@@ -4,7 +4,6 @@ Loopt over huizen en zoekt dichtsbijzijnde afstand tot aan batterij
 import load_data
 import house
 import battery
-# import cable 
 import random
 import matplotlib.pyplot as plt
 
@@ -26,6 +25,7 @@ cables_coordinates = []
 for battery in batteries:
     cables_coordinates.append(battery.coordinates)
 
+bat_dict = {}
 
 # loop for house in houses
 for house in houses:
@@ -54,13 +54,6 @@ for house in houses:
 
     connection = closest_connection
 
-    for battery in batteries:
-        if connection == battery.coordinates:
-            house.connected_to = battery.id
-            print("batterij ID")
-            print(house.connected_to)
-
-
     # start is house, end is connection coordinates
     current_x = house.x
     end_x= connection[0]
@@ -87,38 +80,39 @@ for house in houses:
         while current_x >= end_x:
             house.cables.append((current_x, current_y))
             current_x -= 1
-
-
-    bat_dict = {}
-
-    for cable_point in house.cables:
-        bat_dict[cable_point] = house.connected_to
-
-    # for tuple in house.cables:
-    for item in bat_dict:
-        if connection == item:
-            # for key, value in item:
-            print(f"item{item}")
-            
-            batitem = bat_dict.get(item)
-            print(batitem)
-            print("LUKT")
-            house.connected_to = batitem
+    
+    # dictionary with battery coupeled.
+    for battery in batteries:
+        if connection == battery.coordinates:
+            house.connected_to = battery.id
+            print("batterij ID")
             print(house.connected_to)
+            for cable_point in cables_coordinates:
+                bat_dict[cable_point] = house.connected_to
+        else:
+            pass
+    
+    #loop trough dictionary     
+    for item in bat_dict:
+        for cable_point in house.cables:
 
-    print(bat_dict)
+            # find connection point in dictionary 
+            if cable_point == item:
+                print(f"houseID: {house.id} coordiante connection: {item}")
 
+                # get coupeled id of this cable grid
+                batitem = bat_dict.get(item)
 
-    for cable in cables_coordinates:
-        start = cables_coordinates[0]
-        end = cables_coordinates[-1]
+                # add same connected battery as connectedbattery of connected grid piece
+                house.connected_to = batitem
+                print(f"battery connected to: {house.connected_to}")
 
-
-    # for all coordinates in the route check if there is a cable already other wise append route
-    for tuple in house.cables:
-        if tuple not in cables_coordinates:
-            cables_coordinates.append(tuple)
-
+                # if it is a new coordinate add to dictionary with right connected battery and add to cables_Coordinates
+                for tuple in house.cables:
+                    if tuple not in cables_coordinates:
+                        cables_coordinates.append(tuple)
+                        bat_dict[cable_point] = house.connected_to          
+    
 
 # print output, house id, coordinates and coordinates of closest item
 print(f"id: {house.id}")
