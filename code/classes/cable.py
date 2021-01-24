@@ -1,10 +1,8 @@
 class Cable:
 
-    def __init__(self, startx, starty, endx, endy, connectedbat):
-        self.startx = startx
-        self.starty = starty
-        self.endx = endx
-        self.endy = endy
+    def __init__(self, cable_x, cable_y, connectedbat):
+        self.cable_x = cable_x
+        self.cable_y = cable_y
         self.connectedbat = none
 
         # cable_route = []
