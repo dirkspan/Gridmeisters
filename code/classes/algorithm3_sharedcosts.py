@@ -265,7 +265,6 @@ if len(unused_houses) == 0:
         i += 1
         for house in battery.houses_to_battery:
 
-<<<<<<< HEAD
             colors = ['c', 'k', 'b', 'g', 'r']
 
             house_x = house.x
@@ -273,15 +272,6 @@ if len(unused_houses) == 0:
 
             battery_x = battery.x
             battery_y = battery.y
-=======
-        # colors = ['c', 'k', 'b', 'g', 'r']
-
-        # house_x = house.x
-        # house_y = house.y
-
-        # battery_x = battery.x
-        # battery_y = battery.y
->>>>>>> 9799632231017832d444d5b697998cc76b8b14ef
 
             cutting_point_x = house.x
             cutting_point_y = battery.y
@@ -292,7 +282,6 @@ if len(unused_houses) == 0:
             x = [house_x, cutting_point_x, battery_x]
             y = [house_y, cutting_point_y, battery_y]
 
-<<<<<<< HEAD
             ax = plt.subplot(111)
 
             houses_plt = ax.scatter(house.x, house.y, color='k', marker='*')
@@ -304,28 +293,3 @@ if len(unused_houses) == 0:
             plt.savefig("testing6.png")
 
         
-=======
-        houses_plt = ax.scatter(house.x, house.y, color='k', marker='*')
-        batteries_plt = ax.scatter(battery.x, battery.y, color='r', marker='^')
-
-
-        # plot tuples as cables
-
-    # all matches found, not a single house unused
-    # if unused_houses == []:
-        # print(f"{battery}: Houses: {len(battery.temp_houses_to_battery)}")
-
-        # plt.plot(line_house, color= colors[i])
-
-
-
-
-for house in houses:
-    plt.plot(*zip(*house.cables))
-
-# # plt.savefig("test3share.png")
-# for house in houses:
-#     plt.plot(*zip(*house.cables))
-# plt.savefig("test3share.png")
-#     plt.savefig("test3share.png")
->>>>>>> 9799632231017832d444d5b697998cc76b8b14ef
