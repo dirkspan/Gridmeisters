@@ -17,7 +17,7 @@ class Battery:
         self.route = []
 
     def __str__(self):
-        return f"Battery:{self.id}\nwith coordinates: {self.coordinates} and capacity: {self.capacity}\n"       
+        return f"Battery {self.id}\nwith coordinates: {self.coordinates} and capacity: {self.capacity}\n"       
 
 
     def coordinates_cables(self, house):
@@ -61,8 +61,8 @@ class Battery:
 
     def remove_house(self, house):
 
-        self.houses_to_battery.remove(house)
-        self.temp_houses_to_battery.remove(house.id)
+        # self.houses_to_battery.remove(house)
+        # self.temp_houses_to_battery.remove(house.id)
         self.capacity += house.maxoutput
              
 
