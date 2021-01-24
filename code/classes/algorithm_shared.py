@@ -17,6 +17,8 @@ houses = reader.load_houses()
 # shuffle houses
 random.shuffle(houses)
 
+
+
 # empty list of coordinates
 cables_coordinates = []
 
@@ -50,6 +52,14 @@ for house in houses:
     closest_connection = closest_distance[0]
     connection = closest_connection
     
+    x_dist = abs(house.x - connection[0])
+    y_dist = abs(house.y - connection [1])
+    
+    
+    house_costs = (x_dist + y_dist) * 9
+
+    print(f"costs for this house cable: {house_costs}")
+
     # start is house, end is connection coordinates
     current_x = house.x
     end_x= connection[0]

@@ -8,58 +8,32 @@ class Battery:
         self.id = id
         self.x = x
         self.y = y
-        self.capacity = capacity
-        self.houses_to_battery = []
-        self.temp_houses_to_battery = []
-        self.battery_full = False
         self.coordinates= (x, y)
-        self.cables = {}
-        self.route = []
+        self.capacity = capacity
+        self.houses = []
+        self.houses_to_battery = []
+        self.housesid_to_battery = []
+
+        self.batt_costs = 0
 
     def __str__(self):
-        return f"Battery {self.id}\nwith coordinates: {self.coordinates} and capacity: {self.capacity}\n"       
+        return f"location:{self.coordinates},\ncapacity: 1507.0,\nhouses:["       
 
 
-    def add_costs(self, house):
+    def add_house_info(self, house):
+        house_info = {}
 
-        distance = abs(house.coordinates[0] - self.coordinates[0]) + abs(house.coordinates[1] - self.coordinates[1])
-        distance *= 9
-        self.costs = distance
-        self.costs += self.costs
+        house_info["location"] = house.coordinates
 
-    def add_new(self, house):
+        self.houses.append(house_info)
 
-        self.new_list.append(house.id)  
+        house_info["output"] = house.maxoutput
+        
+        self.houses.append(house_info)
 
+        house_info["cables"] = house.cables
 
-    def coordinates_cables(self, house):
-
-        current_x = house.x
-        end_x= self.x
-        current_y = house.y
-        end_y = self.y
-            
-        if current_y < end_y:
-            while current_y < end_y:
-                self.cables[house.id] = current_x
-                current_y += 1
-
-        elif current_y > end_y:
-            while current_y > end_y:
-                self.cables[house.id] = current_x
-                current_y -= 1
-
-        if current_x < end_x:
-            while current_x <= end_x:
-                self.cables[house.id] = current_x
-                current_x += 1
-
-        elif current_x > end_x:
-            while current_x >= end_x:
-                self.cables[house.id] = current_x
-                current_x -= 1
-    
-        return self.cables
+        self.houses.append(house_info)
 
     def connect_house(self, house):
         """
@@ -67,14 +41,14 @@ class Battery:
         """
 
         self.houses_to_battery.append(house)
-        self.temp_houses_to_battery.append(house.id)
+        self.housesid_to_battery.append(house.id)
         self.capacity -= house.maxoutput
 
 
     def remove_house(self, house):
 
-        # self.houses_to_battery.remove(house)
-        # self.temp_houses_to_battery.remove(house.id)
+        self.houses_to_battery.remove(house)
+        self.housesid_to_battery.remove(house.id)
         self.capacity += house.maxoutput
              
 
