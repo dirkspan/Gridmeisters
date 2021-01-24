@@ -39,7 +39,11 @@ for house in houses:
         # battery is not full
         if battery.status(house) == True:
 
+<<<<<<< HEAD
+            distance = abs(house.coordinates[0] - battery.coordinates[0]) + abs(house.coordinates[1] - battery.coordinates[1])
+=======
             distance = abs((house.coordinates[0] - battery.coordinates[0]) + abs(house.coordinates[1] - battery.coordinates[1]))
+>>>>>>> 7fbd364f9fcd5a641c7a1fd79698730ea71c2c75
 
             dist_dict[battery] = distance
 
@@ -136,44 +140,36 @@ else:
     print("No solution")
 
 
-
-
-
-
-
-
-
-
-# for battery in batteries:
-#     list_x_values = []
-#     for house in battery.houses_to_battery:
-#         list_x_values.append(house.x)
+for battery in batteries:
+    list_x_values = []
+    for house in battery.houses_to_battery:
+        list_x_values.append(house.x)
         
-#         max_x = max(list_x_values)
-#         min_x = min(list_x_values) 
-#         # costs horizontaal
-#         cable_costs= (max_x - min_x) * 9
+        max_x = max(list_x_values)
+        min_x = min(list_x_values) 
+        # costs horizontaal
+        cable_costs= (max_x - min_x) * 9
 
-#         # costs verticaal 
-#         cable_costs_vertically = []
+        # costs verticaal 
+        cable_costs_vertically = []
 
-#     for battery in batteries:
-#         for house in battery.houses_to_battery:
-#             list_horizontal_values = []
-#             if house.x == battery.houses_to_battery[i].x:
-#             try:
-#                 cable_costs += abs(house.y - battery.y) * 9
-#             except house.x == otherhouse.x
+    for battery in batteries:
+        for house in battery.houses_to_battery:
+            list_horizontal_values = []
+            if house.x == battery.houses_to_battery[i].x:
+            try:
+                cable_costs += abs(house.y - battery.y) * 9
+            except house.x == otherhouse.x
 
-#                 cable_costs += abs(house.y that has biggest difference - battery.y) * 9
+                cable_costs += abs(house.y that has biggest difference - battery.y) * 9
 
 
-#     print(list_x_values)
-#     print("battery:", battery.id)
-#     print("max:", max_x)
-#     print("min:", min_x)
-#     print("cable_costs when shared:", cable_costs)
-#     print("\n")
+    print(list_x_values)
+    print("battery:", battery.id)
+    print("max:", max_x)
+    print("min:", min_x)
+    print("cable_costs when shared:", cable_costs)
+    print("\n")
     # ========================================================================================================
 
 # for battery in batteries:
@@ -236,5 +232,11 @@ for battery in batteries:
 
         plt.plot(x,y, color= colors[i])
 
+<<<<<<< HEAD
+# plt.savefig("4plot.png")
+                # print(len(battery.houses_to_battery))
+
+=======
 plt.savefig("4plot.png")
 print(len(battery.houses_to_battery))
+>>>>>>> 7fbd364f9fcd5a641c7a1fd79698730ea71c2c75

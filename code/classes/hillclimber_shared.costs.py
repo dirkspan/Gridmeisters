@@ -41,8 +41,7 @@ for house in houses:
         if battery.capacity > house.maxoutput:
 
             # calculate distance between house and battery
-            distance = abs(house.coordinates[0] - battery.coordinates[0]) +\
-                        abs(house.coordinates[1] - battery.coordinates[1])
+            distance = abs(house.coordinates[0] - battery.coordinates[0]) + abs(house.coordinates[1] - battery.coordinates[1])
 
             # add distancec to a dictionary together with the battery           
             dist_dict[battery] = distance
@@ -54,7 +53,7 @@ for house in houses:
             # append nothing to check it later
             distance_list.append(None)
 
-    # if anything is none, this means that the house isn't connected yet
+    # if all is none, this means that the house isn't connected yet
     if all(i is None for i in distance_list):
         unused_houses.append(house)
 

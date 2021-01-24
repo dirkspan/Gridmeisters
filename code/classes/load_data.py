@@ -35,5 +35,3 @@ class Load_data:
                 houses.append(house)
 
         return houses
-
-
