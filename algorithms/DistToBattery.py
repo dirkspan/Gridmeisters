@@ -14,13 +14,12 @@ houses = reader.load_houses()
 
 def first_algorithm():
     """
-    Connects each house to the closest battery based on distance
+    Connects each house to the closest battery based on distance 
+    and uses the hillclimber algorithm to find the optimal solution.
     """
    
     # houses that are currently not being used because the battery is full
     unused_houses = []
-
-    random.shuffle(houses)
 
     # total costs for the cables
     total_costs = 0
