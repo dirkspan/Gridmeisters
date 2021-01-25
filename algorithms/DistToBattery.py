@@ -111,7 +111,7 @@ def plot_first_algorithm():
             houses_plt = ax.scatter(house.x, house.y, color='k', marker='*')
             batteries_plt = ax.scatter(battery.x, battery.y, color='r', marker='^')
 
-    fig = plt.savefig("figure.png")
+    fig = plt.savefig("hillclimberfigure.png")
     return fig
  
 def run_output():

@@ -160,7 +160,7 @@ def constraint_relaxation():
             houses_plt = ax.scatter(house.x, house.y, color='k', marker='*')
             batteries_plt = ax.scatter(battery.x, battery.y, color='r', marker='^')
 
-    fig = plt.savefig("testsofie4.png")
+    fig = plt.savefig("constrelaxfigure.png")
     return fig
         # add all connect options to distance dictionary   
         # print(cables_coordinates)
