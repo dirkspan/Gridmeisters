@@ -2,6 +2,10 @@ import random
 import models.load_data
 
 def hillclimber(batteries, houses):
+    """
+    Hillclimber, goes through every possible connection already made
+    to check if there are any better alternatives
+    """
 
     for battery in batteries:
 
@@ -70,10 +74,3 @@ def logic_swap(curr_battery, curr_house, next_battery, next_house):
         else:
             return False    
 
-def calc_shared_costs(houses):
-
-    tot = 0
-
-    for battery in batteries:
-
-        pass

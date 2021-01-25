@@ -1,6 +1,8 @@
 import algorithms.DistToBattery
 import algorithms.Random
 import algorithms.helper
+import algorithms.AlgoritmeTwee
+import algorithms.algorithm2
 from data import *
 import models.battery
 import models.cables
@@ -26,6 +28,8 @@ else:
     print(f"The total costs for this district are: {algorithms.AlgoritmeTwee.second_algorithm()}\nThe figure will be saved in the directory look for figure2.png")
     algorithms.AlgoritmeTwee.plot_second_algorithm()
     algorithms.AlgoritmeTwee.run_sec_output
+
+    # algorithms.algorithm2.algorithmtwee()
 
     # dit is random algoritme, comment het uit om te runnen
     # algorithms.Random.random_algorithm()

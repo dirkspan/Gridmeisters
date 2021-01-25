@@ -29,28 +29,19 @@ def second_algorithm():
     cables_coordinates = []
     count_houses = 0
 
-    # batterijen_lijst = []
-    # for battery in batteries:
-    #     battery_dict = {"location": battery.coordinates, "capacity": battery.capacity, "cables":[battery.coordinates]}
-    #     list = [battery.coordinates]
-
-    #     batterijen_lijst.append(list)
-    # print(batterijen_lijst)
-
-
     all_battery_coordinates = []
     i = -1
-    for battery in batteries:
-        battery_coordinates = [battery.coordinates]
-        all_battery_coordinates.append(battery_coordinates)
+    
+    for house in houses:
 
-        i += 1
-        
-        cables_coordinates.append(batteries[2].coordinates)
-        # print(cables_coordinates)
+        for battery in batteries:
+            battery_coordinates = [battery.coordinates]
+            all_battery_coordinates.append(battery_coordinates)
 
-        # loop for house in houses
-        for house in houses:
+            i += 1
+            
+            cables_coordinates.append(batteries[2].coordinates)
+
             
             # empty list for connect options 
             connect_options = []
@@ -62,8 +53,6 @@ def second_algorithm():
             for cable_point in cables_coordinates:
                 distance = int(abs(house.coordinates[0] - cable_point[0]) + abs(house.coordinates[1] - cable_point[1]))
                 connect_options.append(distance)
-
-                # print(cable_point)
 
                 # add all connect options to distance dictionary
                 dist_dict[cable_point] = distance 
@@ -111,10 +100,6 @@ def second_algorithm():
                 while current_x > end_x:
                     current_x -= 1
                     house.cables.append((current_x, current_y))
-            
-            # if there is already a connection for this house
-            if house.coordinates == connection:
-                battery.connect_house(house)
 
             # loops through dictionary and cables, to compare
             for cable_point in house.cables:
@@ -125,18 +110,17 @@ def second_algorithm():
                     # connect battery
                     battery.connect_house(house)
 
+                    
+                    house.connect_to_battery(battery)
+
+                    house.connected_to
+
 
             # if it is a new coordinate add to dictionary with right connected battery and add to cables_Coordinates
             for tuple in house.cables:
                 if tuple not in cables_coordinates:
                     cables_coordinates.append(tuple)
 
-            capaciteit = battery.capacity - house.maxoutput
-
-            if capaciteit < 0:
-                break
-            
-        # print(battery_coordinates)
             
         print(i)
     print (battery.capacity)
