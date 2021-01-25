@@ -7,6 +7,9 @@ import random
 import matplotlib.pyplot as plt
 from matplotlib import style
 
+import copy
+from copy import deepcopy
+
 # read in all data
 reader = models.load_data.Load_data()
 batteries = reader.load_batteries()
@@ -17,14 +20,15 @@ def first_algorithm():
     Connects each house to the closest battery based on distance 
     and uses the hillclimber algorithm to find the optimal solution.
     """
-    random.shuffle(houses)
-    random.shuffle(batteries)
+    
     # houses that are currently not being used because the battery is full
     unused_houses = []
 
     # total costs for the cables
     total_costs = 0
 
+    random.shuffle(houses)
+    
     for house in houses:
 
         # keeps track of distances between each house and battery
@@ -74,8 +78,7 @@ def first_algorithm():
             house.add_costs(battery)
             battery.add_house_info(house)
             house.route_calc(battery)
-            battery_costs += house.costs
-            total_costs += battery_costs
+            total_costs += house.costs
 
             # no unused houses left, applies hillclimber to optimalize connections
             if len(unused_houses) == 0:
@@ -119,7 +122,7 @@ def plot_first_algorithm():
             houses_plt = ax.scatter(house.x, house.y, color='k', marker='*')
             batteries_plt = ax.scatter(battery.x, battery.y, color='r', marker='^')
 
-    fig = plt.savefig("disttobat.png")
+    fig = plt.savefig("hillclimberfigure.png")
     return fig
  
 def run_output():
@@ -136,8 +139,8 @@ def run_output():
 def run_multiple_times():
 
     
-    curr_total_costs = first_algorithm()
-    print(curr_total_costs)
+    curr_total_costs = 50000
+    
     for i in range(100):
         
         new_total_costs = first_algorithm()
@@ -145,8 +148,12 @@ def run_multiple_times():
 
         if new_total_costs < curr_total_costs:
             curr_total_costs = new_total_costs
-        print(curr_total_costs)
 
+        print(curr_total_costs)
+        for house in houses:
+            house.clear_house()
+            for battery in batteries:
+                battery.clear(house)
         
               
     # a = first_algorithm()

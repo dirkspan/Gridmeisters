@@ -78,10 +78,17 @@ def optimum_creating():
             battery.add_house_info(house)
 
             # no unused houses left, applies hillclimber to optimalize connections
-        if len(unused_houses) <= 1:
-            constraint_relaxation()
-                               
-    return total_costs
+            if len(unused_houses) <= 1:
+
+                # update weird outlayers to closest battery
+                helper.hillclimber(batteries, houses)
+
+    # if algorithm is finished run constraint_relaxation algorithm
+    if len(unused_houses) <= 1:
+        constraint_relaxation()
+        # run_output()
+
+
 
 def constraint_relaxation():
 
@@ -95,6 +102,7 @@ def constraint_relaxation():
     # initializing to help printing 
     i = -1
 
+    # loop through all batteries, to improve all 5 routes
     for battery in batteries:
 
         # for every battery append to costs for this battery, costs for each battery are 5000 in this case
@@ -150,12 +158,17 @@ def constraint_relaxation():
             houses_plt = ax.scatter(house.x, house.y, color='k', marker='*')
             batteries_plt = ax.scatter(battery.x, battery.y, color='r', marker='^')
 
-    fig = plt.savefig("testsofie4.png")
-    return fig
-        # add all connect options to distance dictionary   
-        # print(cables_coordinates)
+        # calculate costs for all cables to this battery and append this to the total costs
+        number_of_cables = len(cables_coordinates)
+        cables_costs = number_of_cables * 9
+        total_costs = total_costs + cables_costs
     
-            
+    print(total_costs)
+    
+    # make plot
+    fig = plt.savefig("constraintrelaxation.png")
+    return fig
+
 def run_output():
 
     for curr_batt in batteries:

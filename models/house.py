@@ -113,6 +113,13 @@ class House(object):
         return f"location: {self.coordinates}\noutput: {self.maxoutput}\ncables: "   
 
 
+    def clear_house(self):
+
+        self.connected_to == None
+        self.cables = []
+        self.costs = 0    
+
+
 
 
 

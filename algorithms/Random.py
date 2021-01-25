@@ -17,24 +17,32 @@ def random_algorithm():
     Connects each house randomly to a battery
     """
 
+    count = 0
+
+    tot_rand_costs = 0
+
     random.shuffle(houses)
-    random.shuffle(batteries)
 
-    total_costs = 0
+    for battery in batteries:
 
-    for house in houses:
+        for house in houses:
 
-        for battery in batteries:
+            if battery.status(house) == True and house.connected_to == None:
 
-            curr_batt = random.choice(batteries)
+                battery.connect_house(house)
+                house.route_calc(battery)
+                house.add_costs(battery)
+                tot_rand_costs += house.costs
 
-            if house not in curr_batt.houses_to_battery:
+                house.connect_to_battery(battery)
+                count += 1
 
-                if house.maxoutput <= curr_batt.capacity:
-
-                    battery.connect_house(house)
-                else:
-                    continue
+    if count < 149:
+        battery.clear(house)
+        house.clear_house()
+        random_algorithm()
+    else:
+        return tot_rand_costs 
 
 
 def plot_random_algorithm():
@@ -64,7 +72,16 @@ def plot_random_algorithm():
             houses_plt = ax.scatter(house.x, house.y, color='k', marker='*')
             batteries_plt = ax.scatter(battery.x, battery.y, color='r', marker='^')
 
-            fig = plt.savefig("randomfigure.png")
+    fig = plt.savefig("randomfigure.png")
     return fig
 
+def run_rand_output():
 
+    for curr_batt in batteries:
+        print(curr_batt)
+
+        for curr_house in curr_batt.houses_to_battery:
+            print(curr_house)
+
+            for cable_point in curr_house.cables:
+                print(cable_point)
