@@ -3,7 +3,6 @@ import algorithms.Random
 import algorithms.test_shared
 import algorithms.helper
 import algorithms.AlgoritmeTwee
-import algorithms.algorithm2
 from data import *
 import models.battery
 import models.cables
@@ -20,20 +19,33 @@ if len(argv) < 3:
     print("Type in the correct files, f.e: python3 main.py data/dist1_b.csv data/dist1_h.csv")
     exit()
 else:
-    algorithms.test_shared.first_algorithm()
 
-    # # dit is hillclimber algoritme
-    # print(f"The total costs for this district are: {algorithms.DistToBattery.first_algorithm()}\nThe figure will be saved in the directory look for figure.png")
-    # algorithms.DistToBattery.plot_first_algorithm()
-    # # algorithms.DistToBattery.run_output()
+    print("Please select an algorithm to run: 1 = Randomize, 2 = HillClimber, 3 = Constraint relaxation")
+    print("Please be aware that the first two algorithms both have overlapping cables")
 
-    # dit is AlgoritmeTwee, comment het uit om te runnen
-    # print(f"The total costs for this district are: {algorithms.AlgoritmeTwee.second_algorithm()}\nThe figure will be saved in the directory look for figure2.png")
-    # algorithms.AlgoritmeTwee.plot_second_algorithm()
-    # algorithms.AlgoritmeTwee.run_sec_output
+    algo_choice = input("Make a choice: ")
 
-    # algorithms.algorithm2.algorithmtwee()
+    if algo_choice == '1':
+        algorithms.Random.random_algorithm()
+        plot_choice = input("Do yu like to see the visualization and output? ,Y/N: ")
+        if plot_choice == 'Y':
+            algorithms.Random.plot_random_algorithm()
 
-    # dit is random algoritme, comment het uit om te runnen
-    # algorithms.Random.random_algorithm()
-    # algorithms.Random.plot_random_algorithm()
+    elif algo_choice == '2':
+
+        print(f"The total costs for this district are: {algorithms.DistToBattery.first_algorithm()}")
+
+        plot_choice = input("Do you like to see the visualization and output?, Y/N: ")
+
+        if plot_choice == 'Y':
+            algorithms.DistToBattery.plot_first_algorithm()
+            algorithms.DistToBattery.run_output()
+
+    elif algo_choice == '3':
+        algorithms.test_shared.first_algorithm()
+        plot_choice = input("Do you like to see the visualization and output?, Y/N: ")
+        if plot_choice == "Y":
+            algorithms.test_shared.constraint_relaxation()
+
+    elif algo_choice not in ['1', '2', '3']:
+        print("Please make a choice between 1, 2 or 3")

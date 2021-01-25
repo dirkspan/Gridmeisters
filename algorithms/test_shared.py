@@ -14,8 +14,7 @@ houses = reader.load_houses()
 
 def first_algorithm():
     """
-    Connects each house to the closest battery based on distance 
-    and uses the hillclimber algorithm to find the optimal solution.
+    Connects each house to the closest battery based on distance
     """
    
     # houses that are currently not being used because the battery is full
@@ -72,37 +71,87 @@ def first_algorithm():
             # adds costs of cables for this house to the battery
             house.add_costs(battery)
             battery.add_house_info(house)
-            house.route_calc(battery)
+            # house.route_calc(battery)
             battery_costs += house.costs
             total_costs += battery_costs
 
             # no unused houses left, applies hillclimber to optimalize connections
-            if len(unused_houses) == 0:
-                helper.hillclimber(batteries, houses)
-                
-
+        if len(unused_houses) <= 1:
+            constraint_relaxation()
+                               
     return total_costs
 
+def constraint_relaxation():
+    print("nieuwe aanroep!")
 
-def plot_first_algorithm():
-    """
-    Plots the cables, houses and batteries for the Hillclimber algorithm
-    """
-    
     i = -1
 
     for battery in batteries:
         i += 1
-    
+        print(f"BATTERIJID{battery.id}")
+        cables_coordinates = []
+        cables_coordinates.append(battery.coordinates)
+
         for house in battery.houses_to_battery:
 
+            connect_options = []
+
+            dist_dict = {}
+
+            for cable_point in cables_coordinates:
+                distance = int(abs(house.coordinates[0] - cable_point[0]) + abs(house.coordinates[1] - cable_point[1]))
+                connect_options.append(distance)
+
+                dist_dict[cable_point] = distance
+
+            closest_distance = min(dist_dict.items(), key=lambda x: x[1])
+            closest_connection = closest_distance[0]
+            connection = closest_connection
+
+
+            # start is house, end is connection coordinates
+            current_x = house.x
+            end_x= connection[0]
+            current_y = house.y
+            end_y = connection [1]
+            
+            # only if house isn't already connected, append first coordinate
+            if house.coordinates != connection: 
+                house.cables.append((current_x, current_y))
+
+            # make the route, while the coordinates of the route aren't the coordinates of the right battery: move
+            if current_y < end_y:
+                while current_y < end_y:
+                    current_y += 1
+                    house.cables.append((current_x, current_y))
+            elif current_y > end_y:
+                while current_y > end_y:
+                    current_y -= 1
+                    house.cables.append((current_x, current_y))
+            if current_x < end_x:
+                while current_x < end_x:
+                    current_x += 1
+                    house.cables.append((current_x, current_y))
+            elif current_x > end_x:
+                while current_x > end_x:
+                    current_x -= 1
+                    house.cables.append((current_x, current_y))
+            
+            for cable in house.cables:
+                if cable not in cables_coordinates:
+                    cables_coordinates.append(cable)
+            
+            print(house.id) 
+            print(house.cables)
+            
             colors = ['c', 'k', 'b', 'g', 'r']
 
-            cutt_point_x = house.x
-            cutt_point_y = battery.y
 
-            x = [house.x, cutt_point_x, battery.x]
-            y = [house.y, cutt_point_y, battery.y]
+            cutt_point_x = house.x
+            cutt_point_y = connection[1]
+
+            x = [house.x, cutt_point_x, connection[0]]
+            y = [house.y, cutt_point_y, connection[1]]
 
             plt.plot(x,y, color= colors[i])
 
@@ -111,9 +160,12 @@ def plot_first_algorithm():
             houses_plt = ax.scatter(house.x, house.y, color='k', marker='*')
             batteries_plt = ax.scatter(battery.x, battery.y, color='r', marker='^')
 
-    fig = plt.savefig("figure.png")
+    fig = plt.savefig("testsofie4.png")
     return fig
- 
+        # add all connect options to distance dictionary   
+        # print(cables_coordinates)
+    
+            
 def run_output():
 
     for curr_batt in batteries:
