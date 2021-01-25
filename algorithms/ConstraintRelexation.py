@@ -20,13 +20,8 @@ def optimum_creating():
     # houses that are currently not being used because the battery is full
     unused_houses = []
 
-<<<<<<< HEAD
     # total costs for the cables
     total_costs = 0
-=======
-    # random shuffle all houses
-    random.shuffle(houses)
->>>>>>> 0da84ef5152bb74e5e0ff1dcc95016689cfb03d8
 
     # loop to connect all houses
     for house in houses:
@@ -83,12 +78,6 @@ def optimum_creating():
             battery.add_house_info(house)
 
             # no unused houses left, applies hillclimber to optimalize connections
-<<<<<<< HEAD
-        if len(unused_houses) <= 1:
-            constraint_relaxation()
-                               
-    return total_costs
-=======
             if len(unused_houses) <= 1:
 
                 # update weird outlayers to closest battery
@@ -100,7 +89,6 @@ def optimum_creating():
         # run_output()
 
 
->>>>>>> 0da84ef5152bb74e5e0ff1dcc95016689cfb03d8
 
 def constraint_relaxation():
 
@@ -114,10 +102,7 @@ def constraint_relaxation():
     # initializing to help printing 
     i = -1
 
-<<<<<<< HEAD
-=======
     # loop through all batteries, to improve all 5 routes
->>>>>>> 0da84ef5152bb74e5e0ff1dcc95016689cfb03d8
     for battery in batteries:
 
         # for every battery append to costs for this battery, costs for each battery are 5000 in this case
@@ -173,44 +158,17 @@ def constraint_relaxation():
             houses_plt = ax.scatter(house.x, house.y, color='k', marker='*')
             batteries_plt = ax.scatter(battery.x, battery.y, color='r', marker='^')
 
-<<<<<<< HEAD
-    fig = plt.savefig("constrelaxfigure.png")
-
-=======
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD:algorithms/test_shared.py
-    fig = plt.savefig("constrelaxfigure.png")
-=======
-<<<<<<< HEAD:algorithms/ConstraintRelexation.py
->>>>>>> bb77a267e414b7c0946ae76900dc52f50c2f1fb7
         # calculate costs for all cables to this battery and append this to the total costs
         number_of_cables = len(cables_coordinates)
         cables_costs = number_of_cables * 9
         total_costs = total_costs + cables_costs
     
-    print(f"total costs")
     print(total_costs)
     
     # make plot
-    fig = plt.savefig("ConstraingRelaxation.png")
+    fig = plt.savefig("constraintrelaxation.png")
     return fig
 
-<<<<<<< HEAD
-=======
-=======
->>>>>>> 0da84ef5152bb74e5e0ff1dcc95016689cfb03d8
-    fig = plt.savefig("testsofie4.png")
-    return fig
-        # add all connect options to distance dictionary   
-        # print(cables_coordinates)
-    
-<<<<<<< HEAD
-=======
-            
->>>>>>> c6691eea274f19db8389869a4f4c3280cf561ae8:algorithms/test_shared.py
->>>>>>> bb77a267e414b7c0946ae76900dc52f50c2f1fb7
->>>>>>> 0da84ef5152bb74e5e0ff1dcc95016689cfb03d8
 def run_output():
 
     for curr_batt in batteries:

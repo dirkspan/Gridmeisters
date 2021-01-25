@@ -6,15 +6,12 @@ def hillclimber(batteries, houses):
     Hillclimber, goes through every possible connection already made
     to check if there are any better alternatives
     """
+    
+    for next_house in houses:
 
-    random.shuffle(houses)
-    random.shuffle(batteries)
+        for battery in batteries:
 
-    for battery in batteries:
-
-        curr_battery = battery
-
-        for next_house in houses:
+            curr_battery = battery
             
             for curr_house in curr_battery.houses_to_battery:
 

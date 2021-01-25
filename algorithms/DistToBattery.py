@@ -24,12 +24,11 @@ def first_algorithm():
     # houses that are currently not being used because the battery is full
     unused_houses = []
 
-    random.shuffle(houses)
-
-    random.shuffle(batteries)
     # total costs for the cables
     total_costs = 0
 
+    random.shuffle(houses)
+    
     for house in houses:
 
         # keeps track of distances between each house and battery
@@ -79,8 +78,7 @@ def first_algorithm():
             house.add_costs(battery)
             battery.add_house_info(house)
             house.route_calc(battery)
-            battery_costs += house.costs
-            total_costs += battery_costs
+            total_costs += house.costs
 
             # no unused houses left, applies hillclimber to optimalize connections
             if len(unused_houses) == 0:
