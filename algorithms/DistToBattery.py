@@ -7,6 +7,9 @@ import random
 import matplotlib.pyplot as plt
 from matplotlib import style
 
+import copy
+from copy import deepcopy
+
 # read in all data
 reader = models.load_data.Load_data()
 batteries = reader.load_batteries()
@@ -21,6 +24,9 @@ def first_algorithm():
     # houses that are currently not being used because the battery is full
     unused_houses = []
 
+    random.shuffle(houses)
+
+    random.shuffle(batteries)
     # total costs for the cables
     total_costs = 0
 
@@ -124,3 +130,13 @@ def run_output():
 
             for cable_point in curr_house.cables:
                 print(cable_point)
+
+
+def run_multiple():
+
+    curr = copy.deepcopy(first_algorithm())
+    print(curr)
+
+    new = first_algorithm()
+    print(new)
+

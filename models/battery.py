@@ -17,11 +17,7 @@ class Battery:
         self.batt_costs = 0
 
     def __str__(self):
-<<<<<<< HEAD
-        return f"location:{self.coordinates},\n{self.capacity},\nhouses:"       
-=======
         return f"location:{self.coordinates},\ncapacity: 1507.0,\nhouses: "       
->>>>>>> e8aed8349a40d6b7c9ebd2627b4132b30895b8ba
 
 
     def add_house_info(self, house):
@@ -74,3 +70,5 @@ class Battery:
         self.houses_to_battery = []
         self.housesid_to_battery = []
         self.capacity = int(1507.0)
+        self.batt_costs = 0
+        self.houses = []

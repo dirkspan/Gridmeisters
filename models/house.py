@@ -115,7 +115,9 @@ class House(object):
 
     def clear_house(self):
 
-        self.connected_to == None    
+        self.connected_to == None
+        self.cables = []
+        self.costs = 0    
 
 
 

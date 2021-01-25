@@ -19,18 +19,19 @@ if len(argv) < 3:
     print("Type in the correct files, f.e: python3 main.py data/dist1_b.csv data/dist1_h.csv")
     exit()
 else:
-<<<<<<< HEAD
-    algorithms.ConstraintRelexation.optimum_creating()
-=======
->>>>>>> c6691eea274f19db8389869a4f4c3280cf561ae8
 
     print("Please select an algorithm to run: 1 = Randomize, 2 = HillClimber, 3 = Constraint relaxation")
     print("Please be aware that the first two algorithms both have overlapping cables")
 
     algo_choice = input("Make a choice: ")
 
+    if algo_choice == '0':
+
+        algorithms.DistToBattery.run_multiple()
+
+
     if algo_choice == '1':
-        algorithms.Random.random_algorithm()
+        print(algorithms.Random.random_algorithm())
         plot_choice = input("Do you like to see the visualization and output? ,Y/N: ")
         if plot_choice == 'Y':
             algorithms.Random.plot_random_algorithm()
@@ -47,11 +48,11 @@ else:
             algorithms.DistToBattery.run_output()
 
     elif algo_choice == '3':
-        algorithms.test_shared.first_algorithm()
+        print(algorithms.ConstraintRelexation.optimum_creating())
         plot_choice = input("Do you like to see the visualization and output?, Y/N: ")
         if plot_choice == "Y":
-            algorithms.test_shared.constraint_relaxation()
-        
+            algorithms.ConstraintRelexation.constraint_relaxation()
+            algorithms.ConstraintRelexation.run_output()
 
-    elif algo_choice not in ['1', '2', '3']:
+    elif algo_choice not in ['0', '1', '2', '3']:
         print("Please make a choice between 1, 2 or 3")

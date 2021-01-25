@@ -7,6 +7,9 @@ def hillclimber(batteries, houses):
     to check if there are any better alternatives
     """
 
+    random.shuffle(houses)
+    random.shuffle(batteries)
+
     for battery in batteries:
 
         curr_battery = battery

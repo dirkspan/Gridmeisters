@@ -27,7 +27,7 @@ def random_algorithm():
 
         for house in houses:
 
-            if battery.capacity > house.maxoutput and house.connected_to == None:
+            if battery.status(house) == True and house.connected_to == None:
 
                 battery.connect_house(house)
                 house.route_calc(battery)
