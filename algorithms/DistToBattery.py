@@ -17,7 +17,8 @@ def first_algorithm():
     Connects each house to the closest battery based on distance 
     and uses the hillclimber algorithm to find the optimal solution.
     """
-   
+    random.shuffle(houses)
+    random.shuffle(batteries)
     # houses that are currently not being used because the battery is full
     unused_houses = []
 
@@ -78,7 +79,14 @@ def first_algorithm():
 
             # no unused houses left, applies hillclimber to optimalize connections
             if len(unused_houses) == 0:
+                # for i in range(100):
                 helper.hillclimber(batteries, houses)
+                    # if new_total_costs < total_costs:
+                    #     new_total_costs = total_costs
+                    #     best_houses = copy.deepcopy()
+                    #     best_batteries = 
+
+            
                 
 
     return total_costs
@@ -111,7 +119,7 @@ def plot_first_algorithm():
             houses_plt = ax.scatter(house.x, house.y, color='k', marker='*')
             batteries_plt = ax.scatter(battery.x, battery.y, color='r', marker='^')
 
-    fig = plt.savefig("figure.png")
+    fig = plt.savefig("disttobat.png")
     return fig
  
 def run_output():
@@ -124,3 +132,22 @@ def run_output():
 
             for cable_point in curr_house.cables:
                 print(cable_point)
+
+def run_multiple_times():
+
+    
+    curr_total_costs = first_algorithm()
+    print(curr_total_costs)
+    for i in range(100):
+        
+        new_total_costs = first_algorithm()
+        
+
+        if new_total_costs < curr_total_costs:
+            curr_total_costs = new_total_costs
+        print(curr_total_costs)
+
+        
+              
+    # a = first_algorithm()
+    # print(a)
