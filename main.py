@@ -1,5 +1,6 @@
 import algorithms.DistToBattery
 import algorithms.Random
+import algorithms.test_shared
 import algorithms.helper
 import algorithms.AlgoritmeTwee
 import algorithms.algorithm2
@@ -19,15 +20,17 @@ if len(argv) < 3:
     print("Type in the correct files, f.e: python3 main.py data/dist1_b.csv data/dist1_h.csv")
     exit()
 else:
+    algorithms.test_shared.first_algorithm()
+
     # # dit is hillclimber algoritme
     # print(f"The total costs for this district are: {algorithms.DistToBattery.first_algorithm()}\nThe figure will be saved in the directory look for figure.png")
     # algorithms.DistToBattery.plot_first_algorithm()
     # # algorithms.DistToBattery.run_output()
 
     # dit is AlgoritmeTwee, comment het uit om te runnen
-    print(f"The total costs for this district are: {algorithms.AlgoritmeTwee.second_algorithm()}\nThe figure will be saved in the directory look for figure2.png")
-    algorithms.AlgoritmeTwee.plot_second_algorithm()
-    algorithms.AlgoritmeTwee.run_sec_output
+    # print(f"The total costs for this district are: {algorithms.AlgoritmeTwee.second_algorithm()}\nThe figure will be saved in the directory look for figure2.png")
+    # algorithms.AlgoritmeTwee.plot_second_algorithm()
+    # algorithms.AlgoritmeTwee.run_sec_output
 
     # algorithms.algorithm2.algorithmtwee()
 
