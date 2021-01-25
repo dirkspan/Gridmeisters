@@ -61,7 +61,38 @@ class House(object):
             elif temp_y < battery.y:
                 cable = cables.Cable(temp_x, temp_y + 1)
                 temp_y += 1
-                self.cables.append(cable)               
+                self.cables.append(cable)     
+
+    def shortest_route(self, connection, house):
+
+        # start is house, end is connection coordinates
+        current_x = house.x
+        end_x= connection[0]
+        current_y = house.y
+        end_y = connection [1]
+
+        # only if house isn't already connected, append first coordinate
+        if house.coordinates != connection: 
+            house.cables.append((current_x, current_y))
+
+        # make the route, while the coordinates of the route aren't the coordinates of the right battery: move
+        if current_y < end_y:
+            while current_y < end_y:
+                current_y += 1
+                house.cables.append((current_x, current_y))
+        elif current_y > end_y:
+            while current_y > end_y:
+                current_y -= 1
+                house.cables.append((current_x, current_y))
+        if current_x < end_x:
+            while current_x < end_x:
+                current_x += 1
+                house.cables.append((current_x, current_y))
+        elif current_x > end_x:
+            while current_x > end_x:
+                current_x -= 1
+                house.cables.append((current_x, current_y))
+         
 
     def connect_to_battery(self, battery):
         """
@@ -79,7 +110,7 @@ class House(object):
         
 
     def __str__(self):
-        return f"location: {self.coordinates}\noutput: {self.maxoutput}\ncables: ["   
+        return f"location: {self.coordinates}\noutput: {self.maxoutput}\ncables: "   
 
 
 

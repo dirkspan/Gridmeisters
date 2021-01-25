@@ -1,6 +1,6 @@
 import algorithms.DistToBattery
 import algorithms.Random
-import algorithms.test_shared
+import algorithms.ConstraintRelexation
 import algorithms.helper
 from data import *
 import models.battery
@@ -18,7 +18,7 @@ if len(argv) < 3:
     print("Type in the correct files, f.e: python3 main.py data/dist1_b.csv data/dist1_h.csv")
     exit()
 else:
-    algorithms.test_shared.first_algorithm()
+    algorithms.ConstraintRelexation.optimum_creating()
 
     # # dit is hillclimber algoritme
     # print(f"The total costs for this district are: {algorithms.DistToBattery.first_algorithm()}\nThe figure will be saved in the directory look for figure.png")
