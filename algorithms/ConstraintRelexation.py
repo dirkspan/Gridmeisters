@@ -158,6 +158,13 @@ def constraint_relaxation():
             houses_plt = ax.scatter(house.x, house.y, color='k', marker='*')
             batteries_plt = ax.scatter(battery.x, battery.y, color='r', marker='^')
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD:algorithms/test_shared.py
+    fig = plt.savefig("constrelaxfigure.png")
+=======
+<<<<<<< HEAD:algorithms/ConstraintRelexation.py
+>>>>>>> bb77a267e414b7c0946ae76900dc52f50c2f1fb7
         # calculate costs for all cables to this battery and append this to the total costs
         number_of_cables = len(cables_coordinates)
         cables_costs = number_of_cables * 9
@@ -170,6 +177,18 @@ def constraint_relaxation():
     fig = plt.savefig("ConstraingRelaxation.png")
     return fig
 
+<<<<<<< HEAD
+=======
+=======
+    fig = plt.savefig("testsofie4.png")
+>>>>>>> e8aed8349a40d6b7c9ebd2627b4132b30895b8ba:algorithms/ConstraintRelexation.py
+    return fig
+        # add all connect options to distance dictionary   
+        # print(cables_coordinates)
+    
+            
+>>>>>>> c6691eea274f19db8389869a4f4c3280cf561ae8:algorithms/test_shared.py
+>>>>>>> bb77a267e414b7c0946ae76900dc52f50c2f1fb7
 def run_output():
 
     for curr_batt in batteries:

@@ -26,9 +26,10 @@ else:
 
     if algo_choice == '1':
         algorithms.Random.random_algorithm()
-        plot_choice = input("Do yu like to see the visualization and output? ,Y/N: ")
+        plot_choice = input("Do you like to see the visualization and output? ,Y/N: ")
         if plot_choice == 'Y':
             algorithms.Random.plot_random_algorithm()
+            algorithms.Random.run_rand_output()
 
     elif algo_choice == '2':
 
@@ -42,9 +43,7 @@ else:
 
     elif algo_choice == '3':
         algorithms.ConstraintRelexation.optimum_creating()
-        # plot_choice = input("Do you like to see the visualization and output?, Y/N: ")
-        # if plot_choice == "Y":
-        #     algorithms.test_shared.constraint_relaxation()
+        
 
     elif algo_choice not in ['1', '2', '3']:
         print("Please make a choice between 1, 2 or 3")
