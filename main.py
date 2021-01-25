@@ -1,6 +1,6 @@
 import algorithms.DistToBattery
 import algorithms.Random
-import algorithms.test_shared
+import algorithms.ConstraintRelexation
 import algorithms.helper
 import algorithms.AlgoritmeTwee
 from data import *
@@ -19,6 +19,10 @@ if len(argv) < 3:
     print("Type in the correct files, f.e: python3 main.py data/dist1_b.csv data/dist1_h.csv")
     exit()
 else:
+<<<<<<< HEAD
+    algorithms.ConstraintRelexation.optimum_creating()
+=======
+>>>>>>> c6691eea274f19db8389869a4f4c3280cf561ae8
 
     print("Please select an algorithm to run: 1 = Randomize, 2 = HillClimber, 3 = Constraint relaxation")
     print("Please be aware that the first two algorithms both have overlapping cables")

@@ -12,7 +12,7 @@ reader = models.load_data.Load_data()
 batteries = reader.load_batteries()
 houses = reader.load_houses()
 
-def first_algorithm():
+def optimum_creating():
     """
     Connects each house to the closest battery based on distance
     """
@@ -20,9 +20,15 @@ def first_algorithm():
     # houses that are currently not being used because the battery is full
     unused_houses = []
 
+<<<<<<< HEAD:algorithms/ConstraintRelexation.py
+    # random shuffle all houses
+    random.shuffle(houses)
+=======
     # total costs for the cables
     total_costs = 0
+>>>>>>> c6691eea274f19db8389869a4f4c3280cf561ae8:algorithms/test_shared.py
 
+    # loop to connect all houses
     for house in houses:
 
         # keeps track of distances between each house and battery
@@ -31,6 +37,7 @@ def first_algorithm():
         # keeps track on wether battery has sufficient capacity
         keep_track = []
 
+        # loop to check the distance to all batteries
         for battery in batteries:
 
             # costs for all cables connected to the current battery
@@ -45,15 +52,18 @@ def first_algorithm():
                 # stores distance in dictionary
                 dist_dict[battery] = distance
 
+                # saves if house is connected or not
                 keep_track.append(1)
 
             else:
+                # saves if house is connected or not
                 keep_track.append(0)
 
         # full battery move on to the next one
         if keep_track.count(1) == 0:
             unused_houses.append(house)
 
+        # if battery is not full
         else:
 
             # return closest distance of a house to the battery
@@ -71,101 +81,123 @@ def first_algorithm():
             # adds costs of cables for this house to the battery
             house.add_costs(battery)
             battery.add_house_info(house)
-            # house.route_calc(battery)
-            battery_costs += house.costs
-            total_costs += battery_costs
 
             # no unused houses left, applies hillclimber to optimalize connections
+<<<<<<< HEAD:algorithms/ConstraintRelexation.py
+            if len(unused_houses) <= 1:
+
+                # update weird outlayers to closest battery
+                helper.hillclimber(batteries, houses)
+
+    # if algorithm is finished run constraint_relaxation algorithm
+    if len(unused_houses) <= 1:
+        constraint_relaxation()
+        # run_output()
+
+
+=======
         if len(unused_houses) <= 1:
             constraint_relaxation()
                                
     return total_costs
+>>>>>>> c6691eea274f19db8389869a4f4c3280cf561ae8:algorithms/test_shared.py
 
 def constraint_relaxation():
-    print("nieuwe aanroep!")
 
+    """
+    Connects cables of coupeled houses in most profitable way, closest option to connect
+    """
+
+    # initialize total costs as 0 
+    total_costs = 0
+
+    # initializing to help printing 
     i = -1
 
+<<<<<<< HEAD:algorithms/ConstraintRelexation.py
+    # loop through all batteries, to improve all 5 routes
+=======
+>>>>>>> c6691eea274f19db8389869a4f4c3280cf561ae8:algorithms/test_shared.py
     for battery in batteries:
+
+        # for every battery append to costs for this battery, costs for each battery are 5000 in this case
+        total_costs = total_costs + 5000
         i += 1
-        print(f"BATTERIJID{battery.id}")
+
+        # initialize empty list for cable coordinates of this battery and start with coordinates battery
         cables_coordinates = []
         cables_coordinates.append(battery.coordinates)
 
+        # for all houses connected to current battery
         for house in battery.houses_to_battery:
 
+            # initalize an empty list, for all options for this battery
             connect_options = []
 
+            # initialize dictionary to save distance
             dist_dict = {}
 
+            #  for all cables connected to battery, calculate distance to current house
             for cable_point in cables_coordinates:
                 distance = int(abs(house.coordinates[0] - cable_point[0]) + abs(house.coordinates[1] - cable_point[1]))
                 connect_options.append(distance)
-
                 dist_dict[cable_point] = distance
 
+            # identify closest distance as place to connect this house
             closest_distance = min(dist_dict.items(), key=lambda x: x[1])
             closest_connection = closest_distance[0]
             connection = closest_connection
 
-
-            # start is house, end is connection coordinates
-            current_x = house.x
-            end_x= connection[0]
-            current_y = house.y
-            end_y = connection [1]
+            # run function to make the route
+            house.shortest_route(connection, house)
             
-            # only if house isn't already connected, append first coordinate
-            if house.coordinates != connection: 
-                house.cables.append((current_x, current_y))
-
-            # make the route, while the coordinates of the route aren't the coordinates of the right battery: move
-            if current_y < end_y:
-                while current_y < end_y:
-                    current_y += 1
-                    house.cables.append((current_x, current_y))
-            elif current_y > end_y:
-                while current_y > end_y:
-                    current_y -= 1
-                    house.cables.append((current_x, current_y))
-            if current_x < end_x:
-                while current_x < end_x:
-                    current_x += 1
-                    house.cables.append((current_x, current_y))
-            elif current_x > end_x:
-                while current_x > end_x:
-                    current_x -= 1
-                    house.cables.append((current_x, current_y))
-            
+            # update cables_coordinates with all new coordinates
             for cable in house.cables:
                 if cable not in cables_coordinates:
                     cables_coordinates.append(cable)
-            
-            print(house.id) 
-            print(house.cables)
-            
+
+            # make plot of this algorithm
             colors = ['c', 'k', 'b', 'g', 'r']
 
-
+            # cutting point is the corner to the connection point
             cutt_point_x = house.x
             cutt_point_y = connection[1]
 
+            # plot from house to connection point
             x = [house.x, cutt_point_x, connection[0]]
             y = [house.y, cutt_point_y, connection[1]]
 
+            # plot all houses, batteries and lines
             plt.plot(x,y, color= colors[i])
-
             ax = plt.subplot()
-
             houses_plt = ax.scatter(house.x, house.y, color='k', marker='*')
             batteries_plt = ax.scatter(battery.x, battery.y, color='r', marker='^')
 
+<<<<<<< HEAD:algorithms/test_shared.py
     fig = plt.savefig("constrelaxfigure.png")
+=======
+<<<<<<< HEAD:algorithms/ConstraintRelexation.py
+        # calculate costs for all cables to this battery and append this to the total costs
+        number_of_cables = len(cables_coordinates)
+        cables_costs = number_of_cables * 9
+        total_costs = total_costs + cables_costs
+    
+    print(f"total costs")
+    print(total_costs)
+    
+    # make plot
+    fig = plt.savefig("ConstraingRelaxation.png")
+    return fig
+
+=======
+    fig = plt.savefig("testsofie4.png")
+>>>>>>> e8aed8349a40d6b7c9ebd2627b4132b30895b8ba:algorithms/ConstraintRelexation.py
     return fig
         # add all connect options to distance dictionary   
         # print(cables_coordinates)
     
             
+>>>>>>> c6691eea274f19db8389869a4f4c3280cf561ae8:algorithms/test_shared.py
 def run_output():
 
     for curr_batt in batteries:
