@@ -28,9 +28,9 @@ else:
         algorithms.DistToBattery.run_multiple_times()
   
 
-    # if algo_choice == '0':
+    if algo_choice == '0':
 
-    #     algorithms.DistToBattery.run_multiple()
+        algorithms.DistToBattery.shared_costs()
 
 
     if algo_choice == '1':

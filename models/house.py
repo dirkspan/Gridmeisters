@@ -1,7 +1,5 @@
 from . import battery
 from . import cables
-import copy
-from copy import deepcopy
 
 class House(object):
 
@@ -34,6 +32,9 @@ class House(object):
         # self.costs += house_costs    
 
     def route_calc(self, battery):
+        """
+        Calculates the route to the battery
+        """
 
         cable = cables.Cable(self.x, self.y)
 
@@ -65,6 +66,9 @@ class House(object):
                 self.cables.append(cable)     
 
     def shortest_route(self, connection, house):
+        """
+        Calculates the shortest route to the cable network
+        """
 
         # start is house, end is connection coordinates
         current_x = house.x

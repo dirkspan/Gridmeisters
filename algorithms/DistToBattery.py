@@ -156,25 +156,40 @@ def run_output():
             for cable_point in curr_house.cables:
                 print(cable_point)
 
-def run_multiple_times():
+def run_multiple():
 
-    
-    curr_total_costs = 50000
-    
-    for i in range(100):
-        
-        new_total_costs = first_algorithm()
+    curr = copy.deepcopy(first_algorithm())
+    print(curr)
+
+    new = first_algorithm()
+    print(new)
+
+
+def shared_costs():
+
+    first_algorithm()
+
+    count = 0
+
+    x = []
+    y = []
+
+    shared_cables = []
+
+    for house in houses:
+
+        for cable in house.cables:
+            print(cable)
+            # x.append(cable.cable_x)
+            # y.append(cable.cable_y)
+            # if cable.cable_x in x and cable.cable_y in y:
+            #     count += 1
+            #     shared_cables.append(cable.cable_x)
+            #     print('ok')
+            #     shared_cables.append(cable.cable_y)
         
 
-        if new_total_costs < curr_total_costs:
-            curr_total_costs = new_total_costs
+    # print(count)
+    # print(shared_cables)
+          
 
-        print(curr_total_costs)
-        for house in houses:
-            house.clear_house()
-            for battery in batteries:
-                battery.clear(house)
-        
-              
-    # a = first_algorithm()
-    # print(a)
