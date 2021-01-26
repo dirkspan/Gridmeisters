@@ -140,7 +140,7 @@ def constraint_relaxation():
             for cable in house.cables:
                 if cable not in cables_coordinates:
                     cables_coordinates.append(cable)
-
+            
             # make plot of this algorithm
             colors = ['c', 'k', 'b', 'g', 'r']
 
@@ -163,12 +163,12 @@ def constraint_relaxation():
         cables_costs = number_of_cables * 9
         total_costs = total_costs + cables_costs
     
-    print(total_costs)
-    
-    # make plot
-    fig = plt.savefig("constraintrelaxation.png")
-    return fig
+    print(f"The total costs for this district are: {total_costs}")
 
+    # # make plot
+    fig = plt.savefig("ConstraingRelaxation.png")
+    return fig
+        
 def run_output():
 
     for curr_batt in batteries:

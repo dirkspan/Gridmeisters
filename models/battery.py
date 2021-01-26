@@ -17,7 +17,7 @@ class Battery:
         self.batt_costs = 0
 
     def __str__(self):
-        return f"location:{self.coordinates},\ncapacity: 1507.0,\nhouses: "       
+        return f"location:{self.coordinates},\n{self.capacity},\nhouses:"       
 
 
     def add_house_info(self, house):
@@ -51,10 +51,10 @@ class Battery:
 
 
     def remove_house(self, house):
-
-        self.houses_to_battery.remove(house)
-        self.housesid_to_battery.remove(house.id)
-        self.capacity += house.maxoutput
+        if house in self.houses_to_battery:
+            self.houses_to_battery.remove(house)
+            self.housesid_to_battery.remove(house.id)
+            self.capacity += house.maxoutput
              
 
     def status(self, house):
