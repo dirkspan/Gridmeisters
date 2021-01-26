@@ -16,7 +16,8 @@ def optimum_creating():
     """
     Connects each house to the closest battery based on distance
     """
-   
+    random.shuffle(houses)
+
     # houses that are currently not being used because the battery is full
     unused_houses = []
 
@@ -76,7 +77,7 @@ def optimum_creating():
             # adds costs of cables for this house to the battery
             house.add_costs(battery)
             battery.add_house_info(house)
-
+            
             # no unused houses left, applies hillclimber to optimalize connections
             if len(unused_houses) <= 1:
 
@@ -86,15 +87,22 @@ def optimum_creating():
     # if algorithm is finished run constraint_relaxation algorithm
     if len(unused_houses) <= 1:
         constraint_relaxation()
+
         # run_output()
+        total_costs = constraint_relaxation()
+    
+    return total_costs
+    
+
 
 
 
 def constraint_relaxation():
 
     """
-    Connects cables of coupeled houses in most profitable way, closest option to connect
+    Connects cables of coupled houses in most profitable way, closest option to connect
     """
+    
 
     # initialize total costs as 0 
     total_costs = 0
@@ -140,7 +148,7 @@ def constraint_relaxation():
             for cable in house.cables:
                 if cable not in cables_coordinates:
                     cables_coordinates.append(cable)
-
+            
             # make plot of this algorithm
             colors = ['c', 'k', 'b', 'g', 'r']
 
@@ -154,20 +162,20 @@ def constraint_relaxation():
 
             # plot all houses, batteries and lines
             plt.plot(x,y, color= colors[i])
-            ax = plt.subplot()
+            ax = plt.subplot(111)
             houses_plt = ax.scatter(house.x, house.y, color='k', marker='*')
             batteries_plt = ax.scatter(battery.x, battery.y, color='r', marker='^')
 
-        # calculate costs for all cables to this battery and append this to the total costs
+        # calculate costs for all cables to this battery and add this to the total costs
         number_of_cables = len(cables_coordinates)
         cables_costs = number_of_cables * 9
         total_costs = total_costs + cables_costs
     
-    print(total_costs)
-    
-    # make plot
-    fig = plt.savefig("constraintrelaxation.png")
-    return fig
+        # make plot
+        plt.savefig("Constraintrelaxation.png")
+
+    return total_costs
+        
 
 def run_output():
 
@@ -188,18 +196,16 @@ def run_multiple_times():
     curr_total_costs = 50000
     
     for i in range(1000):
-        
+        # optimum_creating()
         new_total_costs = constraint_relaxation()
-        
 
         if new_total_costs < curr_total_costs:
             curr_total_costs = new_total_costs
         results.append(curr_total_costs)
         print(curr_total_costs)
         print(results)
-
+    
         for house in houses:
             house.clear_house()
-            for battery in batteries:
-                battery.clear(house)
-        
+        for battery in batteries:
+            battery.clear(house)

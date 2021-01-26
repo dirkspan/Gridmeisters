@@ -17,7 +17,7 @@ class Battery:
         self.batt_costs = 0
 
     def __str__(self):
-        return f"location:{self.coordinates},\ncapacity: 1507.0,\nhouses: "       
+        return f"location:{self.coordinates},\n{self.capacity},\nhouses:"       
 
 
     def add_house_info(self, house):

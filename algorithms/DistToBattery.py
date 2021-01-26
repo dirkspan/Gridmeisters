@@ -20,7 +20,7 @@ def first_algorithm():
     Connects each house to the closest battery based on distance 
     and uses the hillclimber algorithm to find the optimal solution.
     """
-    
+   
     # houses that are currently not being used because the battery is full
     unused_houses = []
 
@@ -76,21 +76,12 @@ def first_algorithm():
 
             # adds costs of cables for this house to the battery
             house.add_costs(battery)
-            battery.add_house_info(house)
             house.route_calc(battery)
             total_costs += house.costs
 
             # no unused houses left, applies hillclimber to optimalize connections
             if len(unused_houses) == 0:
-                # for i in range(100):
-                helper.hillclimber(batteries, houses)
-                    # if new_total_costs < total_costs:
-                    #     new_total_costs = total_costs
-                    #     best_houses = copy.deepcopy()
-                    #     best_batteries = 
-
-            
-                
+                helper.hillclimber(batteries, houses)   
 
     return total_costs
 
@@ -119,10 +110,10 @@ def plot_first_algorithm():
 
             ax = plt.subplot()
 
-            houses_plt = ax.scatter(house.x, house.y, color='k', marker='*')
+            houses_plt = ax.scatter(house.x, house.y, color='k', marker='p')
             batteries_plt = ax.scatter(battery.x, battery.y, color='r', marker='^')
 
-    fig = plt.savefig("hillclimberfigure.png")
+    fig = plt.savefig("DistTobattery.png")
     return fig
  
 def run_output():
@@ -136,6 +127,44 @@ def run_output():
             for cable_point in curr_house.cables:
                 print(cable_point)
 
+
+def run_multiple():
+
+    curr = copy.deepcopy(first_algorithm())
+    print(curr)
+
+    new = first_algorithm()
+    print(new)
+
+
+def shared_costs():
+
+    first_algorithm()
+
+    count = 0
+
+    x = [1, 2, 5, 7]
+    y = [0, 2, 3, 5]
+
+    shared_cables = []
+
+    for house in houses:
+
+        for cable in house.cables:
+            print(cable)
+            # x.append(cable.cable_x)
+            # y.append(cable.cable_y)
+            # if cable.cable_x in x and cable.cable_y in y:
+            #     count += 1
+            #     shared_cables.append(cable.cable_x)
+            #     print('ok')
+            #     shared_cables.append(cable.cable_y)
+        
+
+    # print(count)
+    # print(shared_cables)
+          
+
 def run_multiple_times():
 
     results = []
@@ -146,12 +175,14 @@ def run_multiple_times():
         
         new_total_costs = first_algorithm()
         
-
         if new_total_costs < curr_total_costs:
             curr_total_costs = new_total_costs
-        results.append(curr_total_costs)
-        print(curr_total_costs)
-        print(results)
+
+            results.append(int(curr_total_costs))
+            print(curr_total_costs)
+            print(results)
+            plot_first_algorithm()
+
 
         for house in houses:
             house.clear_house()
