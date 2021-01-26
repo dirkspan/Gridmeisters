@@ -20,13 +20,12 @@ def first_algorithm():
     Connects each house to the closest battery based on distance 
     and uses the hillclimber algorithm to find the optimal solution.
     """
-    
+   
     # houses that are currently not being used because the battery is full
     unused_houses = []
 
-
-    # random shuffle all houses
-    random.shuffle(houses)
+    # total costs for the cables
+    total_costs = 0
 
     random.shuffle(houses)
     
@@ -39,7 +38,10 @@ def first_algorithm():
         keep_track = []
 
         for battery in batteries:
-           
+
+            # costs for all cables connected to the current battery
+            battery_costs = 0
+
             # battery has sufficient capacity
             if battery.status(house) == True:
 
@@ -73,10 +75,9 @@ def first_algorithm():
             battery.connect_house(house)
 
             # adds costs of cables for this house to the battery
-            # house_costs = house.add_costs(battery)
-            battery.add_house_info(house)
+            house.add_costs(battery)
             house.route_calc(battery)
-            
+            total_costs += house.costs
 
             # no unused houses left, applies hillclimber to optimalize connections
             if len(unused_houses) == 0:
@@ -85,17 +86,33 @@ def first_algorithm():
 
     # total costs for the cables
     total_costs = 0
+    
+    # function shared costs!!
 
     for battery in batteries:
+
+        # define empty set for each battery
         cables_coordinates = set()
+
+        # loops for all cables of all houses of this battery
         for house in battery.houses_to_battery:
             for cable in house.cables:
+
+                # only append new cable to pay if there is no cable yet
                 if str(cable) not in cables_coordinates:
                     cables_coordinates.add(str(cable))
         
-
+        # calculates total costs of cables of this battery
         number_of_cables = len(cables_coordinates) - 1
-        costs_battery = number_of_cables * 9 + 5000
+
+        # define magic numbers
+        price_of_cable_grid = 9
+        price_of_battery = 5000
+
+        # calculation all cables to this battery * price + the price for the battery
+        costs_battery = number_of_cables * price_of_cable_grid + price_of_battery
+
+        # add price of this battery to total
         total_costs = total_costs + costs_battery
         
     return total_costs
@@ -125,10 +142,10 @@ def plot_first_algorithm():
 
             ax = plt.subplot()
 
-            houses_plt = ax.scatter(house.x, house.y, color='k', marker='*')
+            houses_plt = ax.scatter(house.x, house.y, color='k', marker='p')
             batteries_plt = ax.scatter(battery.x, battery.y, color='r', marker='^')
 
-    fig = plt.savefig("hillclimberfigure.png")
+    fig = plt.savefig("DistTobattery.png")
     return fig
  
 def run_output():
@@ -150,22 +167,31 @@ def run_multiple():
     new = first_algorithm()
     print(new)
 
+          
 
-# def shared_costs():
+def run_multiple_times():
 
-#     first_algorithm()
+    results = []
+    
+    curr_total_costs = 50000
+    
+    for i in range(1000):
+        
+        new_total_costs = first_algorithm()
+        
+        if new_total_costs < curr_total_costs:
+            curr_total_costs = new_total_costs
 
-#     count = 0
+            results.append(int(curr_total_costs))
+            print(curr_total_costs)
+            print(results)
+            plot_first_algorithm()
 
 
+        for house in houses:
+            house.clear_house()
+            for battery in batteries:
+                battery.clear(house)
 
-#     shared_cables = []
-
-#     for house in houses:
-
-#         for cable in house.cables:
-#             print(cable)
-#             if cable not in cables_coordinates:
-#                 cables_coordinates.append(cable)
           
 
