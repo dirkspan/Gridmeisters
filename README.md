@@ -1,13 +1,14 @@
 # Gridmeisters
 
 ## Smartgrid case
-Minor programmeren theorie. opdracht: SmartGrid.
+Minor programmeren: Programmeertheorie. Opdracht: SmartGrid. Steeds meer mensen hebben zonnepanelen en produceren dus ook hun eigen energie. Hier komt echter wel bij dat er een overschot kan zijn. Het overschot wordt terugverkocht aan de leverancier. In deze case wordt het probleem van de grid managen worden opgelost. Er moeten batterijen zijn om de pieken in consumptie en produktie te te kunnen managen. In deze case moeten de huizen op een zo voordelige manier aan de batterijen verbonden worden, zonder dat de capaciteit wordt overschreden. Er moet betaald worden per stukje grid dat gelegd wordt. Hoe minder kabels er gelegd hoeven te worden hoe voordeliger de oplossing. 
+
 
 ### vereisten
 
 python -m pip install -U matplotlib
 
-## Gebruik
+#### Gebruik
 
 Invoer: python3 main.py data/dist1_b.csv data/dist1_h.csv
 
