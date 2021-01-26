@@ -25,6 +25,7 @@ else:
     algo_choice = input("Make a choice: ")
     if algo_choice == '4':
         algorithms.DistToBattery.run_multiple_times()
+        
   
 
     # if algo_choice == '0':

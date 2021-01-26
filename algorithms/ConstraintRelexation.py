@@ -179,3 +179,27 @@ def run_output():
 
             for cable_point in curr_house.cables:
                 print(cable_point)
+
+
+def run_multiple_times():
+
+    results = []
+    
+    curr_total_costs = 50000
+    
+    for i in range(1000):
+        
+        new_total_costs = constraint_relaxation()
+        
+
+        if new_total_costs < curr_total_costs:
+            curr_total_costs = new_total_costs
+        results.append(curr_total_costs)
+        print(curr_total_costs)
+        print(results)
+
+        for house in houses:
+            house.clear_house()
+            for battery in batteries:
+                battery.clear(house)
+        
