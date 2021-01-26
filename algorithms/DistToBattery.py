@@ -21,8 +21,9 @@ def first_algorithm():
     # houses that are currently not being used because the battery is full
     unused_houses = []
 
-    # total costs for the cables
-    total_costs = 0
+
+    # random shuffle all houses
+    random.shuffle(houses)
 
     for house in houses:
 
@@ -33,10 +34,7 @@ def first_algorithm():
         keep_track = []
 
         for battery in batteries:
-
-            # costs for all cables connected to the current battery
-            battery_costs = 0
-
+           
             # battery has sufficient capacity
             if battery.status(house) == True:
 
@@ -70,16 +68,42 @@ def first_algorithm():
             battery.connect_house(house)
 
             # adds costs of cables for this house to the battery
-            house.add_costs(battery)
+            # house_costs = house.add_costs(battery)
             battery.add_house_info(house)
             house.route_calc(battery)
-            battery_costs += house.costs
-            total_costs += battery_costs
+            
 
             # no unused houses left, applies hillclimber to optimalize connections
             if len(unused_houses) == 0:
                 helper.hillclimber(batteries, houses)
-                
+
+    # total costs for the cables
+    total_costs = 0
+
+    # for battery in batteries:
+    #     cables_coordinates = []
+    #     for house in battery.houses_to_battery:
+    #         for cable in house.cables:
+    #             if cable not in cables_coordinates:
+    #                 cables_coordinates.append(cable.cable_x, cable.cable.y)
+    #     print(cables_coordinates)
+            # for tuple in house.cables:
+            #     print(tuple)
+            #     if tuple not in cables_coordinates:
+            #         print(f"new: {tuple}")
+                    # print(cables_coordinates)
+                    # cables_coordinates.append(tuple)
+        
+        # for j in cables_coordinates:
+        #     print(j)
+
+        # print(cables_coordinates)
+        # # print(cables_coordinates)
+
+        # number_of_cables = len(cables_coordinates) - 1
+        # print(number_of_cables)
+        # costs_battery = number_of_cables * 9 + 5000
+        # total_costs = total_costs + costs_battery
 
     return total_costs
 
