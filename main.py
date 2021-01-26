@@ -24,9 +24,17 @@ else:
     print("Please be aware that the first two algorithms both have overlapping cables")
 
     algo_choice = input("Make a choice: ")
+    if algo_choice == '4':
+        algorithms.DistToBattery.run_multiple_times()
+  
+
+    # if algo_choice == '0':
+
+    #     algorithms.DistToBattery.run_multiple()
+
 
     if algo_choice == '1':
-        algorithms.Random.random_algorithm()
+        print(algorithms.Random.random_algorithm())
         plot_choice = input("Do you like to see the visualization and output? ,Y/N: ")
         if plot_choice == 'Y':
             algorithms.Random.plot_random_algorithm()

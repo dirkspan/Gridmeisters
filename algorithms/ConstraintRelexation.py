@@ -20,8 +20,8 @@ def optimum_creating():
     # houses that are currently not being used because the battery is full
     unused_houses = []
 
-    # random shuffle all houses
-    random.shuffle(houses)
+    # total costs for the cables
+    total_costs = 0
 
     # loop to connect all houses
     for house in houses:

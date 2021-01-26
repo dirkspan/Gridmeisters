@@ -7,6 +7,9 @@ import random
 import matplotlib.pyplot as plt
 from matplotlib import style
 
+import copy
+from copy import deepcopy
+
 # read in all data
 reader = models.load_data.Load_data()
 batteries = reader.load_batteries()
@@ -17,7 +20,7 @@ def first_algorithm():
     Connects each house to the closest battery based on distance 
     and uses the hillclimber algorithm to find the optimal solution.
     """
-   
+    
     # houses that are currently not being used because the battery is full
     unused_houses = []
 
@@ -25,6 +28,8 @@ def first_algorithm():
     # random shuffle all houses
     random.shuffle(houses)
 
+    random.shuffle(houses)
+    
     for house in houses:
 
         # keeps track of distances between each house and battery
@@ -75,6 +80,7 @@ def first_algorithm():
 
             # no unused houses left, applies hillclimber to optimalize connections
             if len(unused_houses) == 0:
+                # for i in range(100):
                 helper.hillclimber(batteries, houses)
 
     # total costs for the cables
@@ -148,3 +154,26 @@ def run_output():
 
             for cable_point in curr_house.cables:
                 print(cable_point)
+
+def run_multiple_times():
+
+    
+    curr_total_costs = 50000
+    
+    for i in range(100):
+        
+        new_total_costs = first_algorithm()
+        
+
+        if new_total_costs < curr_total_costs:
+            curr_total_costs = new_total_costs
+
+        print(curr_total_costs)
+        for house in houses:
+            house.clear_house()
+            for battery in batteries:
+                battery.clear(house)
+        
+              
+    # a = first_algorithm()
+    # print(a)
