@@ -86,13 +86,14 @@ def first_algorithm():
     # total costs for the cables
     total_costs = 0
 
-    # for battery in batteries:
-    #     cables_coordinates = []
-    #     for house in battery.houses_to_battery:
-    #         for cable in house.cables:
-    #             if cable not in cables_coordinates:
-    #                 cables_coordinates.append(cable.cable_x, cable.cable.y)
-    #     print(cables_coordinates)
+    for battery in batteries:
+        cables_coordinates = []
+        for house in battery.houses_to_battery:
+            for cable in house.cables:
+                if cable not in cables_coordinates:
+                    cables_coordinates.append(cable.cable_x, cable.cable.y)
+
+        print(cables_coordinates)
             # for tuple in house.cables:
             #     print(tuple)
             #     if tuple not in cables_coordinates:

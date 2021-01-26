@@ -32,7 +32,7 @@ def random_algorithm():
                 battery.connect_house(house)
                 house.route_calc(battery)
                 house.add_costs(battery)
-                tot_rand_costs += house.costs
+                tot_rand_costs = tot_rand_costs + house.costs
 
                 house.connect_to_battery(battery)
                 count += 1
@@ -43,6 +43,8 @@ def random_algorithm():
         random_algorithm()
     else:
         return tot_rand_costs 
+
+    print(f"kosten!:{tot_rand_costs}")
 
 
 def plot_random_algorithm():

@@ -1,6 +1,6 @@
 import algorithms.DistToBattery
 import algorithms.Random
-import algorithms.ConstraintRelexation
+import algorithms.ConstraintRelaxation
 import algorithms.Random_ConstraintRelaxation
 import algorithms.helper
 import algorithms.AlgoritmeTwee
@@ -34,7 +34,7 @@ else:
 
 
     if algo_choice == '1':
-        print(algorithms.Random.random_algorithm())
+        print(f"The total costs for this district are: {algorithms.Random.random_algorithm()}")
         plot_choice = input("Do you like to see the visualization and output? ,Y/N: ")
         if plot_choice == 'Y':
             algorithms.Random.plot_random_algorithm()
@@ -51,11 +51,10 @@ else:
             algorithms.DistToBattery.run_output()
 
     elif algo_choice == '3':
-        algorithms.ConstraintRelexation.optimum_creating()
+        algorithms.ConstraintRelaxation.optimum_creating()
 
     elif algo_choice == '4':
-        algorithms.Random_ConstraintRelaxation.constraint_random()
-        
+        print(algorithms.Random_ConstraintRelaxation.constraint_random())
 
     elif algo_choice not in ['1', '2', '3', '4']:
         print("Please make a choice between 1, 2, 3 or 4")
