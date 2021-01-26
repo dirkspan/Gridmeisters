@@ -1,9 +1,7 @@
 import algorithms.DistToBattery
 import algorithms.Random
-import algorithms.ConstraintRelexation
-# import algorithms.Random_ConstraintRelaxation
+import algorithms.ConstraintRelaxation
 import algorithms.helper
-import algorithms.AlgoritmeTwee
 from data import *
 import models.battery
 import models.cables
@@ -20,7 +18,7 @@ if len(argv) < 3:
     print("Type in the correct files, f.e: python3 main.py data/dist1_b.csv data/dist1_h.csv")
     exit()
 else:
-    print("Please select an algorithm to run: 1 = Randomize, 2 = HillClimber, 3 = Constraint relaxation, 4 = Random with constraint relaxation")
+    print("Please select an algorithm to run: 1 = Randomize, 2 = HillClimber and 3 = Constraint relaxation 4 = Multiple times algorithm 3 5 = Multiple times algorithm 4 ")
     print("Please be aware that the first two algorithms both have overlapping cables")
 
     algo_choice = input("Make a choice: ")
@@ -39,11 +37,12 @@ else:
 
         algorithms.DistToBattery.shared_costs()
 
+    yes = 'Y' or 'y' or 'yes'
 
     if algo_choice == '1':
         print(f"The total costs for this district are: {algorithms.Random.random_algorithm()}")
         plot_choice = input("Do you like to see the visualization and output? ,Y/N: ")
-        if plot_choice == 'Y':
+        if plot_choice == yes:
             algorithms.Random.plot_random_algorithm()
             algorithms.Random.run_rand_output()
 
@@ -53,7 +52,7 @@ else:
 
         plot_choice = input("Do you like to see the visualization and output?, Y/N: ")
 
-        if plot_choice == 'Y':
+        if plot_choice == yes:
             algorithms.DistToBattery.plot_first_algorithm()
             algorithms.DistToBattery.run_output()
 
@@ -67,4 +66,4 @@ else:
         
 
     elif algo_choice not in ['1', '2', '3', '4']:
-        print("Please make a choice between 1, 2, 3 or 4")
+        print("Please make a choice between 1 and 5")

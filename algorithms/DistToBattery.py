@@ -81,8 +81,40 @@ def first_algorithm():
 
             # no unused houses left, applies hillclimber to optimalize connections
             if len(unused_houses) == 0:
-                helper.hillclimber(batteries, houses)   
+                # for i in range(100):
+                helper.hillclimber(batteries, houses)
 
+    # total costs for the cables
+    total_costs = 0
+    
+    # function shared costs!!
+
+    for battery in batteries:
+
+        # define empty set for each battery
+        cables_coordinates = set()
+
+        # loops for all cables of all houses of this battery
+        for house in battery.houses_to_battery:
+            for cable in house.cables:
+
+                # only append new cable to pay if there is no cable yet
+                if str(cable) not in cables_coordinates:
+                    cables_coordinates.add(str(cable))
+        
+        # calculates total costs of cables of this battery
+        number_of_cables = len(cables_coordinates) - 1
+
+        # define magic numbers
+        price_of_cable_grid = 9
+        price_of_battery = 5000
+
+        # calculation all cables to this battery * price + the price for the battery
+        costs_battery = number_of_cables * price_of_cable_grid + price_of_battery
+
+        # add price of this battery to total
+        total_costs = total_costs + costs_battery
+        
     return total_costs
 
 
@@ -135,33 +167,6 @@ def run_multiple():
     new = first_algorithm()
     print(new)
 
-
-def shared_costs():
-
-    first_algorithm()
-
-    count = 0
-
-    x = [1, 2, 5, 7]
-    y = [0, 2, 3, 5]
-
-    shared_cables = []
-
-    for house in houses:
-
-        for cable in house.cables:
-            print(cable)
-            # x.append(cable.cable_x)
-            # y.append(cable.cable_y)
-            # if cable.cable_x in x and cable.cable_y in y:
-            #     count += 1
-            #     shared_cables.append(cable.cable_x)
-            #     print('ok')
-            #     shared_cables.append(cable.cable_y)
-        
-
-    # print(count)
-    # print(shared_cables)
           
 
 def run_multiple_times():
@@ -187,9 +192,6 @@ def run_multiple_times():
             house.clear_house()
             for battery in batteries:
                 battery.clear(house)
-        
 
-    # print(count)
-    # print(shared_cables)
           
 
