@@ -127,7 +127,6 @@ def run_output():
             for cable_point in curr_house.cables:
                 print(cable_point)
 
-
 def run_multiple():
 
     curr = copy.deepcopy(first_algorithm())
@@ -189,6 +188,8 @@ def run_multiple_times():
             for battery in batteries:
                 battery.clear(house)
         
-              
-    # a = first_algorithm()
-    # print(a)
+
+    # print(count)
+    # print(shared_cables)
+          
+
