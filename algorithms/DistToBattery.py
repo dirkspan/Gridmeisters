@@ -138,3 +138,32 @@ def run_multiple():
     new = first_algorithm()
     print(new)
 
+
+def shared_costs():
+
+    first_algorithm()
+
+    count = 0
+
+    x = []
+    y = []
+
+    shared_cables = []
+
+    for house in houses:
+
+        for cable in house.cables:
+            print(cable)
+            # x.append(cable.cable_x)
+            # y.append(cable.cable_y)
+            # if cable.cable_x in x and cable.cable_y in y:
+            #     count += 1
+            #     shared_cables.append(cable.cable_x)
+            #     print('ok')
+            #     shared_cables.append(cable.cable_y)
+        
+
+    # print(count)
+    # print(shared_cables)
+          
+

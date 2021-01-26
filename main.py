@@ -24,9 +24,9 @@ else:
 
     algo_choice = input("Make a choice: ")
 
-    # if algo_choice == '0':
+    if algo_choice == '0':
 
-    #     algorithms.DistToBattery.run_multiple()
+        algorithms.DistToBattery.shared_costs()
 
 
     if algo_choice == '1':
