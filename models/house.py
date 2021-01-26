@@ -28,8 +28,8 @@ class House(object):
 
         house_costs = (x_dist + y_dist) * 9 
 
-        return house_costs
-        # self.costs += house_costs    
+        # return house_costs
+        self.costs += house_costs    
 
     def route_calc(self, battery):
         """

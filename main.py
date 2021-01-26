@@ -24,13 +24,15 @@ else:
     print("Please be aware that the first two algorithms both have overlapping cables")
 
     algo_choice = input("Make a choice: ")
-    if algo_choice == '4':
-        algorithms.DistToBattery.run_multiple_times()
+
+    
+    # if algo_choice == '4':
+    #     algorithms.DistToBattery.run_multiple_times()
   
 
-    if algo_choice == '0':
+    # if algo_choice == '0':
 
-        algorithms.DistToBattery.shared_costs()
+    #     algorithms.DistToBattery.shared_costs()
 
 
     if algo_choice == '1':
@@ -53,8 +55,6 @@ else:
     elif algo_choice == '3':
         algorithms.ConstraintRelaxation.optimum_creating()
 
-    elif algo_choice == '4':
-        print(algorithms.Random_ConstraintRelaxation.constraint_random())
 
     elif algo_choice not in ['1', '2', '3', '4']:
         print("Please make a choice between 1, 2, 3 or 4")

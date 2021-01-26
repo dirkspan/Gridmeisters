@@ -87,31 +87,17 @@ def first_algorithm():
     total_costs = 0
 
     for battery in batteries:
-        cables_coordinates = []
+        cables_coordinates = set()
         for house in battery.houses_to_battery:
             for cable in house.cables:
-                if cable not in cables_coordinates:
-                    cables_coordinates.append(cable.cable_x, cable.cable.y)
-
-        print(cables_coordinates)
-            # for tuple in house.cables:
-            #     print(tuple)
-            #     if tuple not in cables_coordinates:
-            #         print(f"new: {tuple}")
-                    # print(cables_coordinates)
-                    # cables_coordinates.append(tuple)
+                if str(cable) not in cables_coordinates:
+                    cables_coordinates.add(str(cable))
         
-        # for j in cables_coordinates:
-        #     print(j)
 
-        # print(cables_coordinates)
-        # # print(cables_coordinates)
-
-        # number_of_cables = len(cables_coordinates) - 1
-        # print(number_of_cables)
-        # costs_battery = number_of_cables * 9 + 5000
-        # total_costs = total_costs + costs_battery
-
+        number_of_cables = len(cables_coordinates) - 1
+        costs_battery = number_of_cables * 9 + 5000
+        total_costs = total_costs + costs_battery
+        
     return total_costs
 
 
@@ -165,31 +151,21 @@ def run_multiple():
     print(new)
 
 
-def shared_costs():
+# def shared_costs():
 
-    first_algorithm()
+#     first_algorithm()
 
-    count = 0
+#     count = 0
 
-    x = []
-    y = []
 
-    shared_cables = []
 
-    for house in houses:
+#     shared_cables = []
 
-        for cable in house.cables:
-            print(cable)
-            # x.append(cable.cable_x)
-            # y.append(cable.cable_y)
-            # if cable.cable_x in x and cable.cable_y in y:
-            #     count += 1
-            #     shared_cables.append(cable.cable_x)
-            #     print('ok')
-            #     shared_cables.append(cable.cable_y)
-        
+#     for house in houses:
 
-    # print(count)
-    # print(shared_cables)
+#         for cable in house.cables:
+#             print(cable)
+#             if cable not in cables_coordinates:
+#                 cables_coordinates.append(cable)
           
 
