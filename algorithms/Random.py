@@ -6,6 +6,7 @@ from . import helper
 import random
 import matplotlib.pyplot as plt
 from matplotlib import style
+import copy
 
 # read in all data
 reader = models.load_data.Load_data()
@@ -18,33 +19,39 @@ def random_algorithm():
     """
 
     count = 0
-
-    tot_rand_costs = 0
-
-    random.shuffle(houses)
+    battery_price = 5000
+    tot_rand_costs = 5 * battery_price
+    temp_houses = copy.deepcopy(houses)
+    random.shuffle(temp_houses)
 
     for battery in batteries:
+        house_list = []
+        
 
-        for house in houses:
+        for i in range(30):
 
-            if battery.status(house) == True and house.connected_to == None:
+            house = random.choice(temp_houses)
 
-                battery.connect_house(house)
-                house.route_calc(battery)
-                house.add_costs(battery)
-                tot_rand_costs = tot_rand_costs + house.costs
+            temp_houses.remove(house)
 
-                house.connect_to_battery(battery)
-                count += 1
+            battery.connect_house(house)
+            house.route_calc(battery)
+            house.add_costs(battery)
+            tot_rand_costs = tot_rand_costs + house.costs
+            
+            house.connect_to_battery(battery)
 
-    if count < 149:
-        battery.clear(house)
-        house.clear_house()
-        random_algorithm()
-    else:
-        return tot_rand_costs 
+            house_list.append(house.id)
 
-    print(f"kosten!:{tot_rand_costs}")
+            if battery.capacity < 0:
+                battery.remove_house(house)
+                battery.connect_house(random.choice(houses))
+
+
+    return tot_rand_costs 
+    
+
+    # print(f"kosten!:{tot_rand_costs}")
 
 
 def plot_random_algorithm():
@@ -92,24 +99,30 @@ def run_rand_output():
 def run_multiple_times():
 
     results = []
-    
-    curr_total_costs = 50000
-    
-    for i in range(3):
-        
-        new_total_costs = random_algorithm()
-        
-        if new_total_costs < curr_total_costs:
-            curr_total_costs = new_total_costs
+    x = 0
+    curr_total_costs = 100000
+    count = 0
+    for i in range(100000):
+        x += 1
+        print(x)
+        # new_total_costs = random_algorithm()
+        count += random_algorithm()
+        # if new_total_costs < curr_total_costs:
+            # curr_total_costs = new_total_costs
 
-            results.append(curr_total_costs)
-            print(curr_total_costs)
-            print(results)
-            
-
+        # results.append(curr_total_costs)
+        # print(curr_total_costs)
+        # print(results)
+        # print(len(results))
 
         for house in houses:
             house.clear_house()
             for battery in batteries:
                 battery.clear(house)
+    
+    average = count/100000
+    print (average)
+    print (count)
+    
+        
         

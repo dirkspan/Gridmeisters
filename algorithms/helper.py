@@ -30,7 +30,7 @@ def hillclimber(batteries, houses):
                             # if curr_house in curr_battery.houses_to_battery:
                             # remove current house van current battery
                             curr_battery.remove_house(curr_house)
-                            curr_house.deconnect_to_battery(curr_battery)
+                            curr_house.disconnect_battery(curr_battery)
 
                             # connect next house aan current battery
                             curr_battery.connect_house(next_house)
@@ -39,7 +39,7 @@ def hillclimber(batteries, houses):
                             # STAP 2:
                             # remove next house van next battery
                             next_battery.remove_house(next_house)
-                            next_house.deconnect_to_battery(next_battery)
+                            next_house.disconnect_battery(next_battery)
 
                             # connect current house aan next battery
                             next_battery.connect_house(curr_house)
@@ -65,7 +65,7 @@ def hillclimbertwo(batteries, houses):
                             # if curr_house in curr_battery.houses_to_battery:
                             # remove current house van current battery
                             curr_battery.remove_house(curr_house)
-                            curr_house.deconnect_to_battery(curr_battery)
+                            curr_house.disconnect_battery(curr_battery)
 
                             # connect next house aan current battery
                             curr_battery.connect_house(next_house)
@@ -74,7 +74,7 @@ def hillclimbertwo(batteries, houses):
                             # STAP 2:
                             # remove next house van next battery
                             next_battery.remove_house(next_house)
-                            next_house.deconnect_to_battery(next_battery)
+                            next_house.disconnect_battery(next_battery)
 
                             # connect current house aan next battery
                             next_battery.connect_house(curr_house)

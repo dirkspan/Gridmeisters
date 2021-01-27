@@ -105,9 +105,9 @@ class House(object):
 
         self.connected_to = battery
 
-    def deconnect_to_battery(self, battery):
+    def disconnect_battery(self, battery):
         """
-        Deconnects battery
+        Disconnects battery
         """
 
         self.connected_to = None    
