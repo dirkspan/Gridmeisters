@@ -18,7 +18,7 @@ else:
     print(f"Please select an algorithm to run:\n1 = Randomize\n2 = HillClimber\n3 = Constraint relaxation\n")
     print("Please be aware that the first two algorithms both have overlapping cables")
 
-    algo_choice = input(f"Please make a choice: between 1, 2 and 3\n")
+    algo_choice = input(f"Please make a choice: between 1, 2 or 3\n")
 
     if algo_choice == '1':
         print(f"The total costs for this district are: {algorithms.Random.random_algorithm()}")
@@ -36,6 +36,7 @@ else:
                 print('Okay ¯\_( ͡❛ ͜ʖ ͡❛)_/¯ ') 
                 exit()
         else:
+            print('Thanks for running')
             exit()
 
     elif algo_choice == '2':
@@ -55,12 +56,13 @@ else:
                 print('Okay ¯\_( ͡❛ ͜ʖ ͡❛)_/¯ ') 
                 exit()   
         else:
+            print('Thanks for running')
             exit()
 
     elif algo_choice == '3':
-        algorithms.ConstraintRelaxation.optimum_creating()
-
-        plot_choice = input("Do you like to see the visualization and output?, Y/N: ")
+        print(f"The total costs for this district are: {algorithms.ConstraintRelaxation.optimum_creating()}")
+        
+        plot_choice = input("Do you like to see the output?, Y/N: ")
 
         if plot_choice in ['Y', 'y', 'Yes', 'yes']:
             algorithms.ConstraintRelaxation.constraint_relaxation()
@@ -73,7 +75,8 @@ else:
                 print('Okay ¯\_( ͡❛ ͜ʖ ͡❛)_/¯ ') 
                 exit()    
         else:
+            print('Thanks for running')
             exit()   
             
     elif algo_choice not in ['1', '2', '3']:
-        print("Please make a choice between 1 and 3")
+        print("Please make a choice between 1, 2 or 3 next time")
