@@ -73,8 +73,8 @@ def optimum_creating():
             battery.connect_house(house)
 
             # adds costs of cables for this house to the battery
-            house.add_costs(battery)
-            battery.add_house_info(house)
+            # house.add_costs(battery)
+            # battery.add_house_info(house)
             
             # no unused houses left, applies hillclimber to optimalize connections
             if len(unused_houses) <= 1:
@@ -200,11 +200,13 @@ def run_multiple_times():
     
     for i in range(1000):
         optimum_creating()
-        new_total_costs = constraint_relaxation()
 
+        new_total_costs = constraint_relaxation()
+        
         if new_total_costs < curr_total_costs:
             curr_total_costs = new_total_costs
-        results.append(curr_total_costs)
+            
+            results.append(curr_total_costs)
         print(curr_total_costs)
         print(results)
     

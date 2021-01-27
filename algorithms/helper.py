@@ -34,7 +34,7 @@ def run_swap(curr_battery, curr_house, next_battery, next_house):
 
         # remove current house van current battery
         curr_battery.remove_house(curr_house)
-        curr_house.deconnect_to_battery(curr_battery)
+        curr_house.disconnect_battery(curr_battery)
 
     # connect next house aan current battery
     curr_battery.connect_house(next_house)
@@ -42,7 +42,7 @@ def run_swap(curr_battery, curr_house, next_battery, next_house):
 
     # remove next house van next battery
     next_battery.remove_house(next_house)
-    next_house.deconnect_to_battery(next_battery)
+    next_house.disconnect_battery(next_battery)
 
     # connect current house aan next battery
     next_battery.connect_house(curr_house)
