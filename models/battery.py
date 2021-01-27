@@ -14,31 +14,8 @@ class Battery:
         self.houses_to_battery = []
         self.housesid_to_battery = []
 
-        self.batt_costs = 0
-
     def __str__(self):
         return f"location:{self.coordinates},\n{self.capacity},\nhouses:"       
-
-
-    def add_house_info(self, house):
-        house_info = {}
-
-        house_info["location"] = house.coordinates
-
-        self.houses.append(house_info)
-
-        house_info["output"] = house.maxoutput
-        
-        self.houses.append(house_info)
-
-        house_info["cables"] = house.cables
-
-        self.houses.append(house_info)
-
-    def battery_cost_calculation():
-        total_costs_bat = 0
-        total_costs_bat = len(batteries) * 5000
-        return total
 
     def connect_house(self, house):
         """
@@ -51,12 +28,15 @@ class Battery:
 
 
     def remove_house(self, house):
+        """
+        Removes house to battery and substracts output from the capacity
+        """
+
         if house in self.houses_to_battery:
             self.houses_to_battery.remove(house)
             self.housesid_to_battery.remove(house.id)
             self.capacity += house.maxoutput
              
-
     def status(self, house):
         """
         Checks battery status
@@ -66,6 +46,9 @@ class Battery:
             return True
 
     def clear(self, house):
+        """
+        Clears everything for next run
+        """
 
         self.houses_to_battery = []
         self.housesid_to_battery = []

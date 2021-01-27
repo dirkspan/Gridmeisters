@@ -17,14 +17,13 @@ Bijvoorbeeld: python3 main.py data/dist2_b.csv data/dist2_h.csv
 Kies 1 voor het Random algoritme
 Kies 2 voor de Hillcimber
 Kies 3 voor Constraint relaxation
-Kies 4 voor Multiple times algorithm 2 
-Kies 5 voor Multiple times algorithm 3
+
 
 ### Random algoritme
 Verbind de huizen random aan een batterij. Hierin wordt wel rekening gehouden met de capaciteit
 
 ### Hillclimber algoritme
-Verbind huizen op de korste mannier aan een batterij en zoekt hierin vervolgens verbeteringen. 
+Verbind huizen op de korste manier aan een batterij en zoekt hierin vervolgens verbeteringen. 
 
 ### Constraint relaxation algoritme
 Lost het eerst simpel op, door de huizen aan de dichtsbijzijnde batterij te koppelen. Vervolgens wordt hier naar een voordeligere oplossing gezocht door de huizen op een voordelige mannier te verbinen. Hierin wordt optimaal gebruik gemaakt van het delen van de kabels.

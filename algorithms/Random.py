@@ -18,12 +18,12 @@ def random_algorithm():
     """
 
     count = 0
-
     tot_rand_costs = 0
-
     random.shuffle(houses)
 
     for battery in batteries:
+
+        tot_rand_costs += 5000
 
         for house in houses:
 
@@ -32,7 +32,7 @@ def random_algorithm():
                 battery.connect_house(house)
                 house.route_calc(battery)
                 house.add_costs(battery)
-                tot_rand_costs = tot_rand_costs + house.costs
+                tot_rand_costs += house.costs
 
                 house.connect_to_battery(battery)
                 count += 1
@@ -43,9 +43,6 @@ def random_algorithm():
         random_algorithm()
     else:
         return tot_rand_costs 
-
-    print(f"kosten!:{tot_rand_costs}")
-
 
 def plot_random_algorithm():
     """
@@ -71,13 +68,16 @@ def plot_random_algorithm():
 
             ax = plt.subplot()
 
-            houses_plt = ax.scatter(house.x, house.y, color='k', marker='*')
+            houses_plt = ax.scatter(house.x, house.y, color='k', marker='p')
             batteries_plt = ax.scatter(battery.x, battery.y, color='r', marker='^')
 
-    fig = plt.savefig("randomfigure.png")
+    fig = plt.savefig("randomfigure1.png")
     return fig
 
 def run_rand_output():
+    """
+    Runs output
+    """
 
     for curr_batt in batteries:
         print(curr_batt)
@@ -87,3 +87,25 @@ def run_rand_output():
 
             for cable_point in curr_house.cables:
                 print(cable_point)
+
+def run_multiple_times():
+    """
+    Runs algorithm multiple times and only saves best results
+    """
+
+    results = []
+    curr_total_costs = 100000
+
+    for i in range(1000):
+        new_total_costs = random_algorithm()
+
+        if new_total_costs < curr_total_costs:
+            curr_total_costs = new_total_costs
+            results.append(curr_total_costs)
+            print(curr_total_costs)
+            print(results)
+
+            for house in houses:
+                house.clear_house()
+                for battery in batteries:
+                    battery.clear(house)

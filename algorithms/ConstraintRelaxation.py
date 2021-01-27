@@ -3,6 +3,7 @@ import models.cables
 import models.house
 import models.load_data
 from . import helper
+from . import Hillclimber
 import random
 import matplotlib.pyplot as plt
 from matplotlib import style
@@ -20,9 +21,6 @@ def optimum_creating():
     # houses that are currently not being used because the battery is full
     unused_houses = []
 
-    # total costs for the cables
-    total_costs = 0
-
     # shuffle
     random.shuffle(houses)
 
@@ -37,9 +35,6 @@ def optimum_creating():
 
         # loop to check the distance to all batteries
         for battery in batteries:
-
-            # costs for all cables connected to the current battery
-            battery_costs = 0
 
             # battery has sufficient capacity
             if battery.status(house) == True:
@@ -76,10 +71,6 @@ def optimum_creating():
             house.connect_to_battery(battery)
             battery.connect_house(house)
 
-            # adds costs of cables for this house to the battery
-            house.add_costs(battery)
-            battery.add_house_info(house)
-
             # no unused houses left, applies hillclimber to optimalize connections
             if len(unused_houses) <= 1:
 
@@ -89,8 +80,6 @@ def optimum_creating():
     # if algorithm is finished run constraint_relaxation algorithm
     if len(unused_houses) <= 1:
         constraint_relaxation()
-        # run_output()
-
 
 
 def constraint_relaxation():
@@ -109,7 +98,8 @@ def constraint_relaxation():
     for battery in batteries:
 
         # for every battery append to costs for this battery, costs for each battery are 5000 in this case
-        total_costs = total_costs + 5000
+        costs_of_battery = 5000
+        total_costs += costs_of_battery
         i += 1
 
         # initialize empty list for cable coordinates of this battery and start with coordinates battery
@@ -158,21 +148,26 @@ def constraint_relaxation():
             # plot all houses, batteries and lines
             plt.plot(x,y, color= colors[i])
             ax = plt.subplot()
-            houses_plt = ax.scatter(house.x, house.y, color='k', marker='*')
+            houses_plt = ax.scatter(house.x, house.y, color='k', marker='p')
             batteries_plt = ax.scatter(battery.x, battery.y, color='r', marker='^')
 
         # calculate costs for all cables to this battery and append this to the total costs
         number_of_cables = len(cables_coordinates)
-        cables_costs = number_of_cables * 9
+        costs_of_cable = 9
+        cables_costs = number_of_cables * costs_of_cable
         total_costs = total_costs + cables_costs
     
-    print(f"The total costs for this district are: {total_costs}")
+    # print(f"The total costs for this district are: {total_costs}")
 
-    # # make plot
-    fig = plt.savefig("ConstraingRelaxation.png")
-    return fig
+    plt.savefig("ConstraingRelaxation1.png")
+      
+    return total_costs
+    
         
 def run_output():
+    """
+    Runs output
+    """
 
     for curr_batt in batteries:
         print(curr_batt)
@@ -182,3 +177,27 @@ def run_output():
 
             for cable_point in curr_house.cables:
                 print(cable_point)
+
+def run_multiple_times():
+    """
+    Runs algorithm multiple times, only saves best results
+    """
+
+    results = []
+
+    curr_total_costs = 50000
+
+    for i in range(1000):
+        optimum_creating()
+        new_total_costs = constraint_relaxation()
+
+        if new_total_costs < curr_total_costs:
+            curr_total_costs = new_total_costs
+            results.append(curr_total_costs)
+            print(curr_total_costs)
+            print(results)
+
+            for house in houses:
+                house.clear_house()
+                for battery in batteries:   
+                    battery.clear(house)
