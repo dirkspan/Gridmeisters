@@ -200,11 +200,13 @@ def run_multiple_times():
     
     for i in range(1000):
         optimum_creating()
-        new_total_costs = constraint_relaxation()
 
+        new_total_costs = constraint_relaxation()
+        
         if new_total_costs < curr_total_costs:
             curr_total_costs = new_total_costs
-        results.append(curr_total_costs)
+            
+            results.append(curr_total_costs)
         print(curr_total_costs)
         print(results)
     
