@@ -164,7 +164,7 @@ def constraint_relaxation():
         
 def run_output():
     """
-    Runs
+    Runs output
     """
 
     for curr_batt in batteries:
@@ -177,6 +177,9 @@ def run_output():
                 print(cable_point)
 
 def run_multiple_times():
+    """
+    Runs algorithm multiple times, only saves best results
+    """
 
     results = []
 

@@ -71,7 +71,7 @@ def plot_random_algorithm():
             houses_plt = ax.scatter(house.x, house.y, color='k', marker='p')
             batteries_plt = ax.scatter(battery.x, battery.y, color='r', marker='^')
 
-    fig = plt.savefig("randomfigure.png")
+    fig = plt.savefig("randomfigure1.png")
     return fig
 
 def run_rand_output():

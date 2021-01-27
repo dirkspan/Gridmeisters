@@ -65,7 +65,8 @@ def first_algorithm():
 
             # no unused houses left, applies hillclimber to optimalize connections
             if unused_houses == []:
-                helper.hillclimber(batteries, houses)            
+                # helper.hillclimber(batteries, houses)   
+                print('ok')         
 
 def calc_total_cost():
     """
