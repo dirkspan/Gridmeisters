@@ -78,13 +78,16 @@ def plot_random_algorithm():
 
             ax = plt.subplot()
 
-            houses_plt = ax.scatter(house.x, house.y, color='k', marker='*')
+            houses_plt = ax.scatter(house.x, house.y, color='k', marker='p')
             batteries_plt = ax.scatter(battery.x, battery.y, color='r', marker='^')
 
-    fig = plt.savefig("randomfigure.png")
+    fig = plt.savefig("randomfigure1.png")
     return fig
 
 def run_rand_output():
+    """
+    Runs output
+    """
 
     for curr_batt in batteries:
         print(curr_batt)

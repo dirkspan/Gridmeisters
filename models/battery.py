@@ -14,8 +14,6 @@ class Battery:
         self.houses_to_battery = []
         self.housesid_to_battery = []
 
-        self.batt_costs = 0
-
     def __str__(self):
         return f"location:{self.coordinates},\n{self.capacity},\nhouses:"       
 
@@ -34,7 +32,6 @@ class Battery:
             self.housesid_to_battery.remove(house.id)
             self.capacity += house.maxoutput
              
-
     def status(self, house):
         """
         Checks battery status

@@ -3,6 +3,7 @@ import models.cables
 import models.house
 import models.load_data
 from . import helper
+from . import Hillclimber
 import random
 import matplotlib.pyplot as plt
 from matplotlib import style
@@ -35,9 +36,6 @@ def optimum_creating():
 
         # loop to check the distance to all batteries
         for battery in batteries:
-
-            # costs for all cables connected to the current battery
-            battery_costs = 0
 
             # battery has sufficient capacity
             if battery.status(house) == True:
@@ -114,7 +112,7 @@ def constraint_relaxation():
     for battery in batteries:
 
         # for every battery append to costs for this battery, costs for each battery are 5000 in this case
-        total_costs = total_costs + 5000
+        total_costs += 5000
         i += 1
 
         # initialize empty list for cable coordinates of this battery and start with coordinates battery
@@ -178,6 +176,9 @@ def constraint_relaxation():
         
 
 def run_output():
+    """
+    Runs output
+    """
 
     for curr_batt in batteries:
         print(curr_batt)
