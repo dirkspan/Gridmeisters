@@ -64,9 +64,7 @@ def first_algorithm():
             house.route_calc(battery)
 
             # no unused houses left, applies hillclimber to optimalize connections
-            if unused_houses == []:
-                # helper.hillclimber(batteries, houses)   
-                print('ok')         
+            if unused_houses == []:     
 
 def calc_total_cost():
     """
@@ -82,7 +80,6 @@ def calc_total_cost():
 
         # define empty set for each battery
         cables_coordinates = set()
-
         # loops for all cables of all houses of this battery
         for house in battery.houses_to_battery:
             for cable in house.cables:

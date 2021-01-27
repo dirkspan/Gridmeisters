@@ -31,7 +31,8 @@ def run_swap(curr_battery, curr_house, next_battery, next_house):
     """
 
     if curr_house in curr_battery.houses_to_battery:
-    # remove current house van current battery
+
+        # remove current house van current battery
         curr_battery.remove_house(curr_house)
         curr_house.deconnect_to_battery(curr_battery)
 
@@ -58,6 +59,9 @@ def output_swap(curr_battery, curr_house, next_battery, next_house):
         return False
 
 def logic_swap(curr_battery, curr_house, next_battery, next_house):
+    """
+    Check to see if swap is profitable based on distance comparing
+    """
 
     if curr_house and curr_battery and next_house and next_battery is not None:
 
@@ -76,6 +80,10 @@ def logic_swap(curr_battery, curr_house, next_battery, next_house):
             return False    
 
 def calculate_distance(house, battery):
+    """
+    Calculate distance from house to battery
+    """
+
     
     distance = abs(house.coordinates[0] - battery.coordinates[0]) + abs(house.coordinates[1] - battery.coordinates[1])
 

@@ -13,11 +13,12 @@ from sys import argv
 if len(argv) < 3:
     print("Type in the correct files, f.e: python3 main.py data/dist1_b.csv data/dist1_h.csv")
     exit()
+    
 else:
-    print(f"Please select an algorithm to run:1 = Randomize\n2 = HillClimber\n3 = Constraint relaxation")
+    print(f"Please select an algorithm to run:1 = Randomize\n2 = HillClimber\n3 = Constraint relaxation\n")
     print("Please be aware that the first two algorithms both have overlapping cables")
 
-    algo_choice = input("Please make a choice: between 1, 2 and 3 ")
+    algo_choice = input(f"Please make a choice: between 1, 2 and 3\n")
 
     if algo_choice == '1':
         print(f"The total costs for this district are: {algorithms.Random.random_algorithm()}")

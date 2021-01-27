@@ -6,17 +6,18 @@ Minor programmeren: Programmeertheorie. Opdracht: SmartGrid. Steeds meer mensen 
 
 ### vereisten
 
+python -m pip install -U pip
 python -m pip install -U matplotlib
 
 #### Gebruik
 
-Invoer: python3 main.py data/dist1_b.csv data/dist1_h.csv
+Invoer: python3 main.py batterijen document huizen document
+Bijvoorbeeld: python3 main.py data/dist2_b.csv data/dist2_h.csv
 
-Kies 1 voor het random algoritme
-Kies 2 voor de hillcimber
+Kies 1 voor het Random algoritme
+Kies 2 voor de Hillcimber
 Kies 3 voor Constraint relaxation
-Kies 4 voor Multiple time
-Please select an algorithm to run: 1 = Randomize, 2 = HillClimber and 3 = Constraint relaxation 4 = Multiple times algorithm 3 5 = Multiple times algorithm 4
+
 
 ### Random algoritme
 Verbind de huizen random aan een batterij. Hierin wordt wel rekening gehouden met de capaciteit

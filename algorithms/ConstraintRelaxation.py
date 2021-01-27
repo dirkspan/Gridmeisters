@@ -112,7 +112,8 @@ def constraint_relaxation():
     for battery in batteries:
 
         # for every battery append to costs for this battery, costs for each battery are 5000 in this case
-        total_costs += 5000
+        costs_of_battery = 5000
+        total_costs += costs_of_battery
         i += 1
 
         # initialize empty list for cable coordinates of this battery and start with coordinates battery
@@ -166,7 +167,8 @@ def constraint_relaxation():
 
         # calculate costs for all cables to this battery and add this to the total costs
         number_of_cables = len(cables_coordinates)
-        cables_costs = number_of_cables * 9
+        costs_of_cable = 9
+        cables_costs = number_of_cables * costs_of_cable
         total_costs = total_costs + cables_costs
     
         # make plot

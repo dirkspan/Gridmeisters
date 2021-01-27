@@ -27,6 +27,10 @@ class Battery:
         self.capacity -= house.maxoutput
 
     def remove_house(self, house):
+        """
+        Removes house to battery and substracts output from the capacity
+        """
+
         if house in self.houses_to_battery:
             self.houses_to_battery.remove(house)
             self.housesid_to_battery.remove(house.id)
@@ -41,6 +45,9 @@ class Battery:
             return True
 
     def clear(self, house):
+        """
+        Clears everything for next run
+        """
 
         self.houses_to_battery = []
         self.housesid_to_battery = []
