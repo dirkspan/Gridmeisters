@@ -97,7 +97,6 @@ class House(object):
                 current_x -= 1
                 house.cables.append((current_x, current_y))
          
-
     def connect_to_battery(self, battery):
         """
         Connects battery to a house
@@ -112,17 +111,17 @@ class House(object):
 
         self.connected_to = None    
         
-
-    def __str__(self):
-        return f"location: {self.coordinates}\noutput: {self.maxoutput}\ncables: "   
-
-
     def clear_house(self):
+        """
+        Clears all house data
+        """
 
         self.connected_to == None
         self.cables = []
         self.costs = 0    
 
+    def __str__(self):
+        return f"location: {self.coordinates}\noutput: {self.maxoutput}\ncables: " 
 
 
 
