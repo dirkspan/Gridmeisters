@@ -37,7 +37,7 @@ def random_algorithm():
                 house.connect_to_battery(battery)
                 count += 1
 
-    if count == 150:
+    if count < 149:
         battery.clear(house)
         house.clear_house()
         random_algorithm()

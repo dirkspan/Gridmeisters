@@ -22,25 +22,31 @@ def hillclimber(batteries, houses):
                     if logic_swap(curr_battery, curr_house, next_battery, next_house) == True:
 
                         if output_swap(curr_battery, curr_house, next_battery, next_house) == True:
-                            # STAP 1:
-                            if curr_house in curr_battery.houses_to_battery:
-                            # remove current house van current battery
-                                curr_battery.remove_house(curr_house)
-                                curr_house.deconnect_to_battery(curr_battery)
 
-                            # connect next house aan current battery
-                            curr_battery.connect_house(next_house)
-                            next_house.connect_to_battery(curr_battery)
+                            run_swap(curr_battery, curr_house, next_battery, next_house)
 
-                            # STAP 2:
-                            # remove next house van next battery
-                            next_battery.remove_house(next_house)
-                            next_house.deconnect_to_battery(next_battery)
+def run_swap(curr_battery, curr_house, next_battery, next_house):
+    """
+    Performs swap
+    """
 
-                            # connect current house aan next battery
-                            next_battery.connect_house(curr_house)
-                            curr_house.connect_to_battery(next_battery)
-                                                        
+    if curr_house in curr_battery.houses_to_battery:
+    # remove current house van current battery
+        curr_battery.remove_house(curr_house)
+        curr_house.deconnect_to_battery(curr_battery)
+
+    # connect next house aan current battery
+    curr_battery.connect_house(next_house)
+    next_house.connect_to_battery(curr_battery)
+
+    # remove next house van next battery
+    next_battery.remove_house(next_house)
+    next_house.deconnect_to_battery(next_battery)
+
+    # connect current house aan next battery
+    next_battery.connect_house(curr_house)
+    curr_house.connect_to_battery(next_battery)                              
+                                
 def output_swap(curr_battery, curr_house, next_battery, next_house):
     """
     Check to see if swap is possible based on house output and capacity of battery

@@ -163,6 +163,9 @@ def constraint_relaxation():
     
         
 def run_output():
+    """
+    Runs
+    """
 
     for curr_batt in batteries:
         print(curr_batt)
@@ -176,15 +179,19 @@ def run_output():
 def run_multiple_times():
 
     results = []
+
     curr_total_costs = 50000
+
     for i in range(1000):
         optimum_creating()
         new_total_costs = constraint_relaxation()
+
         if new_total_costs < curr_total_costs:
             curr_total_costs = new_total_costs
             results.append(curr_total_costs)
             print(curr_total_costs)
             print(results)
+
             for house in houses:
                 house.clear_house()
                 for battery in batteries:   

@@ -24,10 +24,7 @@ else:
         plot_choice = input("Do you like to see the visualization and output? ,Y/N: ")
         if plot_choice == 'Y' or 'y' or 'yes' or 'Yes':
             algorithms.Random.plot_random_algorithm()
-            algorithms.Random.run_rand_output()
-        else:
-            print('Okay ¯\_( ͡❛ ͜ʖ ͡❛)_/¯ ') 
-            exit()       
+            algorithms.Random.run_rand_output()      
 
             multiple_choice = input("Would you like to run this algorithm multiple times to get the optimal result? Y/N ")
             if multiple_choice == 'Y' or 'y' or 'yes' or 'Yes':
@@ -45,9 +42,6 @@ else:
         if plot_choice == 'Y' or 'y' or 'yes' or 'Yes':
             algorithms.Hillclimber.plot_first_algorithm()
             algorithms.Hillclimber.run_output()
-        else:
-            print('Okay ¯\_( ͡❛ ͜ʖ ͡❛)_/¯ ') 
-            exit()   
 
             multiple_choice = input("Would you like to run this algorithm multiple times to get the optimal result? Y/N ")
             if multiple_choice == 'Y' or 'y' or 'yes' or 'Yes':
@@ -64,10 +58,7 @@ else:
         if plot_choice == 'Y' or 'y' or 'Yes' or 'yes':
             algorithms.ConstraintRelaxation.constraint_relaxation()
             algorithms.ConstraintRelaxation.run_output()
-        else:
-            print('Okay ¯\_( ͡❛ ͜ʖ ͡❛)_/¯ ') 
-            exit()       
-
+            
             multiple_choice = input("Would you like to run this algorithm multiple times to get the optimal result? Y/N")
             if multiple_choice == 'Y' or 'y' or 'yes' or 'Yes':
                 algorithms.ConstraintRelaxation.run_multiple_times()

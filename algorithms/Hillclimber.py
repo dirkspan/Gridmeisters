@@ -136,6 +136,9 @@ def plot_first_algorithm():
     return fig
  
 def run_output():
+    """
+    Runs output
+    """
 
     for curr_batt in batteries:
         print(curr_batt)
@@ -147,7 +150,12 @@ def run_output():
                 print(cable_point)       
 
 def run_multiple_times():
+    """
+    Runs algorithm multiple times, only saves best results
+    """
+
     results = []
+
     curr_total_costs = 50000
     for i in range(10000):
         new_total_costs = calc_total_cost()
