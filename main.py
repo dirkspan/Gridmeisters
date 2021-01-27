@@ -22,12 +22,8 @@ else:
     if algo_choice == '1':
         print(f"The total costs for this district are: {algorithms.Random.random_algorithm()}")
         plot_choice = input("Do you like to see the visualization and output? ,Y/N: ")
-
-        if plot_choice != 'Y' or 'y' or 'yes' or 'Yes':
-            print('You have not answered yes..')
-            exit()
-        else:
-
+        
+        if plot_choice == 'Y' or 'y' or 'yes' or 'Yes':
             algorithms.Random.plot_random_algorithm()
             algorithms.Random.run_rand_output()      
 
@@ -44,11 +40,7 @@ else:
 
         plot_choice = input("Do you like to see the visualization and output?, Y/N: ")
     
-        if plot_choice != 'Y' or 'y' or 'yes' or 'Yes':
-            print('You have not answered yes..')
-            exit()
-
-        else:        
+        if plot_choice == 'Y' or 'y' or 'yes' or 'Yes':
             algorithms.Hillclimber.plot_first_algorithm()
             algorithms.Hillclimber.run_output()
 
@@ -64,10 +56,7 @@ else:
 
         plot_choice = input("Do you like to see the visualization and output?, Y/N: ")
 
-        if plot_choice != 'Y' or 'y' or 'Yes' or 'yes':
-            print('You have not answered yes..')
-            exit()
-        else:    
+        if plot_choice == 'Y' or 'y' or 'Yes' or 'yes':
             algorithms.ConstraintRelaxation.constraint_relaxation()
             algorithms.ConstraintRelaxation.run_output()
 
