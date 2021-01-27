@@ -17,6 +17,7 @@ from sys import argv
 if len(argv) < 3:
     print("Type in the correct files, f.e: python3 main.py data/dist1_b.csv data/dist1_h.csv")
     exit()
+    
 else:
     print("Please select an algorithm to run: 1 = Randomize, 2 = HillClimber and 3 = Constraint relaxation 4 = Multiple times algorithm 3 5 = Multiple times algorithm 4 ")
     print("Please be aware that the first two algorithms both have overlapping cables")

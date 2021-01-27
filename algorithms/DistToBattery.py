@@ -93,17 +93,23 @@ def first_algorithm():
 
         # define empty set for each battery
         cables_coordinates = set()
-
+        number = 0
+        alles = 0
         # loops for all cables of all houses of this battery
         for house in battery.houses_to_battery:
             for cable in house.cables:
-
+                print("kabel")
+                alles = alles + 1
                 # only append new cable to pay if there is no cable yet
                 if str(cable) not in cables_coordinates:
+                    number = number + 1
                     cables_coordinates.add(str(cable))
         
+        print(alles)
+        print(number)
         # calculates total costs of cables of this battery
         number_of_cables = len(cables_coordinates) - 1
+        print(len(cables_coordinates))
 
         # define magic numbers
         price_of_cable_grid = 9
