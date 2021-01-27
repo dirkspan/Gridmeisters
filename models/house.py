@@ -26,10 +26,9 @@ class House(object):
         x_dist = abs(self.x - battery.x)
         y_dist = abs(self.y - battery.y)
 
-        house_costs = (x_dist + y_dist) * 9 
+        house_costs = (x_dist + y_dist) * 9
 
-        return house_costs
-        # self.costs += house_costs    
+        self.costs += house_costs    
 
     def route_calc(self, battery):
         """

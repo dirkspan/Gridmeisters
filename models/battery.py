@@ -19,22 +19,6 @@ class Battery:
     def __str__(self):
         return f"location:{self.coordinates},\n{self.capacity},\nhouses:"       
 
-
-    def add_house_info(self, house):
-        house_info = {}
-
-        house_info["location"] = house.coordinates
-
-        self.houses.append(house_info)
-
-        house_info["output"] = house.maxoutput
-        
-        self.houses.append(house_info)
-
-        house_info["cables"] = house.cables
-
-        self.houses.append(house_info)
-
     def battery_cost_calculation():
         total_costs_bat = 0
         total_costs_bat = len(batteries) * 5000

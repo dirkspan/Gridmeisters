@@ -75,7 +75,6 @@ def optimum_creating():
 
             # adds costs of cables for this house to the battery
             house.add_costs(battery)
-            battery.add_house_info(house)
 
             # no unused houses left, applies hillclimber to optimalize connections
             if len(unused_houses) <= 1:

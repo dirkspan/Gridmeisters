@@ -3,10 +3,10 @@ import models.load_data
 
 def hillclimber(batteries, houses):
     """
-    Hillclimber, goes through every possible connection already made
+    Hillclimber, goes through every connection already made
     to check if there are any better alternatives
     """
-    
+
     for next_house in houses:
 
         for battery in batteries:
@@ -16,21 +16,17 @@ def hillclimber(batteries, houses):
             for curr_house in curr_battery.houses_to_battery:
 
                 if next_house not in curr_battery.houses_to_battery:
-
-                    # if curr_house is not next_house and curr_house.calc_costs(curr_battery) > next_house.calc_costs(curr_battery):
                         
                     next_battery = next_house.connected_to
 
                     if logic_swap(curr_battery, curr_house, next_battery, next_house) == True:
 
-                        # if curr_house.maxoutput + curr_battery.capacity > next_house.maxoutput and next_house.maxoutput + next_battery.capacity > curr_house.maxoutput:
                         if output_swap(curr_battery, curr_house, next_battery, next_house) == True:
-
                             # STAP 1:
-                            # if curr_house in curr_battery.houses_to_battery:
+                            if curr_house in curr_battery.houses_to_battery:
                             # remove current house van current battery
-                            curr_battery.remove_house(curr_house)
-                            curr_house.deconnect_to_battery(curr_battery)
+                                curr_battery.remove_house(curr_house)
+                                curr_house.deconnect_to_battery(curr_battery)
 
                             # connect next house aan current battery
                             curr_battery.connect_house(next_house)
@@ -44,44 +40,27 @@ def hillclimber(batteries, houses):
                             # connect current house aan next battery
                             next_battery.connect_house(curr_house)
                             curr_house.connect_to_battery(next_battery)
+                                                        
 
+# def run_swap(curr_battery, curr_house, next_battery, next_house):
+#     # STAP 1:
+#     # if curr_house in curr_battery.houses_to_battery:
+#     # remove current house van current battery
+#     curr_battery.remove_house(curr_house)
+#     curr_house.deconnect_to_battery(curr_battery)
 
-def hillclimbertwo(batteries, houses):
+#     # connect next house aan current battery
+#     curr_battery.connect_house(next_house)
+#     next_house.connect_to_battery(curr_battery)
 
-    for j in range(1000):
+#     # STAP 2:
+#     # remove next house van next battery
+#     next_battery.remove_house(next_house)
+#     next_house.deconnect_to_battery(next_battery)
 
-        for next_house in houses:
-
-            for curr_battery in batteries:
-
-                for curr_house in curr_battery.houses_to_battery:
-
-                    if next_house not in curr_battery.houses_to_battery:
-                        next_battery = next_house.connected_to
-
-                        if output_swap(curr_battery, curr_house, next_battery, next_house):
-                        
-                            # STAP 1:
-                            # if curr_house in curr_battery.houses_to_battery:
-                            # remove current house van current battery
-                            curr_battery.remove_house(curr_house)
-                            curr_house.deconnect_to_battery(curr_battery)
-
-                            # connect next house aan current battery
-                            curr_battery.connect_house(next_house)
-                            next_house.connect_to_battery(curr_battery)
-
-                            # STAP 2:
-                            # remove next house van next battery
-                            next_battery.remove_house(next_house)
-                            next_house.deconnect_to_battery(next_battery)
-
-                            # connect current house aan next battery
-                            next_battery.connect_house(curr_house)
-                            curr_house.connect_to_battery(next_battery)
-                             
-                
-
+#     # connect current house aan next battery
+#     next_battery.connect_house(curr_house)
+#     curr_house.connect_to_battery(next_battery)                                
 
 
 def output_swap(curr_battery, curr_house, next_battery, next_house):
