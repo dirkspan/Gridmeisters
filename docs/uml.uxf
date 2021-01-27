@@ -1,42 +1,66 @@
-<diagram program="umletino" version="14.4.0-SNAPSHOT"><zoom_level>10</zoom_level><element><id>UMLClass</id><coordinates><x>320</x><y>360</y><w>210</w><h>230</h></coordinates><panel_attributes>Battery
+<diagram program="umletino" version="14.4.0-SNAPSHOT"><zoom_level>10</zoom_level><element><id>UMLClass</id><coordinates><x>20</x><y>170</y><w>220</w><h>400</h></coordinates><panel_attributes>House
 --
-self.x = x
-self.y = y
+self.coordinates = (x,y)
+self.maxouput = int
+id = int
+self.route = (None, None)
+connected_to = None
+self.costs = int
+self.cables = []
+
+--
+def add_costs():
+pass
+
+def route_calc():
+coordinates = (self.house.x, battery.y)
+
+def shortest_route()
+pass
+
+def connect_to_battery()
+pass
+
+def disconnect_to_battery()
+pass
+
+def clear_house()
+pass</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>170</x><y>0</y><w>150</w><h>100</h></coordinates><panel_attributes>Cable(cable_x, cable_y)
+--
+self.cable_x = x
+self.cable_y = y
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>350</x><y>160</y><w>210</w><h>400</h></coordinates><panel_attributes>Battery
+--
+self.coordinates = []
 self.capaciteit = int
 self.id = int
 houses = []
+houses_to_battery = []
+self.batt_costs = 0
+
 --
 def add_houses()
+pass
+
 adds houses to battery
 distracts output from capaciteit
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>20</x><y>360</y><w>220</w><h>240</h></coordinates><panel_attributes>House
---
-self.x = x
-self.y = y
-self.maxouput = int
-id = int
-cutting_coordinates = coordinates
---
-/def costs():
 
-/def add_cutting_point():
-/coordinates = (self.house.x, battery.y)
+def connect_house()
+pass
 
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>10</x><y>20</y><w>220</w><h>210</h></coordinates><panel_attributes>Grid
---
-House = House.id
-Battery = Battery.id
-self.costs_shared = costs_shared
---
-def add_total_costs(house, battery)
-costs_shared = 0
-xt = abs(house.x - battery.x)
-yt = abs(house.y - battery.y)
-dis = xt + yt
-price = dis * 9
-costs_shared = costs_shared + price
+def remove_house()
+pass
 
+def status()
+pass
 
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>280</x><y>20</y><w>170</w><h>170</h></coordinates><panel_attributes>Cable
+def clear()
+pass
+
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>350</x><y>0</y><w>160</w><h>110</h></coordinates><panel_attributes>Load_Data()
+
 --
-self.route = []</panel_attributes><additional_attributes></additional_attributes></element></diagram>
+load_batteries()
+houses = []
+load_houses()
+batteries = []</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>150</x><y>90</y><w>90</w><h>90</h></coordinates><panel_attributes>lt=&lt;-</panel_attributes><additional_attributes>10;70;70;10</additional_attributes></element><element><id>Relation</id><coordinates><x>240</x><y>330</y><w>120</w><h>30</h></coordinates><panel_attributes>lt=&lt;-</panel_attributes><additional_attributes>100;10;10;10</additional_attributes></element></diagram>
