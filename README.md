@@ -27,3 +27,6 @@ Verbind huizen op de korste manier aan een batterij en zoekt hierin vervolgens v
 
 ### Constraint relaxation algoritme
 Lost het eerst simpel op, door de huizen aan de dichtsbijzijnde batterij te koppelen. Vervolgens wordt hier naar een voordeligere oplossing gezocht door de huizen op een voordelige mannier te verbinen. Hierin wordt optimaal gebruik gemaakt van het delen van de kabels.
+
+### Dankbetuigingen
+Docenten minor programmeren
